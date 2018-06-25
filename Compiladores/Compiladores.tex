@@ -59,14 +59,14 @@ Todas estas funciones se compararon con una función \texttt{forces1} sin funcio
 
 \subsection{Estabilización del tiempo de ejecución}
 
-Preliminarmente, se buscó el valor de $N_{part}$ a partir del cual el tiempo de ejecución $\tau$ resultaba \[\tau\sim N^2\] dado que la cantidad de interacciones que \texttt{forces} calculaba es $N(N-1)/2\sim N^2$, bajo la hipótesis de que el tiempo de cómputo de la interacción entre 2 partículas es independiente de sus posiciones. Para asegurar esto último, se evitó la aplicación de un radio de corte.
+Preliminarmente, se buscó el valor de $N_{part}$ a partir del cual el tiempo de ejecución $\tau$ resultaba \[\tau\sim N_{part}^2\] dado que la cantidad de interacciones que \texttt{forces} calculaba es $N_{part}(N_{part}-1)/2\sim N_{part}^2$, bajo la hipótesis de que el tiempo de cómputo de la interacción entre 2 partículas es independiente de sus posiciones. Para asegurar esto último, se evitó la aplicación de un radio de corte $r_c$ para el potencial (en este caso Morse) que lo anule $\forall r\geq r_c$.
 
-Esto se hizo calculando el tiempo que tomaba computar $N_{iter}$ veces las fuerzas de un sistema de $N_{part}$ partículas. Los resultados se muestran en la \textbf{Figura \ref{fig:TvsNpart}}
+Esto se hizo calculando el tiempo que tomaba computar $N_{iter}$ veces las fuerzas de un sistema de $N_{part}$ partículas. Los resultados se muestran en la \textbf{Figura \ref{fig:TvsNpart}} y permiten extrapolar que para simulaciones cuya duraci\'on sea mayor a $1ms$ o $N_{part}\geq200$, el comportamiento es cuadr\'atico en $N_{part}$.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.6]{Imagenes/Estabilizacion_Npart.png}
-	\caption{Tiempo de ejecución de $N_{iter}$ \texttt{forces} para $N_{part}$ partículas. Para $N_{iter}>10$, el comportamiento se independiza de $N_{iter}$ y para $N_{part}>100$ el tiempo ya es polinómico (cuadrático) para todo $N_{part}$.}
+	\includegraphics[scale=0.65]{Imagenes/Estabilizacion_Npart.png}
+	\caption{Tiempo de ejecución de $N_{iter}$ \texttt{forces} para $N_{part}$ partículas. Para $N_{part}>200$ el tiempo ya es polinómico (cuadrático) para todo $N_{iter}$. Esto se condice con simulaciones cuya duraci\'on supera $1ms$}
 	\label{fig:TvsNpart}
 \end{figure}
 
@@ -76,18 +76,7 @@ El primer potencial en implementarse fue el potencial (central) de Morse
 
 \[ V_{M} (r) = D\big[1-e^{-\alpha (r-r_{eq})}\big]^2\]
 
-Compilando con los distintos optimizadores \texttt{O} se corrieron las simulaciones para sistemas con $N_{part}=???$. Los tiempos se obtuvieron mediante estadística sobre 100 corridas y se pueden apreciar en la \textbf{Figura \ref{fig:CompTodas}}
-
-\begin{figure}[h]
-	\centering
-%	\includegraphics[scale=0.6]{}
-	\caption{Comparación de tiempos para las distintas implementaciones vía}
-	\label{fig:CompTodas}
-\end{figure}
-
-ALGO DE ANALISIS
-
-Se destacan las funciones 1, 5 y 9 por su mayor portabilidad, permitiendo usar las 2 funciones auxiliares como \textit{test} directamente desde \texttt{Python} y devolviendo el módulo de fuerza, dado que el vector dirección de la fuerza es independiente del potencial.
+Se realizaron 9 implementaciones del mismo, destacando la implementaci\'on 1 por ser la m\'as directa y las funciones 5 y 9 por su mayor portabilidad y devolviendo el módulo de fuerza.
 
 \begin{quote}
 \begin{description}
@@ -97,7 +86,7 @@ Se destacan las funciones 1, 5 y 9 por su mayor portabilidad, permitiendo usar l
 \end{description}
 \end{quote}
 
-Las demás funciones son:
+Esta portabilidad permite usar las 2 funciones auxiliares como \textit{test} directamente desde \texttt{Python} y aprovechan que el vector dirección de la fuerza es independiente del potencial. Las demás funciones son:
 
 \begin{quote}
 \begin{description}
@@ -108,9 +97,89 @@ Las demás funciones son:
 \end{description}
 \end{quote}
 
-En el caso de \texttt{forces9} es importante aclarar que, al no tener ningún parámetro precalculado, la encapsulación del potencial era completa. Desde el punto de vista de la ingeniería de software \texttt{forces9} sería la óptima. Por lo tanto, se aislaron las funciones \texttt{forces1}, \texttt{forces2} y \texttt{forces3} para cuantificar la pérdida de velocidad en pos de la portabilidad (encapsulación del potencial).
+Compilando con los distintos optimizadores \texttt{O} se corrieron las simulaciones para sistemas con $N_{part}=216$. Se calcul\'o el tiempo por par de interacci\'on mediante 
+\[ \tau_{par}=\frac{2\tau}{N_{part}(N_{part}-1)} =\frac{\tau}{23220} \]
+donde $\tau$ era el tiempo total de duraci\'on de la simulaci\'on, obtenido mediante estad\'istica sobre $1000$ corridas. Los resultados pueden apreciarse en la \textbf{Figura \ref{fig:CompTodas}}.
 
-\subsection{Comparación: Potencial de Lennard-Jonnes}
+\begin{figure}[h]
+	\centering
+	\includegraphics[trim = 40mm 20mm 40mm 20mm, clip, scale=0.5]{Imagenes/Comp_tiempos_morse_todos.png}
+	\caption{Comparación de tiempos para las distintas implementaciones del potencial de morse. La tendencia decreciente de \texttt{O0} a \texttt{Ofast} es clara, excepto excepciones puntuales de \texttt{O2} a \texttt{O3}.}
+	\label{fig:CompTodas}
+\end{figure}
 
+En general, puede verse una tendencia decreciente a medida que se pasa de \texttt{O0} a \texttt{Ofast}, lo cual resulta esperable. Sin embargo, algunas excepciones notables se dan en el paso de \texttt{O2} a \texttt{O3}.
+
+De mayor inter\'es es notar que el compilador \texttt{Ofast} logra que las implementaciones 2, 3, 4 y 5 tengan diferencias menores al $5\%$ entre si y respecto de la implementaci\'on 1, volvi\'endolas virtualmente equivalentes.  Por tanto, estas 4 implementaciones bien pueden ser reemplazadas unicamente por 5, que resulta m\'as portable como se dijo previamente.
+
+Adem\'as, viendo que las implementaciones 6 y 7 tienen tiempos comparables a 9, resulta razonable reemplazarlas por 9. En el caso de \texttt{forces9} es importante aclarar que, al no tener ningún parámetro precalculado, la encapsulación del potencial es completa. Desde el punto de vista de la ingeniería de software \texttt{forces9} sería la óptima. 
+
+Por lo tanto, se aislaron las funciones \texttt{forces1}, \texttt{forces5} y \texttt{forces9} para cuantificar la pérdida de velocidad en pos de la portabilidad (encapsulación del potencial) y se volvieron a correr las simulaciones, obteniendo los resultados de la \textbf{Figura \ref{fig:CompEsp}}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[trim = 10mm 5mm 10mm 5mm, clip, scale=0.7]{Imagenes/Comp_tiempos_morse.png}
+	\caption{Comparaci\'on de las implementaciones de mayor portabilidad (5 y 9) contra la implementaci\'on directa 1. Aunque 1 parece equivalente a 5, difiere con 9 en $\sim 40\%$}
+	\label{fig:CompEsp}
+\end{figure}
+
+Como se hab\'ia observado previamente, la implementaci\'on 5 resulta equivalente a la 1 para todos los \texttt{O} (excepto \texttt{O0}). Sin embargo, la implementaci\'on 9 resulta hasta notoriamente m\'as lenta, con una diferencia relativa respecto a 1 que crece a medida que pasamos de \texttt{O0} a \texttt{Ofast} (donde alcanza un $\sim40\%$). Esto \'ultimo puede deberse a que la separaci\'on en 2 funciones obliga a calcular la funcion \texttt{exp} 2  veces, lo cual no ocurre en la implementacion 1 (es directa) ni en la 5 (la exponencial se pasa como par\'ametro precalculado). Dado que la exponencial no es una funci\'on elemental, sus tiempos elevados de calculo pueden causar esta discrepancia.
+
+\subsection{Comparación: Potencial de Lennard-Jones}
+
+Con el objetivo de confirmar que la abismal diferencia entre la implementaci\'on 9 y la 1 se debe al c\'alculo de \texttt{exp}, se realiz\'o un an\'alisis similar al anterior mediante el potencial de Lennard-Jones \[ V_{LJ} (r) =  4\varepsilon \Big[ \Big(\frac{r}{\sigma}\Big)^{12} -\Big(\frac{r}{\sigma}\Big)^{6} \Big] \]
+
+Este potencial es que se calcula utilizando solamente operaciones algebraicas elementales (multiplicaci\'on, suma, resta y divisi\'on). Se realizaron las siguientes implementaciones, an\'alogas a 1, 5 y 9 en el caso del potencial de Morse
 	
+\begin{quote}
+\begin{description}
+\item[1] Sin funciones auxiliares.
+\item[2] Dos funciones, con parámetros precalculados, devuelve modulo de fuerza.
+\item[3] Dos funciones, sin parámetros precalculados, devuelve modulo de fuerza (encapsula totalmente el potencial).
+\end{description}
+\end{quote}
+
+An\'alogamente, se hicieron corridas con cada optimizador \texttt{O}, promediando los tiempos con $1000$ corridas. Los resultados se encuentran en la \textbf{Figura \ref{fig:CompEsp_LJ}}, donde puede verse el gran salto entre \texttt{O0} y \texttt{O1}, con sus sucesivos saltos de menor orden. En particular, entre \texttt{O3} y \texttt{Ofast} no hay ninguna mejora de velocidad. Sin embargo, sigue manteniendose la abismal diferencia entre la implementaci\'on 9 y la 1 de un $40\%$.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[trim = 10mm 5mm 10mm 5mm, clip, scale=0.7]{Imagenes/Comp_tiempos_LJ.png}
+	\caption{Comparaci\'on de las implementaciones de mayor portabilidad contra la implementaci\'on directa 1. A diferencia del caso de Morse, la implementaci\'on 2 y 3 resultan notoriamente m\'as lentas que la 1.}
+	\label{fig:CompEsp_LJ}
+\end{figure}
+
+En particular, comparando las \textbf{Figuras \ref{fig:CompEsp}} y \textbf{\ref{fig:CompEsp_LJ}} puede verse que el c\'alculo de LJ resulta el doble de r\'apido que el de Morse. Esto permitir\'ia pensar que aproximadamente la mitad del tiempo de c\'omputo se invierte en calcular \texttt{exp}, hecho que oculta la diferencia real entre la implementaci\'on 1 y 5 de Morse, que ahora pasa a ser $\sim 20\%$. 
+
+\section{Inlineado de funciones}
+
+Los resultados previos parecen apuntar al hecho de que los tiempos de simulaci\'on se ven afectados por el hecho de que la funci\'on \texttt{forces} llame funciones auxiliares \texttt{pair\_force} y \texttt{pair\_energ}. Este tiempo puede reducirse dr\'asticamente utilizando \textit{function inlining}, que en \texttt{C} se reduce a agregar el sufijo \texttt{inline} delante de la declaraci\'on de la funci\'on. Este inlining fuerza al compilador a copiar la funci\'on dentro del cuerpo del c\'odigo en lugar de llamarla durante su ejecución. 
+
+Dado que las funciones estan ahora dentro del cuerpo del c\'odigo, resulta razonable pensar que los optimizadores \texttt{O} ser\'an capaces de optimizar la funci\'on \texttt{forces} en conjunto con \texttt{pair\_force} y \texttt{pair\_energ}. Por lo tanto, en el caso del potencial de Lennard-Jones ser\'ia factible hacer el c\'alculo de los parametros precalculables dentro de \texttt{pair\_force} y \texttt{pair\_energ}, con la esperanza de que los optimizadores lo noten y efectivamente los precalculen fuera de ellas.
+
+Se hizo entonces una versi\'on equivalente a \texttt{forces3} de LJ con estos ultimos cambios y se la corri\'o bajo los mismos par\'ametros de antes, obteniendo los resultados de la \textbf{Figura \ref{fig:CompEsp_LJ_inline}}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[trim = 10mm 5mm 10mm 5mm, clip, scale=0.7]{Imagenes/Comp_tiempos_LJ_inline.png}
+	\caption{Comparaci\'on de las implementaciones de Lennard-Jones de mayor portabilidad contra la implementaci\'on directa 1 utilizando inlining. Solo el optimizador \texttt{Ofast} logra volver las implementaciones 1 y 9 comparables; es el \'unico que realiza los precalculos de variables fuera de \texttt{pair\_force} y \texttt{pair\_energ}}
+	\label{fig:CompEsp_LJ_inline}
+\end{figure}
+
+Los resultados son muy alentadores, dado que las 3 implementaciones resultan indistinguibles dentro del error bajo la optimizaci\'on \texttt{Ofast}. En particular, puede verse como esta modificaci\'on resulta terriblemente perjudicial para los los dem\'as optimizadores, que claramente no realizan el precalculo. 
+
+Finalmente, realizando un trabajo complemente an\'alogo con el potencial de Morse, se obtienen los resultados de la \textbf{Figura \ref{fig:CompEsp_morse_inline}}. Nuevamente, en el caso de \texttt{Ofast} las 3 implementaciones resultan indistinguibles. Sin embargo, puede verse como el c\'alculo de \texttt{exp} nuevamente enmascara las abismales diferencias entre la implementaci\'on 1 y 9 para las dem\'as optimizaciones.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[trim = 10mm 5mm 10mm 5mm, clip, scale=0.7]{Imagenes/Comp_tiempos_morse_inline.png}
+	\caption{Comparaci\'on de las implementaciones de Morse de mayor portabilidad contra la implementaci\'on directa 1 utilizando inlining. A diferencia del caso de LJ, la diferencia resulta menos notoria, enmascarada por el c\'alculo de \texttt{exp}}
+	\label{fig:CompEsp_morse_inline}
+\end{figure}
+
+\section{Conclusiones}
+
+Sin m\'as preambulos, resulta inmediato elegir la implementaci\'on de \texttt{forces} con dos funciones auxiliares \texttt{pair\_force} y \texttt{pair\_energ} inlineadas sin parametros precalculados, que devuelvan el modulo de la fuerza. Esta opci\'on ya era la \'optima del punto de vista de ingenier\'ia de software y, gracias al previo an\'alisis, resulta equivalente en t\'erminos de velocidad.
+
+Con esto se tiene una encapsulación total del potencial, permitiendo la implementaci\'on de un \texttt{forces} como marco general que funciona para cualquier par de funciones auxiliares \texttt{pair\_force} y \texttt{pair\_energ}. Estas funciones auxiliares son las que introducir\'an efectivamente el potencial dentro del c\'alculo; para cambiar el potencial basta cambiar estas funciones auxiliares.
+
 \end{document}
