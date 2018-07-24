@@ -20,6 +20,29 @@
 \usepackage{times} % plataforma
 \usepackage{amsmath} % --para ecuaciones y algunos símbolos 
 \usepackage{wrapfig,lipsum}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=C++,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
 % ---------------------- -----------------------------------------------------
 
 \usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
@@ -38,9 +61,9 @@
 {\fontsize{20pt}{10pt}\textbf{Implementación de potenciales y compiladores}}
 \end{center}
 
-El objetivo fue generar un método para implementar el cálculo de las fuerzas totales en un sistema de $N_{part}$ partículas para un potencial dado. Esta función \texttt{forces} debía ser tan general como fuese posible para así evitar problemas a la hora de cambiar el potencial.
+El objetivo fue generar un método para implementar el cálculo de las fuerzas totales en un sistema de $N_{part}$ partículas para un potencial dado. Esta función \texttt{forces} debía ser tan general como fuese posible para así evitar problemas a la hora de cambiar el potencial. Implementamos estas funciones en C y, posteriormente, comparamos su velocidad de ejecución para distintas optimizaciones del compilador: \texttt{O0}, \texttt{O1}, \texttt{O2}, \texttt{O3} y \texttt{Ofast}. 
 
-Implementamos estas funciones en C y, posteriormente, comparamos su velocidad de ejecución para distintas optimizaciones del compilador: \texttt{O0}, \texttt{O1}, \texttt{O2}, \texttt{O3} y \texttt{Ofast}
+La opción \texttt{O0} es la opción por default en la que no hay optimizaciones mientras que \texttt{O1} es la opción con optimizaciones elementales. Por otro lado, la optimización \texttt{O2} realiza todas las optimizaciones que no envuelven \textit{space-speed tradeoff} (mayor uso de memoria en pos de aumentar la velocidad). La opción \texttt{O3}, en cambio, si realiza este tipo de optimizaciones como el inlineado de funciones y la vectorización de ciclos. Finalmente, la opción \texttt{Ofast} hace todo esto junto optimizaciones que no son \textit{standard-compliant} como \texttt{-ffast-math}; librería con funciones matemáticas implementadas para tener una mayor velocidad pero no necesariamente arrojar resultados con la exactitud apropiada. 
 
 \section{Implementaciones}
 Con esto en mente, planteamos 9 posibles implementaciones de la función \texttt{forces} combinando distintos rasgos. En todos los casos (excepto el primero), \texttt{forces} llamaba otras funciones para ejecutar el cálculo de la fuerza (\texttt{pair\_force}) o energía (\texttt{pair\_energ}) de interacción entre 2 partículas. 
@@ -49,7 +72,7 @@ Los rasgos que fuimos modificando son:
 
 \begin{quote}
 \begin{description}
-\item[Precalculo:] El pre-calculo o no de parámetros relevantes para la interacción tanto en la energía como en la fuerza de 2 partículas
+\item[Precalculo:] El pre-cálculo o no de parámetros relevantes para la interacción tanto en la energía como en la fuerza de 2 partículas
 
 \item[Auxiliares:] Separar el cálculo auxiliar en 2 funciones distintas \texttt{pair\_force} y \texttt{pair\_energ} o tener una única función \texttt{pair\_energ\_force}
 
@@ -61,7 +84,7 @@ Comparamos todas estas funciones con una función \texttt{forces1} sin funciones
 
 \subsection{Estabilización del tiempo de ejecución}
 
-Preliminarmente, buscamos el valor de $N_{part}$ a partir del cual el tiempo de ejecución $\tau$ resultaba \[\tau\sim N_{part}^2\] dado que la cantidad de interacciones que \texttt{forces} calculaba es $N_{part}(N_{part}-1)/2\sim N_{part}^2$, bajo la hipótesis de que el tiempo de cómputo de la interacción entre 2 partículas es independiente de sus posiciones. Para asegurar esto último, evitamos la aplicación de un radio de corte $r_c$ para el potencial (en este caso Morse) que lo anule $\forall r\geq r_c$.
+Preliminarmente, buscamos el valor de $N_{part}$ a partir del cual el tiempo de ejecución resultaba $\tau\sim N_{part}^2$ dado que la cantidad de interacciones que \texttt{forces} calculaba es $N_{part}(N_{part}-1)/2\sim N_{part}^2$, bajo la hipótesis de que el tiempo de cómputo de la interacción entre 2 partículas es independiente de sus posiciones. Para asegurar esto último, evitamos la aplicación de un radio de corte $r_c$ para el potencial (en este caso Morse) que lo anule $\forall r\geq r_c$.
 
 Esto lo hicimos calculando el tiempo que tomaba computar $N_{iter}$ veces las fuerzas de un sistema de $N_{part}$ partículas. Los resultados se muestran en la \textbf{Figura \ref{fig:TvsNpart}} y permiten extrapolar que para simulaciones cuya duraci\'on sea mayor a $1ms$ o $N_{part}\geq200$, el comportamiento es cuadr\'atico en $N_{part}$.
 
@@ -74,7 +97,7 @@ Esto lo hicimos calculando el tiempo que tomaba computar $N_{iter}$ veces las fu
 
 \subsection{Comparación: Potencial de Morse}
 
-El primer potencial en implementarse fue el potencial (central) de Morse
+El primer potencial que implementamos fue el de Morse
 
 \[ V_{M} (r) = D\left[1-e^{-\alpha (r-r_{eq})}\right]^2\]
 
@@ -88,6 +111,80 @@ Realizamos 9 implementaciones del mismo, destacando la implementaci\'on 1 por se
 \end{description}
 \end{quote}
 
+\begin{multicols}{3}
+\begin{lstlisting}
+float forces1(...){
+	...
+	for(i=0;i<N;i++){
+		for(j=i+1;j<N;j++){
+			...
+			calculo 
+			de fuerza
+			...
+			calculo 
+			de energia
+			...
+		}	
+	}
+}
+\end{lstlisting}
+\columnbreak
+\begin{lstlisting}
+float forces5(...){
+	...
+	for(i=0;i<N;i++){
+		for(j=i+1;j<N;j++){
+			...
+			precalculo de parametros
+			...
+			pair_force(params,..)
+			pair_energ(params,..)
+		}	
+		...
+	}
+	...
+}
+
+float pair_force(params,..){
+...
+}
+
+float pair_energ(params,..){
+...
+}
+\end{lstlisting}
+
+\columnbreak
+\begin{lstlisting}
+float forces9(...){
+	...
+	for(i=0;i<N;i++){
+		for(j=i+1;j<N;j++){
+			pair_force(...)
+			pair_energ(...)
+		}	
+		...
+	}
+	...
+}
+
+float pair_force(..){
+	calculo de 
+	parametros
+	...
+}
+
+float pair_energ(..){
+	calculo de 
+	parametros
+	...
+}
+
+\end{lstlisting}
+
+\end{multicols}
+
+
 Esta portabilidad permite usar las 2 funciones auxiliares como \textit{test} directamente desde \texttt{Python} y aprovechan que el vector dirección de la fuerza es independiente del potencial. Las demás funciones son:
 
 \begin{quote}
@@ -99,7 +196,7 @@ Esta portabilidad permite usar las 2 funciones auxiliares como \textit{test} dir
 \end{description}
 \end{quote}
 
-Compilando con los distintos optimizadores \texttt{O} corrimos las simulaciones para sistemas con $N_{part}=216$. Calculamos el tiempo por par de interacci\'on mediante 
+Compilando con los distintos optimizaciones \texttt{O} corrimos las simulaciones para sistemas con $N_{part}=216$. Calculamos el tiempo por par de interacci\'on mediante 
 \[ \tau_{par}=\frac{2\tau}{N_{part}(N_{part}-1)} =\frac{\tau}{23220} \]
 donde $\tau$ era el tiempo total de duraci\'on de la simulaci\'on, obtenido mediante estad\'istica sobre $1000$ corridas. Los resultados pueden apreciarse en la \textbf{Figura \ref{fig:CompTodas}}.
 
@@ -141,7 +238,7 @@ Este potencial se calcula utilizando solamente operaciones algebraicas elemental
 \end{description}
 \end{quote}
 
-An\'alogamente, hicimos corridas con cada optimizador \texttt{O}, promediando los tiempos con $1000$ corridas. Los resultados se encuentran en la \textbf{Figura \ref{fig:CompEsp_LJ}}, donde puede verse el gran salto entre \texttt{O0} y \texttt{O1}, con sus sucesivos saltos de menor orden. En particular, entre \texttt{O3} y \texttt{Ofast} no hay ninguna mejora de velocidad. Sin embargo, sigue manteniendose la abismal diferencia entre la implementaci\'on 9 y la 1 de un $40\%$.
+An\'alogamente, hicimos corridas con cada optimización \texttt{O}, promediando los tiempos con $1000$ corridas. Los resultados se encuentran en la \textbf{Figura \ref{fig:CompEsp_LJ}}, donde puede verse el gran salto entre \texttt{O0} y \texttt{O1}, con sus sucesivos saltos de menor orden. En particular, entre \texttt{O3} y \texttt{Ofast} no hay ninguna mejora de velocidad. Sin embargo, sigue manteniendose la abismal diferencia entre la implementaci\'on 9 y la 1 de un $40\%$.
 
 \begin{figure}[h]
 	\centering
@@ -156,18 +253,18 @@ En particular, comparando las \textbf{Figuras \ref{fig:CompEsp}} y \textbf{\ref{
 
 Los resultados previos parecen apuntar al hecho de que los tiempos de simulaci\'on se ven afectados por el hecho de que la funci\'on \texttt{forces} llame funciones auxiliares \texttt{pair\_force} y \texttt{pair\_energ}. Este tiempo puede reducirse dr\'asticamente utilizando \textit{function inlining}, que en \texttt{C} se reduce a agregar el sufijo \texttt{inline} delante de la declaraci\'on de la funci\'on. Este inlining fuerza al compilador a copiar la funci\'on dentro del cuerpo del c\'odigo en lugar de llamarla durante su ejecución. 
 
-Dado que las funciones estan ahora dentro del cuerpo del c\'odigo, resulta razonable pensar que los optimizadores \texttt{O} ser\'an capaces de optimizar la funci\'on \texttt{forces} en conjunto con \texttt{pair\_force} y \texttt{pair\_energ}. Por lo tanto, en el caso del potencial de Lennard-Jones ser\'ia factible hacer el c\'alculo de los par\'ametros precalculables dentro de \texttt{pair\_force} y \texttt{pair\_energ}, con la esperanza de que los optimizadores lo noten y efectivamente los precalculen fuera de ellas.
+Dado que las funciones estan ahora dentro del cuerpo del c\'odigo, resulta razonable pensar que los optimizaciones \texttt{O} ser\'an capaces de optimizar la funci\'on \texttt{forces} en conjunto con \texttt{pair\_force} y \texttt{pair\_energ}. Por lo tanto, en el caso del potencial de Lennard-Jones ser\'ia factible hacer el c\'alculo de los par\'ametros precalculables dentro de \texttt{pair\_force} y \texttt{pair\_energ}, con la esperanza de que los optimizaciones lo noten y efectivamente los precalculen fuera de ellas.
 
 Hicimos entonces una versi\'on equivalente a \texttt{forces3} de LJ con estos últimos cambios y se la corri\'o bajo los mismos par\'ametros de antes, obteniendo los resultados de la \textbf{Figura \ref{fig:CompEsp_LJ_inline}}.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[trim = 10mm 5mm 10mm 5mm, clip, width=0.6\columnwidth]{Comp_tiempos_LJ_inline.png}
-	\caption{Comparaci\'on de las implementaciones de Lennard-Jones de mayor portabilidad contra la implementaci\'on directa 1 utilizando inlining. Solo el optimizador \texttt{Ofast} logra volver las implementaciones 1 y 9 comparables; es el \'unico que realiza los precalculos de variables fuera de \texttt{pair\_force} y \texttt{pair\_energ}}
+	\caption{Comparaci\'on de las implementaciones de Lennard-Jones de mayor portabilidad contra la implementaci\'on directa 1 utilizando inlining. Solo la optimización \texttt{Ofast} logra volver las implementaciones 1 y 9 comparables; es el \'unico que realiza los precalculos de variables fuera de \texttt{pair\_force} y \texttt{pair\_energ}}
 	\label{fig:CompEsp_LJ_inline}
 \end{figure}
 
-Los resultados son muy alentadores, dado que las 3 implementaciones resultan indistinguibles dentro del error bajo la optimizaci\'on \texttt{Ofast}. En particular, puede verse como esta modificaci\'on resulta terriblemente perjudicial para los los dem\'as optimizadores, que claramente no realizan el precalculo. 
+Los resultados son muy alentadores, dado que las 3 implementaciones resultan indistinguibles dentro del error bajo la optimizaci\'on \texttt{Ofast}. En particular, puede verse como esta modificaci\'on resulta terriblemente perjudicial para los los dem\'as optimizaciones, que claramente no realizan el precalculo. 
 
 Finalmente, realizando un trabajo complemente an\'alogo con el potencial de Morse, obtuvimos los resultados de la \textbf{Figura \ref{fig:CompEsp_morse_inline}}. Nuevamente, en el caso de \texttt{Ofast} las 3 implementaciones resultan indistinguibles. Sin embargo, puede verse como el c\'alculo de \texttt{exp} nuevamente enmascara las abismales diferencias entre la implementaci\'on 1 y 9 para las dem\'as optimizaciones.
 
@@ -183,5 +280,7 @@ Finalmente, realizando un trabajo complemente an\'alogo con el potencial de Mors
 Sin m\'as preambulos, resulta inmediato elegir la implementaci\'on de \texttt{forces} con dos funciones auxiliares \texttt{pair\_force} y \texttt{pair\_energ} inlineadas sin parametros precalculados, que devuelvan el modulo de la fuerza. Esta opci\'on ya era la \'optima del punto de vista de ingenier\'ia de software y, gracias al previo an\'alisis, resulta equivalente en t\'erminos de velocidad.
 
 Con esto tenemos una encapsulación total del potencial, permitiendo la implementaci\'on de un \texttt{forces} como marco general que funciona para cualquier par de funciones auxiliares \texttt{pair\_force} y \texttt{pair\_energ}. Estas funciones auxiliares son las que introducir\'an efectivamente el potencial dentro del c\'alculo; para cambiar el potencial basta cambiar estas funciones auxiliares.
+
+\textbf{MÁS DISCUSIÓN, MAS IDEAS: LO QUE SIENTA QUE APRENDI}
 
 \end{document}
