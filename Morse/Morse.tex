@@ -1,0 +1,99 @@
+\documentclass[twoside, 12pt]{article}
+
+\usepackage[sc]{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\linespread{1.5} % Line spacing - Palatino needs more space between lines
+
+%\usepackage[twoside,width=16cm,height=24cm,left=3cm]{geometry}
+\usepackage[hmarginratio=1:1,top=20mm,width=20cm,height=23.7cm,columnsep=15pt]{geometry} % Document margins
+\usepackage{multicol} % Used for the two-column layout of the document
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage{booktabs} % Horizontal rules in tables
+\usepackage{float} % Required for tables and figures in the multi-column environment - they need to be placed in specific locations with the [H] (e.g. \begin{table}[H])
+\usepackage{hyperref} % For hyperlinks in the PDF
+
+%----------- Agregados para el caso de ustedes -------------------------------
+\usepackage[spanish]{babel}% idioma castellano
+\usepackage[utf8]{inputenc}% esto es para poder poner los tildes directamente. Puede que cambie de versión a versión de sistema operativos (más información en http://www.aq.upm.es/Departamentos/Fisica/agmartin/webpublico/latex/FAQ-CervanTeX/FAQ-CervanTeX-6.html )
+\usepackage{graphicx} % para insertar figuras
+\usepackage{subfigure} % para insertar figuras dentro de figuras
+\usepackage{times} % plataforma
+\usepackage{amsmath} % --para ecuaciones y algunos símbolos 
+\usepackage{wrapfig,lipsum}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=C++,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+% ---------------------- -----------------------------------------------------
+
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+\usepackage{paralist} % Used for the compactitem environment which makes bullet points with less space between them
+\usepackage[T1]{fontenc}					%para poder usar tildes sin problemas
+
+\usepackage{mathrsfs}
+% Abreviaturas
+%\newcommand\RR{\mathbb{R}}
+
+\graphicspath{{Imagenes/}}
+
+\begin{document}
+	
+\begin{center}
+	{\fontsize{20pt}{10pt}\textbf{Implementación de Morse en pexmd}}
+\end{center}
+
+Con el objetivo de probar la implementación del potencial de Morse, corrimos simulaciones para obtener la curva de E(T) y compararla con la obtenida en LAMMPS. Como el método de reescalamiento de velocidades no funcionaba para controlar la temperatura, debimos implementar un termostato de Andersen. 
+
+\section{Morse Interaction Class}
+
+Implementamos el potencial de Morse en \texttt{Python} como una clase heredada de \texttt{ShortRange}
+
+\[ V_{M} (r) = D\left[1-e^{-\alpha (r-r_{eq})}\right]^2\]
+
+Por lo tanto, la clase tiene métodos \texttt{pair\_force}, \texttt{pair\_energ} y \texttt{forces}, utilizando las implementación óptimas \texttt{forces9} en \texttt{C} discutida en \textbf{Compiladores}. En este aspecto, las funciones de \texttt{Python} no son más que wrappers (encapsulamiento) de sus contrapartes en \texttt{C}. Este aspecto es general para las interacciones de tipo \texttt{ShortRange}; lo mismo ocurre en la implementación de Lennard-Jones. 
+
+La clase de \texttt{Python} está definida en \texttt{morse\.py} e importa una librería dinámica \texttt{morse\_pot.so} con las funciones de \texttt{morse\_pot.c}
+
+\section{Prueba del potencial de Morse}
+
+Tomamos parámetros arbitrarios para el potencial de Morse (con partículas de masa $m=1$)
+\[ \left\{\begin{matrix}
+D = 0.5 & \alpha = 1.0 \\
+r_{eq} = 1.0 & r_{cut} = 2.5\\
+\end{matrix} \right. \]
+
+Buscamos reproducir la curva $E(T)$ para $1\leq T\leq 10$ a una densidad $\rho = 2$ ($N_{part}=512$, $L=6.3496$).
+
+\subsection{Corrida en LAMMPS}
+
+Dado que en \texttt{pexmd} no teniamos implementadas las condiciones de contorno periódicas, utilizamos inicialmente las \texttt{fixed}. Sin embargo, inmediatamente hubo problemas con partículas escapando de la caja. Esto no ocurría para las condiciones de contorno \texttt{periodic}, así que decidimos utilizarlas. Buscamos entonces que el sistema condense a una única una gota esférica, donde el $r_{cut}$ se encargaría que la gota no interactue con sus imagenes. En este régimen, las condiciones \texttt{fixed} y \texttt{periodic} deberían ser equivalentes. Este régimen se encontró para $\rho=2$ con $N_{part}=512$ y $L=6.3496$.
+
+Usando el termostato de LAMMPS, registramos el par ($E$,$T$) en cada paso. La termalización comenzaba con un aumento hasta $T\sim 15$ donde se estancaba durante un largo tiempo previo a comenzar a bajar. Las pruebas preliminares con $\Delta t= 5\times 10^{-4}$ y $\Delta t= 5\times 10^{-3}$ no lograban alcanzar $T=10$ ni siquiera en $10^5$ pasos.
+
+Por lo tanto, bajamos a $\Delta t = 0.05$ en una corrida de $1.5\times10^{5}$ pasos.
+\subsection{Primeras corridas en PEXMD}
+\subsection{Termostato de Andersen}
+\subsection{Corridas finales en PEXMD}
+
+\section{Conclusiones}
+
+\end{document}
