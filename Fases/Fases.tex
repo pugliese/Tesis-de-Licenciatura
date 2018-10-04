@@ -91,9 +91,11 @@ Según lo esperado, dada la simetría entre $p$ y $q$ en $V_P$, las expresiones 
 
 \subsection{Pauli class}
 
-A pesar de no heredar de \texttt{ShortRange}, resulta natural pensar que este potencial tendrá un radio de corte en el espacio de fases $s_{cut}$ con su $shift\_style$ correspondiente. Además, tendrá los parámetros esperados $q_o$, $p_o$ y $D$.
+A pesar de no heredar de \texttt{ShortRange}, resulta natural pensar que este potencial tendrá un radio de corte en el espacio de fases $s_{cut}$ con su $shift\_style$ correspondiente. Además, tendrá los parámetros 
+esperados $q_o$, $p_o$ y $D$.
 
-Esta clase compartirá con \texttt{ShortRange} las funciones \texttt{pair\_force}, \texttt{pair\_energ} y \texttt{forces}. Además, tendrá que tener sus equivalentes para las guerzas \texttt{pair\_gorce} y \texttt{gorces}. Utilizando la misma filosofía que en la implementación de Morse anterior, implementamos en \texttt{C} las contrapartes de estas funciones según 
+Esta clase compartirá con \texttt{ShortRange} las funciones \texttt{pair\_force}, \texttt{pair\_energ} y \texttt{forces}. Además, tendrá que tener sus equivalentes para las guerzas \texttt{pair\_gorce} y \texttt{gorces}. 
+Utilizando la misma filosofía que en la implementación de Morse anterior, implementamos en \texttt{C} las contrapartes de estas funciones según 
 
 \begin{multicols}{2}
 \begin{lstlisting}
@@ -153,15 +155,40 @@ float pair_energ(..){
 \end{lstlisting} 
 \end{multicols}
 
-Esta implementación por separado del cálculo de fuerzas y guerzas resulta apropiado teniendo en mente los \textit{splitting methods} a la hora de integrar, donde se integra $q$ y $p$ por separado y, por lo tanto, no necesariamente se calculan las fuerzas y las guerzas simultáneamente.
+Esta implementación por separado del cálculo de fuerzas y guerzas resulta apropiado teniendo en mente los \textit{splitting methods} a la hora de integrar, donde se integra $q$ y $p$ por separado y, por lo tanto, 
+no necesariamente se calculan las fuerzas y las guerzas simultáneamente.
 
-Sin embargo, para integradores que si calculan fuerzas y guerzas simultáneamente, resulta natural explotar la simetría a la hora de calcular $\mathbf{F}_{ij}$ y $\mathbf{G}_{ij}$, calculando el término $e^{-\frac{1}{2}s_{ij}^2}$ una única vez. Por lo tanto, implementamos una sexta función combinada \texttt{fgorces} en \texttt{Python} con su contraparte en \texttt{C}.
+Sin embargo, para integradores que si calculan fuerzas y guerzas simultáneamente, resulta natural explotar la simetría a la hora de calcular $\mathbf{F}_{ij}$ y $\mathbf{G}_{ij}$, calculando el término 
+$e^{-\frac{1}{2}s_{ij}^2}$ una única vez. Por lo tanto, implementamos una sexta función combinada \texttt{fgorces} en \texttt{Python} con su contraparte en \texttt{C}.
+
+Para comparar rapidamente ambas implementaciones, corrimos 10000 las funciones \texttt{forces} y \texttt{gorces} para $N_{part} = 1000$ y registramos el tiempo. 
+Lo mismo hicimos para \texttt{fgorces}, asegurándonos de que los resultados fuesen los mismos. 
+Obtuvimos entonces que la versión separada tardaba $\sim 65\%$ más que la combinada, bastante razonable si pensamos que la exponencial es la parte más costosa del cómputo y estamos calculándola la mitad de las veces.
 
 \section{Estudio de integradores}
 
 \subsection{Integradores implementados}
 
+Dado que el Hamiltoneano es no separable, no encontramos integradores simplécticos y explícitos. 
+Con el objetivo de comparar, decidimos implementar 2 integradores no simplécticos pero explícitos y un integrador simpléctico pero no explícito. 
+
 \subsection{Conservación de la energía}
+
+qi = 6
+pi =-4
+D = 10000
+qo = 1 = po
+h = 0.01
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[trim = 20mm 0mm 15mm 10mm, clip, width=0.32\columnwidth]{energia_euler_0,01.png}
+	\includegraphics[trim = 20mm 0mm 15mm 10mm, clip, width=0.32\columnwidth]{energia_rk2_0,01.png}
+	\includegraphics[trim = 20mm 0mm 15mm 10mm, clip, width=0.32\columnwidth]{energia_mpr_0,01.png}
+	\caption{}
+	\label{fig:histogramas}
+\end{figure}
+
 
 \subsection{Espacio de fases}
 
