@@ -105,9 +105,9 @@ Esto corresponde a la mitad superior de la antidiagonal, por lo que la cantidad 
 
 \begin{figure}[H]
 	\centering
-	\subfigure[Recurrencia entre elementos]{\includegraphics[width=0.26\columnwidth]{esquema_wynn.png}{\label{fig:wynn_esquema}}}
+	\subfigure[Recurrencia entre elementos]{\includegraphics[width=0.26\columnwidth]{apendice/esquema_wynn.png}{\label{fig:wynn_esquema}}}
 	\hspace{0.05\columnwidth}
-	\subfigure[Ejemplo del cómputo para el caso $p=1$]{\includegraphics[clip, width=0.68\columnwidth]{ejemplo_wynn.png}{\label{fig:wynn_ejemplo}}}
+	\subfigure[Ejemplo del cómputo para el caso $p=1$]{\includegraphics[clip, width=0.68\columnwidth]{apendice/ejemplo_wynn.png}{\label{fig:wynn_ejemplo}}}
 	\caption{Arreglo de los coeficientes $\epsilon$ en una tabla para facilitar su cómputo}
 	\label{fig:wynn}
 \end{figure}
@@ -124,9 +124,9 @@ Puede verse que en el rango $0\leq z\leq 20$, la aproximación con $2p=20$ resul
 
 \begin{figure}[H]
 	\centering
-	\subfigure[Valor absoluto]{\includegraphics[width=0.4\columnwidth]{ejemplo_wynn_log.png}}
+	\subfigure[Valor absoluto]{\includegraphics[width=0.4\columnwidth]{apendice/ejemplo_wynn_log.png}}
 	\hspace{0.05\columnwidth}
-	\subfigure[Error relativo]{\includegraphics[width=0.4\columnwidth]{ejemplo_wynn_log_error.png}}
+	\subfigure[Error relativo]{\includegraphics[width=0.4\columnwidth]{apendice/ejemplo_wynn_log_error.png}}
 	\caption{Aproximaciones del método de Wynn a la función $f_1(z) = \log(z+1)$, calculada usando el paquete \texttt{numpy} de \texttt{Python}. 
 	Podemos ver que rapidamente converge a la función para $p=10$, que resulta indistinguible de la exacta.}
 	\label{fig:ej_wynn_log}
@@ -188,15 +188,15 @@ Esta aproximación de la $f_{5/2}(z)$ tiene una calidad similar a la de $f_{3/2}
 
 \begin{figure}[H]
 	\centering
-	\subfigure[Función $f_{3/2}(z)$ utilizada para obtener $\mu(N,V,T)$]{\includegraphics[width=0.4\columnwidth]{F32.png}}
+	\subfigure[Función $f_{3/2}(z)$ utilizada para obtener $\mu(N,V,T)$]{\includegraphics[width=0.4\columnwidth]{apendice/F32.png}}
 	\hspace{0.05\columnwidth}
-	\subfigure[Función $f_{5/2}(z)$ asociada a la presión del sistema]{\includegraphics[width=0.4\columnwidth]{F52.png}}
+	\subfigure[Función $f_{5/2}(z)$ asociada a la presión del sistema]{\includegraphics[width=0.4\columnwidth]{apendice/F52.png}}
 	\caption{Forma final de las $f_\nu(z)$ utilizando la separación en 3 métodos: sumas parciales, Wynn y Sommerfeld. Puede verse que empalman correctamente.}
 	\label{fig:f32_f52}
 \end{figure}
 
 
-\subsection{Integradores no simplécticos: Euler y Runge-Kutta}
+\subsection{Integradores no simplécticos: Euler y Runge-Kutta}{\label{sec:no_simp}}
 
 En este apéndice, demostraremos que los métodos de Euler y un Runge-Kutta de orden 2 explícitos no son simplécticos. 
 Comenzaremos con el método de Euler de esquema
@@ -225,4 +225,6 @@ tiene una derivada respecto de $y_n$ más complicada
 
 Para anular los ordenes cuadrático y cúbico, se requiere basicamente $\nabla^2H(y_n) = \nabla^2H(y_{n+1/2})$, pero el término cuártico en $h$ es no nulo.
 Por lo tanto, este método RK2 no es simpléctico.
+
+\subsubsection{Implementación de interacción de Pauli}
 
