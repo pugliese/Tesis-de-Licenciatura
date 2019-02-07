@@ -141,8 +141,8 @@ A diferencia del caso $D^*>1/2$, este caso corresponde a un rebote clásico: las
 Para $E^*>D^*$ tenemos que $q^{*2}(0) < 0$ y $q^{*2}(p^{*2}=p_\infty^2)\geq 0$. 
 Análogamente a lo anterior, por continuidad debe existir $0\leq p^*_c\leq p_\infty^2$ tal que $q^{*2}(p^*_c) = 0$ y nuevamente tenemos una curva que conecta $(-\infty, \pm p_\infty)$ con $(\infty, \pm p_\infty)$. 
 
-En resumen, tenemos 4 casos que dan origen a 3 curvas distintas (ver \textbf{Tabla TABLA}).
-Estas curvas y sus diferencias pueden apreciarse en \textbf{Figura CURVAS}.
+En resumen, tenemos 4 casos que dan origen a 3 curvas distintas (ver \textbf{Tabla \ref{tab:casos_curvas}}).
+Estas curvas y sus diferencias pueden apreciarse en \textbf{Figura \ref{fig:curvas_teo}}.
 
 \begin{table}[h]
 	\centering
@@ -152,7 +152,19 @@ Estas curvas y sus diferencias pueden apreciarse en \textbf{Figura CURVAS}.
 		    $\qquad E^*\leq D^* \qquad$      &    $\qquad E^*> D^* \qquad$       &    $E^*>\frac{1}{2}(1+\log(2D^*))$        &    $E^*\leq\frac{1}{2}(1+\log(2D^*))$     \\ \hline
 		    \textbf{Rebote simple}      &    \multicolumn{2}{c|}{\textbf{Atraviese}}     &     \textbf{Rebote doble}    \\ \hline
 	\end{tabular}
+	\caption{Tipos de trayectoria posibles en el espacio de fases dependiendo de los parámetros $E^*$ y $D^*$}
+	\label{tab:casos_curvas}
 \end{table}
+
+\begin{figure}[h]
+	\centering
+	\subfigure{\includegraphics[width=0.45\textwidth]{choque1d/curvas_teo_1.png}}
+	\subfigure{\includegraphics[width=0.45\textwidth]{choque1d/curvas_teo_2.png}}	
+	\subfigure{\includegraphics[width=0.45\textwidth]{choque1d/curvas_teo_3.png}}
+	\subfigure{\includegraphics[width=0.45\textwidth]{choque1d/curvas_teo_4.png}}
+	\caption{Area de la región excluída en función de $D^*$ obtenida de integrar numéricamente \eqref{eq:area_int_ex}. Para valores altos parece haber una relación lineal entre $A^*$ y $\log D^*$.}
+	\label{fig:curvas_teo}
+\end{figure}
 
 La existencia de región excluida existe solo para $D^*>1/2$ puede apreciarse para las curvas de doble rebote, que parecen estar circunventando el origen. 
 Como dijimos, a medida que $E^*\to E^*_c = (1+\log(2D^*))/2$ estas curvas acercarán sus mínimos al eje $q^*=0$ hasta transformarse en curvas de atraviese.
@@ -175,10 +187,12 @@ donde debemos recordar que $2E_c^* = 1 + \log(2D^*) $ y que $A^*$ es el área re
 Sin embargo, la integral de \eqref{eq:area_int_ex} no puede expresarse como una combinación de funciones conocidas, lo cual nos impide por completo obtener una forma funcional clara.
 Aún así, podemos realizar una integración numérica de $A^*$ vía regla de trapecios.
 Debemos tener especial cuidado en el extremo superior, donde el integrando diverge.
-El resultado de esta integración numérica en un amplio rango de $D^*$ puede apreciarse en la \textbf{Figura AvsD TEO}, donde vemos que rápidamente se alcanza una tendencia lineal $A \approx \alpha \log(D^*) + \beta$.
+El resultado de esta integración numérica en un amplio rango de $D^*$ puede apreciarse en la \textbf{Figura \ref{fig:curvas_teo}}, donde vemos que rápidamente se alcanza una tendencia lineal $A^* \approx \alpha \log(D^*) + \beta$.
 
 \begin{figure}
-%	\includegraphics[contenidos...]{choque1d/AvsD}
+	\centering
+	\includegraphics[width=0.8\textwidth]{choque1d/AvsD_solo_teo.png}
+	\caption{Area de la región excluída en función de $D^*$ obtenida de integrar numéricamente \eqref{eq:area_int_ex}. Para valores altos parece haber una relación lineal entre $A^*$ y $\log D^*$.}
 \end{figure}
 
 Más adelante retomaremos este análisis del espacio de fases desde un punto de vista computacional, simulando el choque y confirmando nuestros resultados con esta sección.
@@ -192,6 +206,8 @@ Como dijimos, las curvas $q(p)$ del diagrama de fases mantienen el Hamiltoneano 
 A la hora de simular, un método que conserve la energía del sistema arrojará estas curvas $q(p)$ inmediatamente.
 
 Una simulación de dinámica molecular evolucionando el sistema con las ecuaciones de Hamilton con un integrador simpléctico nos asegura esto más, por lo que resulta mucho más natural que otros métodos donde la energía fluctua (como Metropolis-Montecarlo).
+
+
 
 \subsubsection{Implementación de integradores}
 
@@ -228,11 +244,82 @@ y resolver esta ecuación de punto fijo con parámetro conocido $\mathbf{y}_n$ e
 En principio, puede probarse que $|DF(Z)|<1$ (punto fijo converge) para $h$ suficientemente chico dado que el Hessiano del potencial de Pauli está acotado (es gaussiano).
 Sin embargo, la cota para $h$ dependerá de los parámetros $p_o$, $q_o$ y $D$ e incluso podría depender del número de partículas $N$ del sistema.
 Por lo tanto, en principio nos conformaremos con saber que tal $h$ existe e intentar encontrarlo según la situación.
-En lo que sigue, siempre resolvimos el problema de punto fijo $Z = F(Z)$ utilizando 5 iteraciones, al notar que valores más altos no mejoraban apreciablemente la convergencia.
+
+En lo que sigue, siempre resolvimos el problema de punto fijo $Z = F(Z)$ utilizando $k=5$ iteraciones, al notar que valores más altos de $k$ no mejoraban apreciablemente la convergencia.
+Cabe aclarar, sin embargo, que sistemas con más partículas pueden a priori exigir valores mayores de $k$.
 
 \subsubsection{Conservación de la energía}
 
+A modo de comparación, corrimos una simulaciones del choque de 2 partículas en 1D, muestreando el Hamiltoniano (de ahora en más, la energía) a lo largo del recorrido.
+Consistentemente con lo que vimos en la sección \ref{sec:teo_fases}, durante el choque de 2 partículas pueden darse 2 situaciones: rebote o atraviese, dependiendo del valor inicial del Hamiltoniano $E$ y el valor de $D$.
+
+Dado que en general nos interesa trabajar con potenciales de Pauli con región excluida, configuramos el potencial de Pauli con $D = 10000$ y aprovechamos la adimensionalización para tomar $qo = 1 = po = m$ tal que $D^*=D>1/2$.
+En este caso particular, analizaremos un atravesado.
+El sistema comienza con una de las partículas en el origen con impulso nulo (en la posición $(0, 0)$ del espacio de fases) y otra a distancia $6$ e impulso $-4$ (en el $(6, -4)$).
+
+A modo de ejemplo y para visualizar el problema, en la \textbf{Figura \ref{fig:energ_choq}} puede apreciarse la energía durante un choque para paso temporal $h=0.01$.
+Es interesante notar que RK2 tiende a aumentar $E$ mientras que Euler tiende a disminuirla; está clara la mayor efectividad de MPR.
+
+\begin{figure}[h]
+	\centering
+	\subfigure[Euler]{\includegraphics[trim = 20mm 0mm 15mm 10mm, clip, width=0.32\columnwidth]{choque1d/energia_euler_0,01.png}}
+	\subfigure[Runge-Kutta 2]{\includegraphics[trim = 20mm 0mm 15mm 10mm, clip, width=0.32\columnwidth]{choque1d/energia_rk2_0,01.png}}
+	\subfigure[Midpoint Rule]{\includegraphics[trim = 20mm 0mm 15mm 10mm, clip, width=0.32\columnwidth]{choque1d/energia_mpr_0,01.png}}
+	\caption{Energía durante un choque para un potencial de Pauli con $D = 10000$ y $qo = 1 = po = m$. La trayectoria comenzó en el $(q, p) = (6, -4)$, integrada con paso temporal $h=0.01$}
+	\label{fig:energ_choq}
+\end{figure}
+
+Realizamos estos choques para distintos valores de $h$ (y las mismas condiciones iniciales) y analizamos la fluctuación relativa de energía (siempre positiva para este hamiltoneano).
+Los resultados pueden apreciarse en la \textbf{Figura \ref{fig:flucvsh}}, donde se confirma la clara superioridad de MPR a la hora de conservar la energía.
+Esto último resulta a priori esperable dado que MPR es un integrador simpléctico; no obstante, al ser resuelta la ecuación con un método de punto fijo, esto pudo haber dejado de ser cierto.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[trim = 0mm 0mm 15mm 10mm, clip, width=0.6\columnwidth]{choque1d/fluct_vs_h.png}
+	\caption{Fluctuaciones de energía en función de paso temporal para distintos integradores.}
+	\label{fig:flucvsh}
+\end{figure}
+
 \subsubsection{Teorema de Liouville y volumen de fases}
+
+Como discutimos en la seccion \ref{sec:trans_simp}, la simplecticidad de las ecuaciones de Hamilton asegura no solo la conservación de la energía, sino la conservación del volumen orientado \eqref{eq:area_orien_simp}.
+Esto conlleva, en otras cosas, al Teorema de Liouville y la conservación del volumen de fases.
+La evolución de una dada región de condiciones iniciales en el espacio de fases preserva su volumen total.
+
+Por lo tanto, un criterio para calificar la efectividad de los integradores es la conservación del volumen de fases a lo largo de la evolución.
+Para esto, realizamos una simulación tomando un conjunto de valores iniciales $(q_i, p_i)$ y evolucionándolos en paralelamente en el tiempo.
+En cada paso, asumiendo que cada punto era una elipse rígida de área definida, calculamos el volumen del conjunto de puntos como la suma de sus volumenes individuales.
+
+Hicimos esto para curvas de rebote (doble) con 81 condiciones iniciales en un cuadrado de $0.04\times0.04$ alrededor del $(6, -4)$ y los mismos parámetros de antes para Pauli.
+Los resultados pueden apreciarse en la \textbf{Figura \ref{fig:vol_fas}}.
+
+\begin{figure}[h]
+	\centering
+	\subfigure[h = 0.01]{\includegraphics[trim = 0mm 0mm 15mm 10mm, clip, width=0.32\columnwidth]{choque1d/vol_fas_0,01.png}}
+	\subfigure[h = 0.005]{\includegraphics[trim = 0mm 0mm 15mm 10mm, clip, width=0.32\columnwidth]{choque1d/vol_fas_0,005.png}}
+	\subfigure[h = 0.001]{\includegraphics[trim = 0mm 0mm 15mm 10mm, clip, width=0.32\columnwidth]{choque1d/vol_fas_0,001.png}}
+	\caption{Volumen de un conjunto de puntos a lo largo de una curva de rebote. El pico corresponde al momento de máxima interacción.}
+	\label{fig:vol_fas}
+\end{figure}
+
+Lo primero que podemos notar es la existencia de un pico, que corresponde los instantes de mayor interacción entre las partículas.
+Sin embargo, es importante notar que luego de ello los volumenes recuperan su valor inicial.
+Esto es un buen indicio y ocurre para $h=10^{-3}$ para ambos integradores, pero solo para el MPR en los otros 2 casos.
+En un tercer caso con $h=0.1$ que omitimos, ninguno de los 2 métodos cumplía esto.
+Para comprender este pico, necesitamos analizar las curvas de nivel del Hamiltoneano y ver que ocurre en la región de mayor interacción.
+Con este objetivo, tomamos un rango de condiciones iniciales $(5,p)$ con $p\in [-6,0]$ y analizamos las curvas $q(p)$ resultantes, sabiendo que el cambio de $p$ se traduce en un cambio de $E$. 
+En la \text{Figura } podemos ver estas curvas superpuestas en nuestro primer diagrama de fases, donde podemos apreciar como las curvas se comprimen entre rebotes.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{choque1d/fases.png}
+\end{figure}
+
+Esto puede explicar el pico de la \textbf{Figura \ref{fig:vol_fas}}, dado que en esa región de alta compresión el cálculo de volumen como suma de esferas rígidas no es apropiado.
+Esto se debe a que los puntos tienden a alinearse, minimizando la superposición de sus esferas y sobrestimando el volumen total.
+Sin embargo, nos resulta suficiente notar que el volumen de fases se conserva luego de cada choque.
+
+Por lo tanto, vemos nuevamente que el integrador MPR tiene una mayor robustez, manteniendo las propiedades de una evolución simpléctica para valores de $h$ mayores comparado a Euler.
 
 
 \subsection{Estudio numérico del espacio de fases}

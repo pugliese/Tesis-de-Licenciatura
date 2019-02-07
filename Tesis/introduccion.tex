@@ -107,7 +107,7 @@ Para un Hamiltoneano que no depende explícitamente del tiempo, la ecuación de 
 donde usamos que $(a,b)J^{-1}\begin{pmatrix}a\\b\end{pmatrix} = (b, -a)\begin{pmatrix}a\\b\end{pmatrix} = 0$ $\forall a,b$.
 Esto no es más que la conocida conservación de la energía.
 
-\subsubsection{Transformaciones simplécticas}
+\subsubsection{Transformaciones simplécticas}{\label{sec:trans_simp}}
 
 Sin embargo, los sistemas hamiltoneanos tienen propiedades adicionales asociadas a la conservación del área en el espacio de fases de $y$. 
 Supongamos dos vectores 
@@ -126,7 +126,7 @@ Podemos considerar a $M$ como la unión de infinitos paralelogramos infinitesima
 \[ \dpart{\psi}{s}(s,t)ds \quad \text{ y } \quad \dpart{\psi}{t}(s,t)dt \]
 
 Sumando sobre todos estos paralogramos, obtenemos el área de $M$ como
-\begin{equation}
+\begin{equation}{\label{eq:area_orien_simp}}
  \Omega(M) = \iint_K \omega\left(\dpart{\psi}{t}(s,t), \dpart{\psi}{s}(s,t)\right) ds dt
 \end{equation}
 y resulta inmediato ver que este volumen es invariante ante una transformación simpléctica $g$.
