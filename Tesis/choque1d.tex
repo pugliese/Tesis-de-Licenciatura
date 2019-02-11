@@ -66,6 +66,36 @@ Por otro lado, para el caso $D^*\to \infty$, el término cinético $p^2/4$ resul
 En general, cualquier observable reducido $O^*$ del sistema tendrá una dependencia únicamente de $D^*$ ($O^* = O^*(D^*)$).
 Es importante aclarar que esta adimensionalización puede aplicarse igualmente a sistemas con más de 2 partículas, razón por la cual utilizaremos este resultado a continuación y a lo largo de todo este trabajo.
 
+Un ejemplo de particular relevancia sobre esto es el \textit{área total excluída}.
+Como dijimos, el objetivo del potencial de Pauli es generar una región en el espacio de fases alrededor de cada partícula, impidiendo que estas se superpongan.
+En el espacio de fases de $(q,p)$, esta región debería estar centrada en el origen y esperamos una forma similar a una elipse. 
+Una forma de cuantificar esta región excluída es a través de su área $A$, que vía la adimensionalización podemos escribir como 
+
+\begin{equation}{\label{eq:area_red}}
+A = q_op_oA^*(D^*) = q_op_oA^*\left( \frac{Dm}{p_o^2} \right) 
+\end{equation}
+
+Lo primero que podemos observar es la clara asimetría entre $q_o$ y $p_o$ para $A$, introducida por la existencia de un término cinético en \ref{eq:ham_red_1d}.
+Resulta intuitivo pensar que para $D^*\to\infty$, este término cinético debería desaparecer, dando lugar a un Hamiltoniano compuesto únicamente por el potencial de Pauli.
+Este Hamiltoniano debe ser invariante ante el cambio $q\leftrightarrow p$ y $q_o\leftrightarrow p_o$, por lo que $A$ debería ser invariante también.
+En este caso, esperamos que la región prohibida sea una elipse con ejes proporcionales a $q_o$ y $p_o$.
+
+Más allá de lo anterior, esperamos que $A$ sea creciente con $D$ dado que este regula la intensidad del potencial.
+Para esto, basta pedir que $A^*(D^*)$ sea una función creciente de $D^*$, pero inevitablemente esto le exige ser una función decreciente en $p_o$. 
+Aún así, resulta esperable que el área excluída resulte creciente tanto en $p_o$ como en $q_o$, dado que regulan su alcance.
+Para $q_o$ esto es inmediato pues $A\propto q_o$, pero para $p_o$ necesitamos exigir
+
+\[ \dpart{A}{p_o} = q_o\left( A^*(Dm/p_o^2) - \frac{2Dm}{p_o^2}A^{*'}(Dm/p_o^2) \right) \geq 0\]
+\[ \Longleftrightarrow A^*(x) \geq 2x A^{*'}(x) \Longleftrightarrow  \int_1^t \frac{A^{*'}(x)}{A^*(x)}dx \leq \int_1^t\frac{1}{2x}dx \Longleftrightarrow \log{\left(\frac{A^*(x)}{A^*(1)}\right)} \leq \log{(\sqrt{x})} \]
+\[ A^*(x) \leq A^*(1) \sqrt{x}\]
+
+En resumen, esperamos que
+
+\begin{equation}{\label{eq:props_area_red}}
+A^{*'}(x)\geq 0 \quad \text{ y } \quad A^{*'}\leq f(1)\sqrt{x} 
+\end{equation}
+
+
 
 \subsubsection{Espacio de fases}{\label{sec:teo_fases}}
 
@@ -187,26 +217,43 @@ donde debemos recordar que $2E_c^* = 1 + \log(2D^*) $ y que $A^*$ es el área re
 Sin embargo, la integral de \eqref{eq:area_int_ex} no puede expresarse como una combinación de funciones conocidas, lo cual nos impide por completo obtener una forma funcional clara.
 Aún así, podemos realizar una integración numérica de $A^*$ vía regla de trapecios.
 Debemos tener especial cuidado en el extremo superior, donde el integrando diverge.
-El resultado de esta integración numérica en un amplio rango de $D^*$ puede apreciarse en la \textbf{Figura \ref{fig:curvas_teo}}, donde vemos que rápidamente se alcanza una tendencia lineal $A^* \approx \alpha \log(D^*) + \beta$.
+El resultado de esta integración numérica en un amplio rango de $D^*$ puede apreciarse en la \textbf{Figura \ref{fig:AvsD_teo}}, donde vemos que rápidamente se alcanza una tendencia lineal $A^* \approx \alpha \log(D^*) + \beta$.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{choque1d/AvsD_solo_teo.png}
 	\caption{Area de la región excluída en función de $D^*$ obtenida de integrar numéricamente \eqref{eq:area_int_ex}. Para valores altos parece haber una relación lineal entre $A^*$ y $\log D^*$.}
+	\label{fig:AvsD_teo}
 \end{figure}
+
+Recordando las propiedades \eqref{eq:props_area_red} que esperabamos de $A^*$, es inmediato de la \textbf{Figura \ref{fig:AvsD_teo}} que $A^*$ es creciente en $D^*$.
+La segunda propiedad, sin embargo, no resulta tan evidente. 
+Computando la integral \eqref{eq:area_int_ex} para obtener $A^*(1)$, podemos graficar $A^*$ junto con $A^*(1)D^*$ para verificar esta segunda propiedad.
+En la \textbf{Figura \ref{fig:AvsD_teo_cota}} podemos apreciar que esta cota se cumple para  $0.5\leq A^*\leq 1$ y $250\leq A^*$, lo cual resulta llamativo.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{choque1d/AvsD_cota_teo.png}
+	\caption{Area de la región excluída en función de $D^*$ obtenida de integrar numéricamente \eqref{eq:area_int_ex}. Para valores altos parece haber una relación lineal entre $A^*$ y $\log D^*$.}
+	\label{fig:AvsD_teo_cota}
+\end{figure}
+
+Es importante aclarar, de todos modos, que la cota superior para $A^*$ era una propiedad \textit{deseable}, pero no realmente necesaria.
+Que no se cumpla implica que un aumento en $p_o$ puede generar una reducción en el área de la región excluída, pero esto no resulta particularmente problemático.
+La propiedad más relevante del potencial de Pauli es la existencia de un área excluída y la capacidad de poder adaptar $D^*$ para que este área sea la buscada, lo cual ciertamente se cumple.
 
 Más adelante retomaremos este análisis del espacio de fases desde un punto de vista computacional, simulando el choque y confirmando nuestros resultados con esta sección.
 
 
 
 
-\subsection{Integradores y simplecticidad}
+\subsection{Estudio numérico del espacio de fases}
 
 Como dijimos, las curvas $q(p)$ del diagrama de fases mantienen el Hamiltoneano $H(q,p)$ constante.
 A la hora de simular, un método que conserve la energía del sistema arrojará estas curvas $q(p)$ inmediatamente.
 
-Una simulación de dinámica molecular evolucionando el sistema con las ecuaciones de Hamilton con un integrador simpléctico nos asegura esto más, por lo que resulta mucho más natural que otros métodos donde la energía fluctua (como Metropolis-Montecarlo).
-
+Una simulación de dinámica molecular evolucionando el sistema con las ecuaciones de Hamilton con un integrador simpléctico nos asegura esto más, por lo que resulta mucho más natural 
+que otros métodos donde la energía fluctua (como Metropolis-Montecarlo).
 
 
 \subsubsection{Implementación de integradores}
@@ -280,17 +327,46 @@ Esto último resulta a priori esperable dado que MPR es un integrador simplécti
 	\label{fig:flucvsh}
 \end{figure}
 
+\subsubsection{Primer diagrama de fases}
+
+Como dijimos, al ser un sistema unidimensional $(q,p)$, el diagrama de fases queda definido univocamente por $H(q,p)\equiv E = \text{cte}$.
+Por lo tanto, la conservación de la energía por parte de los integradores resulta suficiente para obtener estas curvas $q(p)$ y así construir el diagrama.
+Con este objetivo, configuramos el sistema inicialmente con una partícula en el $(0,0)$ y la otra en un valor $(q_i, p_i)$.
+Luego, evolucionamos el sistema muestreando los valores de $q = q_1 - q_2$, $p = p_1 - p_2$.
+Decidimos utilizar MPR para la evolución, dado que para $h=10^{-3}$ se tenía la mayor estabilidad de la energía y un tiempo de cómputo accesible.
+
+Tomamos entonces un rango de condiciones iniciales $(q_i,p_i)=(5,p)$ con $p\in [-6,0]$ y analizamos las curvas $q(p)$ resultantes, sabiendo que el cambio de $p$ se traduce en un cambio de $E$. 
+Mantuvimos $q_i$ fijo dado que así emulabamos una colisión desde el infinito, dado que $V_P(5,p)\leq 4\times10^{-6}V_P(0,0) = 4\times10^{-6}D$ que podemos considerar nulo.
+Utilizamos los mismos parámetros para el potencial de Pauli ($D=10000$, $m=1=p_o=q_o$) por consistencia.
+En la \text{Figura \ref{fig:ej_diag_fases}} podemos ver estas curvas superpuestas en nuestro primer diagrama de fases.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{choque1d/fases.png}
+	\caption{Diagrama de fases para $D=10000$, $m=1=p_o=q_o$ y $h=10^{-3}$. Además de la zona inaccesible, se evidencian las curvas de rebote y atraviese según lo previsto en \ref{sec:teo_fases}}
+	\label{fig:ej_diag_fases}
+\end{figure}
+
+Resulta fundamental notar que el diagrama se compone de dos tipos de curva: rebotes y atravieses.
+En particular, los rebotes tienen dos puntos de máxima cercanía, en perfecta concordancia con lo analizado en \ref{sec:teo_fases} dado que tenemos $D^*=10^4>1/2$.
+Incluso puede verse que la transición de rebote a atraviese ocurre para $4.625\leq p_i\leq4.75$, consistente con
+\[ E_c = \frac{p_i^2}{4} = \frac{1}{2}\left( 1 + \log(2D) \right) \approx 5.45 \Longrightarrow p_i \approx 4.67 \]
+
+Veremos en la sección \ref{sec:area_ex_comp} que no solo se verifica esto sino también el área total excluída, cuyo cómputo tiene sus propias complicaciones.
+
+
 \subsubsection{Teorema de Liouville y volumen de fases}
 
 Como discutimos en la seccion \ref{sec:trans_simp}, la simplecticidad de las ecuaciones de Hamilton asegura no solo la conservación de la energía, sino la conservación del volumen orientado \eqref{eq:area_orien_simp}.
 Esto conlleva, en otras cosas, al Teorema de Liouville y la conservación del volumen de fases.
 La evolución de una dada región de condiciones iniciales en el espacio de fases preserva su volumen total.
 
-Por lo tanto, un criterio para calificar la efectividad de los integradores es la conservación del volumen de fases a lo largo de la evolución.
+Por lo tanto, otro criterio para calificar la efectividad de los integradores es la conservación del volumen de fases a lo largo de la evolución.
 Para esto, realizamos una simulación tomando un conjunto de valores iniciales $(q_i, p_i)$ y evolucionándolos en paralelamente en el tiempo.
 En cada paso, asumiendo que cada punto era una elipse rígida de área definida, calculamos el volumen del conjunto de puntos como la suma de sus volumenes individuales.
 
 Hicimos esto para curvas de rebote (doble) con 81 condiciones iniciales en un cuadrado de $0.04\times0.04$ alrededor del $(6, -4)$ y los mismos parámetros de antes para Pauli.
+Tomamos estas elipses suficientemente grandes como para cubrir completamente este cuadrado inicial, por lo que hubo considerable superposición de volumenes.
 Los resultados pueden apreciarse en la \textbf{Figura \ref{fig:vol_fas}}.
 
 \begin{figure}[h]
@@ -306,20 +382,62 @@ Lo primero que podemos notar es la existencia de un pico, que corresponde los in
 Sin embargo, es importante notar que luego de ello los volumenes recuperan su valor inicial.
 Esto es un buen indicio y ocurre para $h=10^{-3}$ para ambos integradores, pero solo para el MPR en los otros 2 casos.
 En un tercer caso con $h=0.1$ que omitimos, ninguno de los 2 métodos cumplía esto.
-Para comprender este pico, necesitamos analizar las curvas de nivel del Hamiltoneano y ver que ocurre en la región de mayor interacción.
-Con este objetivo, tomamos un rango de condiciones iniciales $(5,p)$ con $p\in [-6,0]$ y analizamos las curvas $q(p)$ resultantes, sabiendo que el cambio de $p$ se traduce en un cambio de $E$. 
-En la \text{Figura } podemos ver estas curvas superpuestas en nuestro primer diagrama de fases, donde podemos apreciar como las curvas se comprimen entre rebotes.
 
-\begin{figure}[h]
+Para comprender este pico, nos basta analizar la \textbf{Figura \ref{fig:ej_diag_fases}} y notar que entre rebotes se da la mayor interacción.
+En esta región, las curvas de nivel se comprimen, aumentando considerablemente su densidad. 
+Es por esto que nuestro conjunto de puntos (inicialmente dispuestos en un cuadrado) tiende a alinearse en una figura predominantemente unidimensional, donde resulta claro que la estimación del área 
+como superposición de elipses rígidas no es apropiada, sobreestimando el área.
+
+Sin embargo, nos resulta suficiente notar que el volumen de fases se conserva luego de cada choque, donde vemos nuevamente que el integrador MPR tiene una mayor robustez, 
+manteniendo las propiedades de una evolución simpléctica para valores de $h$ mayores comparado a Euler.
+
+
+\subsection{Area excluída}{\label{sec:area_ex_comp}}
+
+Con el objetivo de obtener $A^*(D^*)$ de la simulación, nuevamente tomaremos $q_o = p_o = m = 1$ de forma que $D^* = D$ y $A=A^*$.
+De esta manera, solo es necesario calcular el área de la región excluída.
+Para esto, sin embargo, es necesario identificar la curva $C$ de rebote que define esta región.
+Para simplificar la notación, definimos la curva $C(q_i,p_i)$ como la curva de energía constante $H(q_i,p_i)$; la curva sobre la que evoluciona el sistema.
+De esta manera, la curva $C(q_i,p_i)$ puede pensarse como la que describe el sistema con condiciones iniciales $(q_i,p_i)$.
+
+Con esto en mente, corremos simulaciones que muestreen las curvas $C$ para encontrar el mayor valor de $p_i$ tal que $C(q_i, p_i)$ es un rebote.
+Como antes, fijaremos $q_i=5$ pero no discriminaremos entre rebotes simples y dobles, dado que moveremos $D^*$ por ensima y por debajo de $1/2$.
+Realizamos esta búsqueda en forma binaria, tomando un $p_{max}$ que cumpla que $C(q_i, p_{max})$ sea un atraviese, sabiendo que $C(q_i, 0)$ \textbf{\textit{siempre}} es un rebote.
+Obtenemos el $p_{max}$ tomando un valor inicial $p_max = -3$ y duplicándolo hasta obtener un atraviese.
+Con estos 2 valores de impulso, iteramos la busqueda binaria hasta que $|p_{max}-p_{min}|\leq tol$.
+El valor de $tol$ resulta arbitrario, por lo que tomamos uno dependiente de $D^*$ según $tol \sim \sqrt{D^*}\times 10^{-4}$, pues consideramos que para $D^*=10^4$ 
+una $tol = 10^{-2}$ resultaba apropiada y lo extendimos usando la cota $A^*\leq \sqrt{D^*}$.
+El paso temporal fue $h=10^{-3}$ para $D\leq 1000$, $h=5\times10^{-3}$ para $5000\leq D\leq 50000$ y $h=10^{-4}$ para $D\geq 100000$.
+
+Los resultados pueden apreciarse en la \textbf{Figura \ref{fig:AvsD}} junto con algunos ejemplos del espacio de fases (con mayor definición cerca de la región de interés).
+En la misma figura está nuevamente el gráfico del área según el cálculo teórico, que resulta concordante.
+La primera observación es que $A=0$ para $D\leq 0.5$, donde las curvas de rebote son cóncavas (rebote simple) para $q\approx 0$ a diferencia del caso $D\geq 0.5$ donde son convexas 
+(para rebote doble, como en el ejemplo de la \textbf{Figura \ref{fig:ej_fases}}). 
+De hecho, puede apreciarse que para $D=0.5$, las curvas son prácticamente verticales, marcando este cambio de convexidad.
+
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{choque1d/fases.png}
+	\includegraphics[trim = 0mm 0mm 15mm 10mm, clip, width=\columnwidth]{choque1d/AvsD_full_teo.pdf}
+	\caption{Area prohibida en función de intensidad de potencial junto con algunos de los espacios de fase asociados. 
+	Tenemos $A^*=0$ para $D\leq 0.5$ y $A\sim \log{D^*}$ para $D\geq 1$ en perfecto acuerdo con la formulación teórica.}
+	\label{fig:AvsD}
 \end{figure}
 
-Esto puede explicar el pico de la \textbf{Figura \ref{fig:vol_fas}}, dado que en esa región de alta compresión el cálculo de volumen como suma de esferas rígidas no es apropiado.
-Esto se debe a que los puntos tienden a alinearse, minimizando la superposición de sus esferas y sobrestimando el volumen total.
-Sin embargo, nos resulta suficiente notar que el volumen de fases se conserva luego de cada choque.
+Paralelamente, podemos graficar los valores de $p_b$ obtenidos; tenemos un rebote para $p\leq p_b$ y un atraviese para $p>p_b$.
+En particular, es $E_c = p_b^2/4$, por lo que según vimos en \ref{sec:teo_fases} tiene forma de función partida.
+Para $D^*\leq 0.5$, es $p_b=2\sqrt{D^*}$ y para $D^*>0.5$ $p_b=\sqrt{2(1+\log(2D^*))}$.
+La comparación del valor obtenido por la simulación con el teórico se encuentra en la \textbf{Figura \ref{fig:pbvsD}}.
+Ambos coinciden dentro del (amplio) rango estudiado.
 
-Por lo tanto, vemos nuevamente que el integrador MPR tiene una mayor robustez, manteniendo las propiedades de una evolución simpléctica para valores de $h$ mayores comparado a Euler.
+\begin{figure}[H]
+	\centering
+	\includegraphics[trim = 0mm 0mm 15mm 10mm, clip, width=0.75\columnwidth]{choque1d/pinfvsD.png}
+	\caption{Impulso crítico de transición (en módulo) rebote-atraviese en función de intensidad de potencial junto con el valor teórico, con el que coincide
+	correctamente. La linea punteada marca $D^*=1/2$, donde la forma funcional de $p_b$ cambia.}
+	\label{fig:pbvsD}
+\end{figure}
 
 
-\subsection{Estudio numérico del espacio de fases}
+
+
+
