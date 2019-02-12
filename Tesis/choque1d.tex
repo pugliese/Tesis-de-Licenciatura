@@ -45,7 +45,7 @@ Es importante aclarar que el cambio de coordenadas $(q_1,q_2;p_1,p_2)\rightarrow
 A pesar de que resulta sencillo corregir esto dividiendo las nuevas variables por $\sqrt{2}$, no nos interesa particularmente que las nuevas variables sigan las ecuaciones de Hamilton, dado que no pretendemos integrarlas. Volveremos sobre esto en la sección \textbf{\ref{sec:teo_fases}}.
 
 
-\subsubsection{Adimensionalización}
+\subsubsection{Adimensionalización}{\label{sec:adim_choque1d}}
 
 El Hamiltoniano definido por \eqref{eq:hamiltoniano_1D} dispone de 4 parámetros $m, q_o, p_o, D$ que determinarán su comportamiento cualitativo.
 Sin embargo, puede apreciarse que las constantes de $q_o$ y $p_o$ claramente resultan meros factores de escala de la interacción y probablemente no jueguen ningún rol en la forma funcional de los observables del sistema.
@@ -219,7 +219,7 @@ Aún así, podemos realizar una integración numérica de $A^*$ vía regla de tr
 Debemos tener especial cuidado en el extremo superior, donde el integrando diverge.
 El resultado de esta integración numérica en un amplio rango de $D^*$ puede apreciarse en la \textbf{Figura \ref{fig:AvsD_teo}}, donde vemos que rápidamente se alcanza una tendencia lineal $A^* \approx \alpha \log(D^*) + \beta$.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{choque1d/AvsD_solo_teo.png}
 	\caption{Area de la región excluída en función de $D^*$ obtenida de integrar numéricamente \eqref{eq:area_int_ex}. Para valores altos parece haber una relación lineal entre $A^*$ y $\log D^*$.}
@@ -231,7 +231,7 @@ La segunda propiedad, sin embargo, no resulta tan evidente.
 Computando la integral \eqref{eq:area_int_ex} para obtener $A^*(1)$, podemos graficar $A^*$ junto con $A^*(1)D^*$ para verificar esta segunda propiedad.
 En la \textbf{Figura \ref{fig:AvsD_teo_cota}} podemos apreciar que esta cota se cumple para  $0.5\leq A^*\leq 1$ y $250\leq A^*$, lo cual resulta llamativo.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{choque1d/AvsD_cota_teo.png}
 	\caption{Area de la región excluída en función de $D^*$ obtenida de integrar numéricamente \eqref{eq:area_int_ex}. Para valores altos parece haber una relación lineal entre $A^*$ y $\log D^*$.}
@@ -247,7 +247,7 @@ Más adelante retomaremos este análisis del espacio de fases desde un punto de 
 
 
 
-\subsection{Estudio numérico del espacio de fases}
+\subsection{Estudio numérico del espacio de fases}{\label{sec:num_choque_1d}}
 
 Como dijimos, las curvas $q(p)$ del diagrama de fases mantienen el Hamiltoneano $H(q,p)$ constante.
 A la hora de simular, un método que conserve la energía del sistema arrojará estas curvas $q(p)$ inmediatamente.
@@ -256,7 +256,7 @@ Una simulación de dinámica molecular evolucionando el sistema con las ecuacion
 que otros métodos donde la energía fluctua (como Metropolis-Montecarlo).
 
 
-\subsubsection{Implementación de integradores}
+\subsubsection{Implementación de integradores}{\label{sec:imp_integs}}
 
 Según lo que discutimos en la sección \ref{sec:int_simpl}, dado que el Hamiltoniano \eqref{eq:hamiltoniano_1D} es no separable, no disponemos de integradores simplécticos y explícitos.
 Con el objetivo de comparar, decidimos implementar 2 integradores no simplécticos pero explícitos y un integrador simpléctico pero no explícito.

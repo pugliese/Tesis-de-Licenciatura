@@ -1,4 +1,4 @@
-\subsection{Gas de Fermi}
+\subsection{Gas de Fermi}{\label{sec:intro_fermi_gas}}
 
 En los sistemas cuánticos, la indistingubilidad de las particulas juega un rol esencial.
 Esta indistingubilidad obliga a todos los autoestados $\ket{\psi}$ del sistema a ser autoestados del operador permutación de 2 partículas $\hat{P}$, cuyos únicos autovalores son $\pm 1$.
@@ -55,7 +55,10 @@ Por lo tanto, la distribución de impulsos toma la forma
 donde $G(\varepsilon)$ es la degeneración de estados con energía $\varepsilon$ y asumimos $\mu=\mu(N,V,T)$.
 
 En el límite de altas temperaturas (o baja densidad), esperamos que el sistema pierda sus propiedades cuánticas y recuperemos el gas clásico, donde las partículas
-se vuelven distinguibles nuevamente.
+se vuelven distinguibles nuevamente. 
+La noción de alta temperatura (o baja densidad) viene dada por el valor del producto $\lambda^3\rho \sim T^{-3/2}\rho$, donde vemos que $T\to\infty$ resulta equivalente a $\rho\to0$ 
+y viceversa para baja temperatura (o alta densidad), donde las propiedades cuánticas son más apreciables.
+
 Para un sistema de partículas clásico interactuando con potenciales dependientes de la posición $U(\mathbf{q}_1,..,\mathbf{q}_N)$, la distribución de impulsos 
 corresponde a la de Boltzmann (ver \textbf{Apéndice \ref{ap:boltzmann}}).
 \begin{equation}{\label{eq:dist_MB}}
@@ -343,7 +346,7 @@ Por el teorema anterior, esto converge a $\pi(y)$.
 Pero este teorema es más general y nos permite obtener distintos observables $f$ de la distribución, propiedad que nos resultará muy útil cuando expliquemos el algoritmo. 
 
 
-\subsubsection{Algoritmo de Metropolis-Montecarlo}
+\subsubsection{Algoritmo de Metropolis-Montecarlo}{\label{sec:alg_mm}}
 
 El objetivo de este algoritmo es obtener muestras de una dada distribución $\pi$ construyendo una cadena de Markov que la tenga como distribución estacionaria.
 Para esto, fabricaremos una matriz de transición $p$ que cumpla las condiciones de balance detallado con $\pi$.
