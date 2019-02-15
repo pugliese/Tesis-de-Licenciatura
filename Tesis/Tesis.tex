@@ -5,7 +5,7 @@
 \linespread{1.5} % Line spacing - Palatino needs more space between lines
 
 %\usepackage[twoside,width=16cm,height=24cm,left=3cm]{geometry}
-\usepackage[hmarginratio=1:1,top=20mm,width=20cm,height=23.7cm,columnsep=15pt]{geometry} % Document margins
+\usepackage[margin=2cm]{geometry} % Document margins
 \usepackage{multicol} % Used for the two-column layout of the document
 \usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
 \usepackage{booktabs} % Horizontal rules in tables
@@ -63,10 +63,10 @@
 \graphicspath{{Imagenes/}}
 
 \begin{document}
- 
+
 \section{Introducción}
  \input{introduccion.tex}
- 
+
 \newpage
 
 \section{Choque unidimensional}{\label{sec:choque1D}}
@@ -74,10 +74,10 @@
 
 \newpage
 
-\section{Gas de Pauli}
+\section{Gas de Pauli}{\label{sec:pauli_gas}}
 \input{gas_pauli.tex}
 
-\section{Nuclear Matter}
+\section{Nuclear Matter}{\label{sec:NM}}
 %\input{NM.tex}
 
 \newpage

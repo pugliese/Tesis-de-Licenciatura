@@ -26,7 +26,7 @@ Analogamente a la cuenta anterior, vemos que esto arroja
 = \frac{e^{-\beta\frac{p_i^2}{2m_i}}}{\int e^{-\beta\frac{p^2}{2m_i}} d^3p} \]
 
 Efectuando la integral del denominador, obtenemos finalmente la probabilidad de un dado impulso $\mathbf{p}_i$.
-\begin{equation}
+\begin{equation}{\label{eq:dist_MB_imp}}
 f_i(\mathbf{p}_i) = \left(\frac{\beta}{2\pi m_i} \right)^{3/2} e^{-\beta\frac{p_i^2}{2m_i}}
 \end{equation}
 conocida como distribución de Maxwell-Boltzmann.
@@ -34,13 +34,13 @@ conocida como distribución de Maxwell-Boltzmann.
 Dado que esta probabilidad es isótropa, resultaría natural plantearla en función del módulo del impulso para volverla una distribución de una única variable.
 Para esto, debemos integrar en todas las posibles direcciones del vector $\mathbf{p}_i$ además de introducir un jacobiano.
 Podemos obtener la nueva distribución aprovechando la normalización y realizando el cambio de variables a esféricas
-\[1 = \int f_i(\mathbf{p}_i) d^3p = \int_0^\infty\int_0^{4\pi}\left(\frac{\beta}{2\pi m_i} \right)^{3/2} e^{-\beta\frac{p_i^2}{2m_i}} p^2d\Omega dp 
+\[1 = \int f_i(\mathbf{p}_i) d^3p = \int_0^\infty\int_0^{4\pi}\left(\frac{\beta}{2\pi m_i} \right)^{3/2} e^{-\beta\frac{p_i^2}{2m_i}} p^2d\Omega dp
 = \int_0^\infty 4\pi\left(\frac{\beta}{2\pi m_i} \right)^{3/2} p_i^2 e^{-\beta\frac{p_i^2}{2m_i}} dp_i\]
 por lo que la probabilidad de que la $i$-esima partícula tenga un momento con módulo $p$ es
 \[ f_i(p) = 4\pi\left(\frac{\beta}{2\pi m_i} \right)^{3/2} p^2 e^{-\beta\frac{p^2}{2m_i}} \]
 
 Sin embargo, si todas las partículas son diferentes (por ejemplo, tienen masas $m_i$ diferentes) esta distribución tiene poco valor estadístico, pues no nos otorga información
-del sistema en su totalidad. 
+del sistema en su totalidad.
 Sin embargo, analizar la probabilidad de que la partícula tenga una dada energía cinética $\varepsilon = p^2/2m_i$ permitirá independizarnos de la masa.
 Analogamente a lo anterior, planteamos normalización y utilizamos el cambio de variables $2m_i\varepsilon = p^2$ con $d\varepsilon = pdp/m = \sqrt{2m\varepsilon}dp/m$
 
@@ -51,7 +51,7 @@ Por lo tanto, la probabilidad de que la $i$-esima partícula tenga una dada ener
 \begin{equation}
  f(\varepsilon) = \sqrt{\frac{4\beta^3\varepsilon}{\pi}}e^{-\beta\varepsilon}
 \end{equation}
-y por lo tanto nos permite obtener una propiedad global del sistema. 
+y por lo tanto nos permite obtener una propiedad global del sistema.
 Si cada partícula tiene probabilidad $f(\varepsilon)d\varepsilon$ de tener energía cinética $\varepsilon$, entonces la cantidad de partículas con esa energía cinética es $Nf(\varepsilon)d\varepsilon$.
 Esta es la distribución de energía cinética del sistema.
 
@@ -62,7 +62,7 @@ Esta es la distribución de energía cinética del sistema.
 En esta sección, hablaremos del método utilizado para computar las $f_\nu(z)$ con especial interés en el caso $\nu=3/2$ que aparece al buscar $\mu(N,V,T)$
 y, en menor medida, el caso $\nu=5/2$ asociado a la presión.
 
-Como dijimos, las funciones de Fermi están definidas según su forma integral, pero pueden expresarse como una serie alternada 
+Como dijimos, las funciones de Fermi están definidas según su forma integral, pero pueden expresarse como una serie alternada
 \begin{equation}{\label{eq:fermi_func_serie}}
  f_\nu(z) \equiv \frac{1}{\Gamma(\nu)}\int_0^\infty \frac{x^{\nu-1}}{z^{-1}e^x+1} dx = \sum_{l\geq 1} (-1)^{l+1}\frac{z^l}{l^\nu}
 \end{equation}
@@ -89,7 +89,7 @@ Dado que la expresión de las $f_\nu(z)$ como serie de potencias resulta problem
 Una de estas es la aproximación de Padé por una función racional (cociente de polinomios)
 \[ [L/M]_{f_\nu}(z) \equiv \frac{P_L(z)}{Q_M(z)} \approx f_\nu(z) \]
 donde $P_L(z)$ y $Q_M(z)$ son polinomios de grado $L$ y $M$, respectivamente.
-Estos polinomios no nos interesan dado que utilizaremos el \textit{algoritmo $\epsilon$ de Wynn} para obtener las aproximaciones diagonales $[p/p]_{f_\nu}(z) = \epsilon(0, 2p)$ 
+Estos polinomios no nos interesan dado que utilizaremos el \textit{algoritmo $\epsilon$ de Wynn} para obtener las aproximaciones diagonales $[p/p]_{f_\nu}(z) = \epsilon(0, 2p)$
 donde $\epsilon(n,m)$ está definido recursivamente según
 \begin{align*}
  &\epsilon(n, -1) = 0 \\
@@ -113,10 +113,10 @@ Esto corresponde a la mitad superior de la antidiagonal, por lo que la cantidad 
 \end{figure}
 
 Para una serie de Padé $[p/p]$, el error es $O(z^{2p})$, por lo que tomando $p=10$ podemos obtener un orden similar al de la serie truncada.
-Por lo tanto, resultaría razonable utilizar el algoritmo de Wynn para $z\geq z_\nu$, donde (en el caso $\nu=3/2$) empalma con el método de serie truncada con un error 
-relativo de $\sim10^{-6}$ más que aceptable. 
+Por lo tanto, resultaría razonable utilizar el algoritmo de Wynn para $z\geq z_\nu$, donde (en el caso $\nu=3/2$) empalma con el método de serie truncada con un error
+relativo de $\sim10^{-6}$ más que aceptable.
 
-Aunque, en general, las $f_\nu(z)$ no poseen una expresión analítica contra la que podamos comparar la eficacia del algoritmo, el caso particular $\nu=1$ si tiene 
+Aunque, en general, las $f_\nu(z)$ no poseen una expresión analítica contra la que podamos comparar la eficacia del algoritmo, el caso particular $\nu=1$ si tiene
 expresión analítica: $f_1(z) = \log(z+1)$.
 A modo de ejemplo, en la \textbf{Figura \ref{fig:ej_wynn_log}} las aproximaciones a $f_1(z) = \log(z+1)$ mediante el algoritmo de Wynn y sus errores relativos.
 Usamos como valor ``exacto'' el arrojado por la función \texttt{log} del paquete \texttt{numpy} de \texttt{Python}.
@@ -127,17 +127,17 @@ Puede verse que en el rango $0\leq z\leq 20$, la aproximación con $2p=20$ resul
 	\subfigure[Valor absoluto]{\includegraphics[width=0.4\columnwidth]{apendice/ejemplo_wynn_log.png}}
 	\hspace{0.05\columnwidth}
 	\subfigure[Error relativo]{\includegraphics[width=0.4\columnwidth]{apendice/ejemplo_wynn_log_error.png}}
-	\caption{Aproximaciones del método de Wynn a la función $f_1(z) = \log(z+1)$, calculada usando el paquete \texttt{numpy} de \texttt{Python}. 
+	\caption{Aproximaciones del método de Wynn a la función $f_1(z) = \log(z+1)$, calculada usando el paquete \texttt{numpy} de \texttt{Python}.
 	Podemos ver que rapidamente converge a la función para $p=10$, que resulta indistinguible de la exacta.}
 	\label{fig:ej_wynn_log}
 \end{figure}
 
 Sin embargo, uno podría preguntarse que nos impide utilizar el algoritmo de Wynn en todo el rango de $z$.
-Para $z$ pequeño, dado que las sumas parciales de $\epsilon(n,0)$ convergen rapidamente, la resta que aparece en el demonimador de la definición recursiva de 
+Para $z$ pequeño, dado que las sumas parciales de $\epsilon(n,0)$ convergen rapidamente, la resta que aparece en el demonimador de la definición recursiva de
 $\epsilon(n, m+1)$ tiende a ser menor al número de máquina, transformándolo en una división por $0$.
 
-Para $z$ suficientemente grande, las sumas parciales de $\epsilon(n,0)$ resultan dominadas por el término $z^n$, con $0\leq n\leq 2p$ y $p\sim 10$. 
-Por lo tanto, los $\epsilon(n,0)$ se vuelven muy grandes y problemáticos para trabajar para $z\geq 100$. 
+Para $z$ suficientemente grande, las sumas parciales de $\epsilon(n,0)$ resultan dominadas por el término $z^n$, con $0\leq n\leq 2p$ y $p\sim 10$.
+Por lo tanto, los $\epsilon(n,0)$ se vuelven muy grandes y problemáticos para trabajar para $z\geq 100$.
 Para el caso $\nu=3/2$, observamos las primeras inestabilidades para $z\approx 30$.
 
 
@@ -149,26 +149,26 @@ Esta pregunta surge de recordar el objetivo de partida: encontrar el $z$ que cum
 A priori, $\alpha$ no está acotado superiormente, por lo que necesitamos conocer los $z$ para los cuales $f_\nu(z)\to\infty$.
 En particular, estamos interesados en que tanto debemos aumentar $z$ para que $f_\nu(z)$ aumente una dada cantidad.
 
-Para esto, utilizamos el conocido lema de Sommerfeld que nos permite aproximar 
+Para esto, utilizamos el conocido lema de Sommerfeld que nos permite aproximar
 \begin{equation}{\label{eq:sommerfeld}}
- \int_0^\infty \frac{\Phi(x)}{e^{x-\eta}+1}dx = \int_0^\eta \Phi(x) dx + \frac{\pi^2}{6}\left( \frac{d\Phi}{dx} \right)\Bigg|_{x=\eta} + 
+ \int_0^\infty \frac{\Phi(x)}{e^{x-\eta}+1}dx = \int_0^\eta \Phi(x) dx + \frac{\pi^2}{6}\left( \frac{d\Phi}{dx} \right)\Bigg|_{x=\eta} +
  \frac{7\pi^4}{360}\left( \frac{d^3\Phi}{dx^3} \right)\Bigg|_{x=\eta} + ...
 \end{equation}
 
 Para el caso de $f_\nu(z)$, podemos usar este lema con $\Phi(x) = x^{\nu-1}/\Gamma(\nu)$ y $z = e^{\eta}$ (o $\eta = \log z$), obteniendo
 \begin{equation}{\label{eq:dirac_sommerfeld}}
-f_\nu(z) = \frac{1}{\Gamma(\nu)}\left[ \frac{(\log z)^\nu}{\nu} + \frac{\pi^2}{6}(\nu - 1)(\log z)^{\nu-2} + \frac{7\pi^4}{360}(\nu - 1)(\nu - 2)(\nu - 3)(\log z)^{\nu - 4} 
+f_\nu(z) = \frac{1}{\Gamma(\nu)}\left[ \frac{(\log z)^\nu}{\nu} + \frac{\pi^2}{6}(\nu - 1)(\log z)^{\nu-2} + \frac{7\pi^4}{360}(\nu - 1)(\nu - 2)(\nu - 3)(\log z)^{\nu - 4}
 + O((\log z)^{\nu-6})  \right]
 \end{equation}
- 
+
 Esto nos dice que para $z$ suficientemente grande, las $f_\nu(z)$ se comportan como potencias del logaritmo de $z$.
 Por lo tanto, el crecimiento de $f_\nu(z)$ es considerablemente lento y obtener valores grandes de $f_\nu(z)$ exige valores muchisimo mayores de $z$.
-Por ejemplo, utilizar la aproximación de Sommerfeld para resolver $f_{3/2}(z) = 30$ arroja un $z\approx 10^5$. 
+Por ejemplo, utilizar la aproximación de Sommerfeld para resolver $f_{3/2}(z) = 30$ arroja un $z\approx 10^5$.
 
-Para los valores de $z\geq 20$, utilizamos la aproximación \eqref{eq:dirac_sommerfeld} que empalma en $z=20$ con el algoritmo de Wynn con un error relativo de 
-$\sim10^{-3}$ aceptable (para $\nu=3/2$). 
+Para los valores de $z\geq 20$, utilizamos la aproximación \eqref{eq:dirac_sommerfeld} que empalma en $z=20$ con el algoritmo de Wynn con un error relativo de
+$\sim10^{-3}$ aceptable (para $\nu=3/2$).
 
-La ventaja de esto es que para $z\geq 20$ tenemos un método explícito y veloz para evaluar $f_{3/2}(z)$, por lo que podemos utilizar algún método para hallar la 
+La ventaja de esto es que para $z\geq 20$ tenemos un método explícito y veloz para evaluar $f_{3/2}(z)$, por lo que podemos utilizar algún método para hallar la
 raíz de $g(z) = 0 = f_{3/2}(z) - N\lambda^3/gV$ (en nuestro caso, bisecciones).
 Por otro lado, para $0\leq z\leq 20$ construimos una Look-Up Table de $\sim 2500$ puntos, interpolando para obtener los valores de $f_\nu(z)$.
 En resumen
@@ -177,7 +177,7 @@ En resumen
  \left\{\begin{matrix}
   0 \leq z \leq 20 & \text{Look-Up Table: } \left\{\begin{matrix}
 		    0 \leq z \leq 0.65 & \text{Sumas parciales: } f_{3/2}(z) = \sum_{l=1}^{20} (-1)^{l+1} z^l/l^\nu \\
-		    0.65 \leq z \leq 20 & \text{Wynn: } \quad f_{3/2}(z) = \epsilon(0,20) 
+		    0.65 \leq z \leq 20 & \text{Wynn: } \quad f_{3/2}(z) = \epsilon(0,20)
 		    \end{matrix}\right. \\
  z\geq 20 & \text{Sommerfeld: } \qquad \qquad f_{3/2}(z) = \frac{4(\log z)^{3/2}}{3\pi^{1/2}}\left[ 1 + \frac{\pi^2}{8}(\log z)^{-2} - \frac{7\pi^4}{384}(\log z)^{-4}  \right]
  \end{matrix} \right.
@@ -196,9 +196,45 @@ Esta aproximación de la $f_{5/2}(z)$ tiene una calidad similar a la de $f_{3/2}
 \end{figure}
 
 
+
+\subsection{Teorema del virial}{\label{ap:teo_virial}}
+
+El teorema del virial es un resultado general para sistemas con $q$ y $p$ acotados que surge tanto de la mecánica clásica como de la mecánica estadística.
+Nos concentraremos en la versión de mecánica estadística deducida para el ensamble canónico y aprovechando la equivalencia de ensambles en el límite termodinámico.
+En particular, analizaremos los valores medios de los observables
+\begin{align*}
+\left< \dpart{H}{q_i}q_i \right> = \frac{1}{Z}\int \dpart{H}{q_i}q_i e^{-\beta H} d^{3N}qd^{3N}p  &= -\frac{1}{Z\beta}\int q_i \dpart{}{q_i}\left(e^{-\beta H}\right) d^{3N}qd^{3N}p \\
+&= -\frac{1}{Z\beta}\int \left[ \cancel{\dpart{}{q_i}\left(e^{-\beta H} q_i\right)} - e^{-\beta H} \right] d^{3N}qd^{3N}p \\
+&= \frac{1}{Z\beta}\int  e^{-\beta H} d^{3N}qd^{3N}p = k_B T
+\end{align*}
+donde hemos usado que el sistema se encuentra acotado en $q$ para cancelar la integral con la derivada.
+Podemos hacer un procedimiento análogo para $p_i$ y así obtener
+\begin{equation}{\label{eq:teo_virial_T}}
+  \left< \dpart{H}{q_i}q_i \right> = k_B T = \left< \dpart{H}{p_i}p_i \right>
+\end{equation}
+
+Utilizando las ecuaciones de Hamilton, podemos deducir de \eqref{eq:teo_virial_T} la conocida versión de la mecánica clásica
+(donde ahora $\left< \bullet \right>$ corresponde a valor medio temporal)
+\begin{equation}{\label{eq:teo_virial_mec}}
+  \left< \dot{q}_ip_i \right> + \left< \dot{p}_iq_i \right> = 0 = \frac{d}{dt}\left< q_ip_i \right>
+\end{equation}
+
+Dado que ya tenemos una forma de obtener $T$, resulta natural considerar una fórmula para obtener $P$.
+Para esto utilizaremos \ref{eq:teo_virial_mec} separando $\dot{p}_i = F_i = F_i^{int}+F_i^{ext}$ y sumando sobre todas las coordenadas del sistema tal que
+\[ 0 = \left< \sum_{i=1}^{3N} \dot{q}_ip_i + F_i^{int}q_i \right> + \left< \sum_{i=1}^{3N}F_i^{ext}q_i \right>  \]
+donde vemos que el segundo término corresponde a una especie de trabajo de las fuerzas externas que equivale a $-3PV$\textbf{CITA HAILE, APENDICE B}.
+Por lo tanto, la presión resulta
+\begin{equation}{\label{eq:teo_virial_P}}
+P = \frac{1}{3V}\left< \sum_{i=1}^{3N} \dot{q}_ip_i + F_i^{int}q_i \right>
+\end{equation}
+
+Para el caso de un potencial no dependiente de momentos, el primer término de la sumatoria se reduce a la energía cinética.
+Sin embargo, para un sistema con interacción como la de Pauli agregará un término de \textit{g\"uerzas}.
+
+
 \subsection{Integradores no simplécticos: Euler y Runge-Kutta}{\label{sec:no_simp}}
 
-En este apéndice, demostraremos que los métodos de Euler y un Runge-Kutta de orden 2 explícitos no son simplécticos. 
+En este apéndice, demostraremos que los métodos de Euler y un Runge-Kutta de orden 2 explícitos no son simplécticos.
 Comenzaremos con el método de Euler de esquema
 \[ y_{n+1} = y_n + h J^{-1} \nabla H(y_n) \]
 cuya derivada respecto de $y_n$ resulta inmediatamente
@@ -226,5 +262,4 @@ tiene una derivada respecto de $y_n$ más complicada
 Para anular los ordenes cuadrático y cúbico, se requiere basicamente $\nabla^2H(y_n) = \nabla^2H(y_{n+1/2})$, pero el término cuártico en $h$ es no nulo.
 Por lo tanto, este método RK2 no es simpléctico.
 
-\subsubsection{Implementación de interacción de Pauli}
-
+\subsection{Implementación de interacción de Pauli}
