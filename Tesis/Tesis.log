@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.13)  14 FEB 2019 01:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.13)  15 FEB 2019 11:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -827,9 +827,6 @@ LaTeX Warning: Label `fig:ej_diag_fases' multiply defined.
 
 LaTeX Warning: Label `fig:ej_diag_fases' multiply defined.
 
-
-LaTeX Warning: Label `fig:exclusion_dorso' multiply defined.
-
 )
 \openout1 = `Tesis.aux'.
 
@@ -1196,269 +1193,373 @@ Package pdftex.def Info: Imagenes/pauli_gas/phase_diagram_LJ.png used on input
 line 105.
 (pdftex.def)             Requested size: 227.61856pt x 197.46626pt.
  [32 <./Imagenes/pauli_gas/phase_diagram_LJ.png>]
-<Imagenes/pauli_gas/hist_rho0_dorso.png, id=499, 1675.2186pt x 922.8879pt>
-File: Imagenes/pauli_gas/hist_rho0_dorso.png Graphic file (type png)
+<Imagenes/pauli_gas/exclusion/exclusion_rho0_dorso_0,01.png, id=494, 578.16pt x
+ 433.62pt>
+File: Imagenes/pauli_gas/exclusion/exclusion_rho0_dorso_0,01.png Graphic file (
+type png)
+ <use Imagenes/pauli_gas/exclusion/exclusion_rho0_dorso_0,01.png>
+Package pdftex.def Info: Imagenes/pauli_gas/exclusion/exclusion_rho0_dorso_0,01
+.png used on input line 146.
+(pdftex.def)             Requested size: 171.64397pt x 170.71826pt.
 
-<use Imagenes/pauli_gas/hist_rho0_dorso.png>
-Package pdftex.def Info: Imagenes/pauli_gas/hist_rho0_dorso.png used on input l
-ine 133.
-(pdftex.def)             Requested size: 512.14612pt x 282.13522pt.
+<Imagenes/pauli_gas/exclusion/exclusion_rho0_dorso_0,1.png, id=496, 578.16pt x 
+433.62pt>
+File: Imagenes/pauli_gas/exclusion/exclusion_rho0_dorso_0,1.png Graphic file (t
+ype png)
+ <use Imagenes/pauli_gas/exclusion/exclusion_rho0_dorso_0,1.png>
+Package pdftex.def Info: Imagenes/pauli_gas/exclusion/exclusion_rho0_dorso_0,1.
+png used on input line 147.
+(pdftex.def)             Requested size: 161.22025pt x 170.71826pt.
 
-<Imagenes/pauli_gas/hist_rho1_dorso.png, id=502, 1675.2186pt x 922.8879pt>
-File: Imagenes/pauli_gas/hist_rho1_dorso.png Graphic file (type png)
+<Imagenes/pauli_gas/exclusion/exclusion_rho0_dorso_1.png, id=498, 578.16pt x 43
+3.62pt>
+File: Imagenes/pauli_gas/exclusion/exclusion_rho0_dorso_1.png Graphic file (typ
+e png)
+ <use Imagenes/pauli_gas/exclusion/exclusion_rho0_dorso_1.png>
+Package pdftex.def Info: Imagenes/pauli_gas/exclusion/exclusion_rho0_dorso_1.pn
+g used on input line 148.
+(pdftex.def)             Requested size: 198.28238pt x 170.71826pt.
 
-<use Imagenes/pauli_gas/hist_rho1_dorso.png>
-Package pdftex.def Info: Imagenes/pauli_gas/hist_rho1_dorso.png used on input l
-ine 140.
-(pdftex.def)             Requested size: 512.14612pt x 282.13522pt.
+<Imagenes/pauli_gas/exclusion/exclusion_rho2_dorso_0,01.png, id=500, 578.16pt x
+ 433.62pt>
+File: Imagenes/pauli_gas/exclusion/exclusion_rho2_dorso_0,01.png Graphic file (
+type png)
+ <use Imagenes/pauli_gas/exclusion/exclusion_rho2_dorso_0,01.png>
+Package pdftex.def Info: Imagenes/pauli_gas/exclusion/exclusion_rho2_dorso_0,01
+.png used on input line 149.
+(pdftex.def)             Requested size: 171.64397pt x 170.71826pt.
 
-<Imagenes/pauli_gas/hist_rho2_dorso.png, id=505, 1675.2186pt x 922.8879pt>
-File: Imagenes/pauli_gas/hist_rho2_dorso.png Graphic file (type png)
+<Imagenes/pauli_gas/exclusion/exclusion_rho2_dorso_0,1.png, id=502, 578.16pt x 
+433.62pt>
+File: Imagenes/pauli_gas/exclusion/exclusion_rho2_dorso_0,1.png Graphic file (t
+ype png)
+ <use Imagenes/pauli_gas/exclusion/exclusion_rho2_dorso_0,1.png>
+Package pdftex.def Info: Imagenes/pauli_gas/exclusion/exclusion_rho2_dorso_0,1.
+png used on input line 150.
+(pdftex.def)             Requested size: 160.06206pt x 170.71826pt.
 
-<use Imagenes/pauli_gas/hist_rho2_dorso.png>
-Package pdftex.def Info: Imagenes/pauli_gas/hist_rho2_dorso.png used on input l
-ine 146.
+<Imagenes/pauli_gas/exclusion/exclusion_rho2_dorso_1.png, id=504, 578.16pt x 43
+3.62pt>
+File: Imagenes/pauli_gas/exclusion/exclusion_rho2_dorso_1.png Graphic file (typ
+e png)
+ <use Imagenes/pauli_gas/exclusion/exclusion_rho2_dorso_1.png>
+Package pdftex.def Info: Imagenes/pauli_gas/exclusion/exclusion_rho2_dorso_1.pn
+g used on input line 151.
+(pdftex.def)             Requested size: 198.28238pt x 170.71826pt.
+
+<Imagenes/pauli_gas/exclusion/exclusion_rho0_maruyama_0,5.png, id=506, 578.16pt
+ x 433.62pt>
+File: Imagenes/pauli_gas/exclusion/exclusion_rho0_maruyama_0,5.png Graphic file
+ (type png)
+
+<use Imagenes/pauli_gas/exclusion/exclusion_rho0_maruyama_0,5.png>
+Package pdftex.def Info: Imagenes/pauli_gas/exclusion/exclusion_rho0_maruyama_0
+,5.png used on input line 157.
+(pdftex.def)             Requested size: 171.64397pt x 170.71826pt.
+
+<Imagenes/pauli_gas/exclusion/exclusion_rho0_maruyama_3.png, id=508, 578.16pt x
+ 433.62pt>
+File: Imagenes/pauli_gas/exclusion/exclusion_rho0_maruyama_3.png Graphic file (
+type png)
+ <use Imagenes/pauli_gas/exclusion/exclusion_rho0_maruyama_3.png>
+Package pdftex.def Info: Imagenes/pauli_gas/exclusion/exclusion_rho0_maruyama_3
+.png used on input line 158.
+(pdftex.def)             Requested size: 161.22025pt x 170.71826pt.
+
+<Imagenes/pauli_gas/exclusion/exclusion_rho0_maruyama_20.png, id=510, 578.16pt 
+x 433.62pt>
+File: Imagenes/pauli_gas/exclusion/exclusion_rho0_maruyama_20.png Graphic file 
+(type png)
+ <use Imagenes/pauli_gas/exclusion/exclusion_rho0_maruyama_20.png>
+Package pdftex.def Info: Imagenes/pauli_gas/exclusion/exclusion_rho0_maruyama_2
+0.png used on input line 159.
+(pdftex.def)             Requested size: 198.28238pt x 170.71826pt.
+
+<Imagenes/pauli_gas/exclusion/exclusion_rho2_maruyama_0,5.png, id=512, 578.16pt
+ x 433.62pt>
+File: Imagenes/pauli_gas/exclusion/exclusion_rho2_maruyama_0,5.png Graphic file
+ (type png)
+
+<use Imagenes/pauli_gas/exclusion/exclusion_rho2_maruyama_0,5.png>
+Package pdftex.def Info: Imagenes/pauli_gas/exclusion/exclusion_rho2_maruyama_0
+,5.png used on input line 160.
+(pdftex.def)             Requested size: 171.64397pt x 170.71826pt.
+
+<Imagenes/pauli_gas/exclusion/exclusion_rho2_maruyama_3.png, id=514, 578.16pt x
+ 433.62pt>
+File: Imagenes/pauli_gas/exclusion/exclusion_rho2_maruyama_3.png Graphic file (
+type png)
+ <use Imagenes/pauli_gas/exclusion/exclusion_rho2_maruyama_3.png>
+Package pdftex.def Info: Imagenes/pauli_gas/exclusion/exclusion_rho2_maruyama_3
+.png used on input line 161.
+(pdftex.def)             Requested size: 160.06206pt x 170.71826pt.
+
+<Imagenes/pauli_gas/exclusion/exclusion_rho2_maruyama_20.png, id=516, 578.16pt 
+x 433.62pt>
+File: Imagenes/pauli_gas/exclusion/exclusion_rho2_maruyama_20.png Graphic file 
+(type png)
+ <use Imagenes/pauli_gas/exclusion/exclusion_rho2_maruyama_20.png>
+Package pdftex.def Info: Imagenes/pauli_gas/exclusion/exclusion_rho2_maruyama_2
+0.png used on input line 162.
+(pdftex.def)             Requested size: 198.28238pt x 170.71826pt.
+
+[33 <./Imagenes/pauli_gas/exclusion/exclusion_rho0_dorso_0,01.png> <./Imagenes/
+pauli_gas/exclusion/exclusion_rho0_dorso_0,1.png> <./Imagenes/pauli_gas/exclusi
+on/exclusion_rho0_dorso_1.png> <./Imagenes/pauli_gas/exclusion/exclusion_rho2_d
+orso_0,01.png> <./Imagenes/pauli_gas/exclusion/exclusion_rho2_dorso_0,1.png> <.
+/Imagenes/pauli_gas/exclusion/exclusion_rho2_dorso_1.png>]
+<Imagenes/pauli_gas/exclusion/exclusion_rho0_dorso_3.png, id=535, 578.16pt x 43
+3.62pt>
+File: Imagenes/pauli_gas/exclusion/exclusion_rho0_dorso_3.png Graphic file (typ
+e png)
+ <use Imagenes/pauli_gas/exclusion/exclusion_rho0_dorso_3.png>
+Package pdftex.def Info: Imagenes/pauli_gas/exclusion/exclusion_rho0_dorso_3.pn
+g used on input line 170.
+(pdftex.def)             Requested size: 171.64397pt x 170.71826pt.
+
+<Imagenes/pauli_gas/exclusion/exclusion_rho0_GIvsdorso_3.png, id=537, 578.16pt 
+x 433.62pt>
+File: Imagenes/pauli_gas/exclusion/exclusion_rho0_GIvsdorso_3.png Graphic file 
+(type png)
+ <use Imagenes/pauli_gas/exclusion/exclusion_rho0_GIvsdorso_3.png>
+Package pdftex.def Info: Imagenes/pauli_gas/exclusion/exclusion_rho0_GIvsdorso_
+3.png used on input line 171.
+(pdftex.def)             Requested size: 184.38408pt x 170.71826pt.
+
+<Imagenes/pauli_gas/exclusion/exclusion_zoom_rho0_dorso_0,01.png, id=539, 578.1
+6pt x 433.62pt>
+File: Imagenes/pauli_gas/exclusion/exclusion_zoom_rho0_dorso_0,01.png Graphic f
+ile (type png)
+
+<use Imagenes/pauli_gas/exclusion/exclusion_zoom_rho0_dorso_0,01.png>
+Package pdftex.def Info: Imagenes/pauli_gas/exclusion/exclusion_zoom_rho0_dorso
+_0,01.png used on input line 178.
+(pdftex.def)             Requested size: 171.64397pt x 170.71826pt.
+
+<Imagenes/pauli_gas/exclusion/exclusion_zoom_rho0_dorso_0,1.png, id=541, 578.16
+pt x 433.62pt>
+File: Imagenes/pauli_gas/exclusion/exclusion_zoom_rho0_dorso_0,1.png Graphic fi
+le (type png)
+
+<use Imagenes/pauli_gas/exclusion/exclusion_zoom_rho0_dorso_0,1.png>
+Package pdftex.def Info: Imagenes/pauli_gas/exclusion/exclusion_zoom_rho0_dorso
+_0,1.png used on input line 179.
+(pdftex.def)             Requested size: 149.63834pt x 170.71826pt.
+
+<Imagenes/pauli_gas/exclusion/exclusion_zoom_rho0_dorso_1.png, id=543, 578.16pt
+ x 433.62pt>
+File: Imagenes/pauli_gas/exclusion/exclusion_zoom_rho0_dorso_1.png Graphic file
+ (type png)
+
+<use Imagenes/pauli_gas/exclusion/exclusion_zoom_rho0_dorso_1.png>
+Package pdftex.def Info: Imagenes/pauli_gas/exclusion/exclusion_zoom_rho0_dorso
+_1.png used on input line 180.
+(pdftex.def)             Requested size: 184.38408pt x 170.71826pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [34 <./Imagenes/pauli_gas/exclusion/exclusion_rho0_maruyama_0,5.png> <./Imagen
+es/pauli_gas/exclusion/exclusion_rho0_maruyama_3.png> <./Imagenes/pauli_gas/exc
+lusion/exclusion_rho0_maruyama_20.png> <./Imagenes/pauli_gas/exclusion/exclusio
+n_rho2_maruyama_0,5.png> <./Imagenes/pauli_gas/exclusion/exclusion_rho2_maruyam
+a_3.png> <./Imagenes/pauli_gas/exclusion/exclusion_rho2_maruyama_20.png> <./Ima
+genes/pauli_gas/exclusion/exclusion_rho0_dorso_3.png> <./Imagenes/pauli_gas/exc
+lusion/exclusion_rho0_GIvsdorso_3.png>]
+<Imagenes/pauli_gas/AvsT_dorso.png, id=567, 578.16pt x 433.62pt>
+File: Imagenes/pauli_gas/AvsT_dorso.png Graphic file (type png)
+
+<use Imagenes/pauli_gas/AvsT_dorso.png>
+Package pdftex.def Info: Imagenes/pauli_gas/AvsT_dorso.png used on input line 1
+87.
+(pdftex.def)             Requested size: 227.61856pt x 178.27513pt.
+
+<Imagenes/pauli_gas/AvsT_maruyama.png, id=569, 578.16pt x 433.62pt>
+File: Imagenes/pauli_gas/AvsT_maruyama.png Graphic file (type png)
+
+<use Imagenes/pauli_gas/AvsT_maruyama.png>
+Package pdftex.def Info: Imagenes/pauli_gas/AvsT_maruyama.png used on input lin
+e 188.
+(pdftex.def)             Requested size: 227.61856pt x 178.27513pt.
+
+<Imagenes/pauli_gas/histogramas/hist_rho0_dorso.png, id=573, 1675.2186pt x 922.
+8879pt>
+File: Imagenes/pauli_gas/histogramas/hist_rho0_dorso.png Graphic file (type png
+)
+ <use Imagenes/pauli_gas/histogramas/hist_rho0_dorso.png>
+Package pdftex.def Info: Imagenes/pauli_gas/histogramas/hist_rho0_dorso.png use
+d on input line 201.
 (pdftex.def)             Requested size: 512.14612pt x 282.13522pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [33 <./Imagenes/pauli_gas/hist_rho0_dorso.png>]
+ [35 <./Imagenes/pauli_gas/exclusion/exclusion_zoom_rho0_dorso_0,01.png> <./Ima
+genes/pauli_gas/exclusion/exclusion_zoom_rho0_dorso_0,1.png> <./Imagenes/pauli_
+gas/exclusion/exclusion_zoom_rho0_dorso_1.png> <./Imagenes/pauli_gas/AvsT_dorso
+.png> <./Imagenes/pauli_gas/AvsT_maruyama.png>]
+<Imagenes/pauli_gas/histogramas/hist_rho1_dorso.png, id=592, 1675.2186pt x 922.
+8879pt>
+File: Imagenes/pauli_gas/histogramas/hist_rho1_dorso.png Graphic file (type png
+)
+ <use Imagenes/pauli_gas/histogramas/hist_rho1_dorso.png>
+Package pdftex.def Info: Imagenes/pauli_gas/histogramas/hist_rho1_dorso.png use
+d on input line 208.
+(pdftex.def)             Requested size: 512.14612pt x 282.13522pt.
+
+<Imagenes/pauli_gas/histogramas/hist_rho2_dorso.png, id=595, 1675.2186pt x 922.
+8879pt>
+File: Imagenes/pauli_gas/histogramas/hist_rho2_dorso.png Graphic file (type png
+)
+ <use Imagenes/pauli_gas/histogramas/hist_rho2_dorso.png>
+Package pdftex.def Info: Imagenes/pauli_gas/histogramas/hist_rho2_dorso.png use
+d on input line 214.
+(pdftex.def)             Requested size: 512.14612pt x 282.13522pt.
+
 Underfull \vbox (badness 1622) has occurred while \output is active []
 
- [34 <./Imagenes/pauli_gas/hist_rho1_dorso.png> <./Imagenes/pauli_gas/hist_rho2
-_dorso.png>] <Imagenes/pauli_gas/muvsT_rho0_dorso.png, id=523, 578.16pt x 433.6
-2pt>
+ [36 <./Imagenes/pauli_gas/histogramas/hist_rho0_dorso.png> <./Imagenes/pauli_g
+as/histogramas/hist_rho1_dorso.png>] [37 <./Imagenes/pauli_gas/histogramas/hist
+_rho2_dorso.png>]
+<Imagenes/pauli_gas/histogramas/hist_rho0_maruyama.png, id=623, 1675.2186pt x 9
+22.8879pt>
+File: Imagenes/pauli_gas/histogramas/hist_rho0_maruyama.png Graphic file (type 
+png)
+ <use Imagenes/pauli_gas/histogramas/hist_rho0_maruyama.png>
+Package pdftex.def Info: Imagenes/pauli_gas/histogramas/hist_rho0_maruyama.png 
+used on input line 253.
+(pdftex.def)             Requested size: 512.14612pt x 282.13522pt.
+
+<Imagenes/pauli_gas/histogramas/hist_rho1_maruyama.png, id=626, 1675.2186pt x 9
+22.8879pt>
+File: Imagenes/pauli_gas/histogramas/hist_rho1_maruyama.png Graphic file (type 
+png)
+ <use Imagenes/pauli_gas/histogramas/hist_rho1_maruyama.png>
+Package pdftex.def Info: Imagenes/pauli_gas/histogramas/hist_rho1_maruyama.png 
+used on input line 259.
+(pdftex.def)             Requested size: 512.14612pt x 282.13522pt.
+
+<Imagenes/pauli_gas/histogramas/hist_rho2_maruyama.png, id=629, 1675.2186pt x 9
+22.8879pt>
+File: Imagenes/pauli_gas/histogramas/hist_rho2_maruyama.png Graphic file (type 
+png)
+ <use Imagenes/pauli_gas/histogramas/hist_rho2_maruyama.png>
+Package pdftex.def Info: Imagenes/pauli_gas/histogramas/hist_rho2_maruyama.png 
+used on input line 265.
+(pdftex.def)             Requested size: 512.14612pt x 282.13522pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [38 <./Imagenes/pauli_gas/histogramas/hist_rho0_maruyama.png>]
+Underfull \vbox (badness 1622) has occurred while \output is active []
+
+ [39 <./Imagenes/pauli_gas/histogramas/hist_rho1_maruyama.png> <./Imagenes/paul
+i_gas/histogramas/hist_rho2_maruyama.png>]
+<Imagenes/pauli_gas/muvsT_rho0_dorso.png, id=652, 578.16pt x 433.62pt>
 File: Imagenes/pauli_gas/muvsT_rho0_dorso.png Graphic file (type png)
 
 <use Imagenes/pauli_gas/muvsT_rho0_dorso.png>
 Package pdftex.def Info: Imagenes/pauli_gas/muvsT_rho0_dorso.png used on input 
-line 178.
+line 285.
 (pdftex.def)             Requested size: 187.78922pt x 155.33319pt.
 
-<Imagenes/pauli_gas/muvsT_rho1_dorso.png, id=525, 578.16pt x 433.62pt>
+<Imagenes/pauli_gas/muvsT_rho1_dorso.png, id=654, 578.16pt x 433.62pt>
 File: Imagenes/pauli_gas/muvsT_rho1_dorso.png Graphic file (type png)
 
 <use Imagenes/pauli_gas/muvsT_rho1_dorso.png>
 Package pdftex.def Info: Imagenes/pauli_gas/muvsT_rho1_dorso.png used on input 
-line 179.
+line 286.
 (pdftex.def)             Requested size: 187.78922pt x 155.33319pt.
 
-<Imagenes/pauli_gas/muvsT_rho2_dorso.png, id=527, 578.16pt x 433.62pt>
+<Imagenes/pauli_gas/muvsT_rho2_dorso.png, id=656, 578.16pt x 433.62pt>
 File: Imagenes/pauli_gas/muvsT_rho2_dorso.png Graphic file (type png)
 
 <use Imagenes/pauli_gas/muvsT_rho2_dorso.png>
 Package pdftex.def Info: Imagenes/pauli_gas/muvsT_rho2_dorso.png used on input 
-line 180.
+line 287.
 (pdftex.def)             Requested size: 187.78922pt x 155.33319pt.
 
-<Imagenes/pauli_gas/TvsT_dorso.png, id=529, 578.16pt x 433.62pt>
-File: Imagenes/pauli_gas/TvsT_dorso.png Graphic file (type png)
-
-<use Imagenes/pauli_gas/TvsT_dorso.png>
-Package pdftex.def Info: Imagenes/pauli_gas/TvsT_dorso.png used on input line 1
-86.
-(pdftex.def)             Requested size: 284.52756pt x 235.35799pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [35]
-<Imagenes/pauli_gas/hist_rho0_maruyama.png, id=541, 1675.2186pt x 922.8879pt>
-File: Imagenes/pauli_gas/hist_rho0_maruyama.png Graphic file (type png)
-
-<use Imagenes/pauli_gas/hist_rho0_maruyama.png>
-Package pdftex.def Info: Imagenes/pauli_gas/hist_rho0_maruyama.png used on inpu
-t line 204.
-(pdftex.def)             Requested size: 512.14612pt x 282.13522pt.
- [36 <./Imagenes/pauli_gas/muvsT_rho0_dorso.png> <./Imagenes/pauli_gas/muvsT_rh
-o1_dorso.png> <./Imagenes/pauli_gas/muvsT_rho2_dorso.png> <./Imagenes/pauli_gas
-/TvsT_dorso.png>]
-<Imagenes/pauli_gas/hist_rho1_maruyama.png, id=559, 1675.2186pt x 922.8879pt>
-File: Imagenes/pauli_gas/hist_rho1_maruyama.png Graphic file (type png)
-
-<use Imagenes/pauli_gas/hist_rho1_maruyama.png>
-Package pdftex.def Info: Imagenes/pauli_gas/hist_rho1_maruyama.png used on inpu
-t line 210.
-(pdftex.def)             Requested size: 512.14612pt x 282.13522pt.
-
-<Imagenes/pauli_gas/hist_rho2_maruyama.png, id=562, 1675.2186pt x 922.8879pt>
-File: Imagenes/pauli_gas/hist_rho2_maruyama.png Graphic file (type png)
-
-<use Imagenes/pauli_gas/hist_rho2_maruyama.png>
-Package pdftex.def Info: Imagenes/pauli_gas/hist_rho2_maruyama.png used on inpu
-t line 216.
-(pdftex.def)             Requested size: 512.14612pt x 282.13522pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [37 <./Imagenes/pauli_gas/hist_rho0_maruyama.png>]
-Underfull \vbox (badness 1622) has occurred while \output is active []
-
- [38 <./Imagenes/pauli_gas/hist_rho1_maruyama.png> <./Imagenes/pauli_gas/hist_r
-ho2_maruyama.png>]
-<Imagenes/pauli_gas/muvsT_rho0_maruyama.png, id=579, 578.16pt x 433.62pt>
+<Imagenes/pauli_gas/muvsT_rho0_maruyama.png, id=658, 578.16pt x 433.62pt>
 File: Imagenes/pauli_gas/muvsT_rho0_maruyama.png Graphic file (type png)
 
 <use Imagenes/pauli_gas/muvsT_rho0_maruyama.png>
 Package pdftex.def Info: Imagenes/pauli_gas/muvsT_rho0_maruyama.png used on inp
-ut line 225.
+ut line 293.
 (pdftex.def)             Requested size: 187.78922pt x 155.33319pt.
 
-<Imagenes/pauli_gas/muvsT_rho1_maruyama.png, id=581, 578.16pt x 433.62pt>
+<Imagenes/pauli_gas/muvsT_rho1_maruyama.png, id=660, 578.16pt x 433.62pt>
 File: Imagenes/pauli_gas/muvsT_rho1_maruyama.png Graphic file (type png)
 
 <use Imagenes/pauli_gas/muvsT_rho1_maruyama.png>
 Package pdftex.def Info: Imagenes/pauli_gas/muvsT_rho1_maruyama.png used on inp
-ut line 226.
+ut line 294.
 (pdftex.def)             Requested size: 187.78922pt x 155.33319pt.
 
-<Imagenes/pauli_gas/muvsT_rho2_maruyama.png, id=583, 578.16pt x 433.62pt>
+<Imagenes/pauli_gas/muvsT_rho2_maruyama.png, id=662, 578.16pt x 433.62pt>
 File: Imagenes/pauli_gas/muvsT_rho2_maruyama.png Graphic file (type png)
 
 <use Imagenes/pauli_gas/muvsT_rho2_maruyama.png>
 Package pdftex.def Info: Imagenes/pauli_gas/muvsT_rho2_maruyama.png used on inp
-ut line 227.
+ut line 295.
 (pdftex.def)             Requested size: 187.78922pt x 155.33319pt.
 
-<Imagenes/pauli_gas/TvsT_maruyama.png, id=585, 578.16pt x 433.62pt>
+<Imagenes/pauli_gas/TvsT_dorso.png, id=664, 578.16pt x 433.62pt>
+File: Imagenes/pauli_gas/TvsT_dorso.png Graphic file (type png)
+
+<use Imagenes/pauli_gas/TvsT_dorso.png>
+Package pdftex.def Info: Imagenes/pauli_gas/TvsT_dorso.png used on input line 3
+01.
+(pdftex.def)             Requested size: 273.14401pt x 225.94443pt.
+
+<Imagenes/pauli_gas/TvsT_maruyama.png, id=666, 578.16pt x 433.62pt>
 File: Imagenes/pauli_gas/TvsT_maruyama.png Graphic file (type png)
 
 <use Imagenes/pauli_gas/TvsT_maruyama.png>
 Package pdftex.def Info: Imagenes/pauli_gas/TvsT_maruyama.png used on input lin
-e 233.
-(pdftex.def)             Requested size: 284.52756pt x 235.35799pt.
-
-<Imagenes/pauli_gas/hist_rho0_LJ.png, id=589, 1675.2186pt x 922.8879pt>
-File: Imagenes/pauli_gas/hist_rho0_LJ.png Graphic file (type png)
-
-<use Imagenes/pauli_gas/hist_rho0_LJ.png>
-Package pdftex.def Info: Imagenes/pauli_gas/hist_rho0_LJ.png used on input line
- 272.
+e 302.
+(pdftex.def)             Requested size: 273.14401pt x 225.94443pt.
+ [40 <./Imagenes/pauli_gas/muvsT_rho0_dorso.png> <./Imagenes/pauli_gas/muvsT_rh
+o1_dorso.png> <./Imagenes/pauli_gas/muvsT_rho2_dorso.png> <./Imagenes/pauli_gas
+/muvsT_rho0_maruyama.png> <./Imagenes/pauli_gas/muvsT_rho1_maruyama.png> <./Ima
+genes/pauli_gas/muvsT_rho2_maruyama.png>] [41 <./Imagenes/pauli_gas/TvsT_dorso.
+png> <./Imagenes/pauli_gas/TvsT_maruyama.png>]
+<Imagenes/pauli_gas/histogramas/hist_rho0_LJ.png, id=701, 1675.2186pt x 922.887
+9pt>
+File: Imagenes/pauli_gas/histogramas/hist_rho0_LJ.png Graphic file (type png)
+ <use Imagenes/pauli_gas/histogramas/hist_rho0_LJ.png>
+Package pdftex.def Info: Imagenes/pauli_gas/histogramas/hist_rho0_LJ.png used o
+n input line 349.
 (pdftex.def)             Requested size: 512.14612pt x 282.13522pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [39 <./Imagenes/pauli_gas/muvsT_rho0_maruyama.png> <./Imagenes/pauli_gas/muvsT
-_rho1_maruyama.png> <./Imagenes/pauli_gas/muvsT_rho2_maruyama.png> <./Imagenes/
-pauli_gas/TvsT_maruyama.png>]
-<Imagenes/pauli_gas/hist_rho1_LJ.png, id=606, 1675.2186pt x 922.8879pt>
-File: Imagenes/pauli_gas/hist_rho1_LJ.png Graphic file (type png)
-
-<use Imagenes/pauli_gas/hist_rho1_LJ.png>
-Package pdftex.def Info: Imagenes/pauli_gas/hist_rho1_LJ.png used on input line
- 280.
+ [42]
+<Imagenes/pauli_gas/histogramas/hist_rho1_LJ.png, id=708, 1675.2186pt x 922.887
+9pt>
+File: Imagenes/pauli_gas/histogramas/hist_rho1_LJ.png Graphic file (type png)
+ <use Imagenes/pauli_gas/histogramas/hist_rho1_LJ.png>
+Package pdftex.def Info: Imagenes/pauli_gas/histogramas/hist_rho1_LJ.png used o
+n input line 357.
 (pdftex.def)             Requested size: 512.14612pt x 282.13522pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [40 <./Imagenes/pauli_gas/hist_rho0_LJ.png>]
-<Imagenes/pauli_gas/exclusion_rho0_dorso_0,01.png, id=612, 578.16pt x 433.62pt>
-File: Imagenes/pauli_gas/exclusion_rho0_dorso_0,01.png Graphic file (type png)
-<use Imagenes/pauli_gas/exclusion_rho0_dorso_0,01.png>
-Package pdftex.def Info: Imagenes/pauli_gas/exclusion_rho0_dorso_0,01.png used 
-on input line 293.
-(pdftex.def)             Requested size: 171.64397pt x 170.71826pt.
+ [43 <./Imagenes/pauli_gas/histogramas/hist_rho0_LJ.png>]
+<Imagenes/pauli_gas/P_vs_T_dorso.png, id=715, 578.16pt x 433.62pt>
+File: Imagenes/pauli_gas/P_vs_T_dorso.png Graphic file (type png)
 
-<Imagenes/pauli_gas/exclusion_rho0_dorso_0,1.png, id=614, 578.16pt x 433.62pt>
-File: Imagenes/pauli_gas/exclusion_rho0_dorso_0,1.png Graphic file (type png)
+<use Imagenes/pauli_gas/P_vs_T_dorso.png>
+Package pdftex.def Info: Imagenes/pauli_gas/P_vs_T_dorso.png used on input line
+ 370.
+(pdftex.def)             Requested size: 227.61856pt x 178.27513pt.
 
-<use Imagenes/pauli_gas/exclusion_rho0_dorso_0,1.png>
-Package pdftex.def Info: Imagenes/pauli_gas/exclusion_rho0_dorso_0,1.png used o
-n input line 294.
-(pdftex.def)             Requested size: 148.48013pt x 170.71826pt.
+<Imagenes/pauli_gas/P_vs_T_maruyama.png, id=717, 578.16pt x 433.62pt>
+File: Imagenes/pauli_gas/P_vs_T_maruyama.png Graphic file (type png)
 
-<Imagenes/pauli_gas/exclusion_rho0_dorso_1.png, id=616, 578.16pt x 433.62pt>
-File: Imagenes/pauli_gas/exclusion_rho0_dorso_1.png Graphic file (type png)
-
-<use Imagenes/pauli_gas/exclusion_rho0_dorso_1.png>
-Package pdftex.def Info: Imagenes/pauli_gas/exclusion_rho0_dorso_1.png used on 
-input line 295.
-(pdftex.def)             Requested size: 183.22588pt x 170.71826pt.
-
-<Imagenes/pauli_gas/exclusion_rho1_dorso_0,01.png, id=618, 578.16pt x 433.62pt>
-File: Imagenes/pauli_gas/exclusion_rho1_dorso_0,01.png Graphic file (type png)
-<use Imagenes/pauli_gas/exclusion_rho1_dorso_0,01.png>
-Package pdftex.def Info: Imagenes/pauli_gas/exclusion_rho1_dorso_0,01.png used 
-on input line 302.
-(pdftex.def)             Requested size: 171.64397pt x 170.71826pt.
-
-<Imagenes/pauli_gas/exclusion_rho1_dorso_0,1.png, id=620, 578.16pt x 433.62pt>
-File: Imagenes/pauli_gas/exclusion_rho1_dorso_0,1.png Graphic file (type png)
-
-<use Imagenes/pauli_gas/exclusion_rho1_dorso_0,1.png>
-Package pdftex.def Info: Imagenes/pauli_gas/exclusion_rho1_dorso_0,1.png used o
-n input line 303.
-(pdftex.def)             Requested size: 148.48013pt x 170.71826pt.
-
-<Imagenes/pauli_gas/exclusion_rho1_dorso_1.png, id=622, 578.16pt x 433.62pt>
-File: Imagenes/pauli_gas/exclusion_rho1_dorso_1.png Graphic file (type png)
-
-<use Imagenes/pauli_gas/exclusion_rho1_dorso_1.png>
-Package pdftex.def Info: Imagenes/pauli_gas/exclusion_rho1_dorso_1.png used on 
-input line 304.
-(pdftex.def)             Requested size: 183.22588pt x 170.71826pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [41 <./Imagenes/pauli_gas/exclusion_rho0_dorso_0,01.png> <./Imagenes/pauli_gas
-/exclusion_rho0_dorso_0,1.png> <./Imagenes/pauli_gas/exclusion_rho0_dorso_1.png
-> <./Imagenes/pauli_gas/hist_rho1_LJ.png>]
-<Imagenes/pauli_gas/exclusion_rho2_dorso_0,01.png, id=637, 578.16pt x 433.62pt>
-File: Imagenes/pauli_gas/exclusion_rho2_dorso_0,01.png Graphic file (type png)
-<use Imagenes/pauli_gas/exclusion_rho2_dorso_0,01.png>
-Package pdftex.def Info: Imagenes/pauli_gas/exclusion_rho2_dorso_0,01.png used 
-on input line 311.
-(pdftex.def)             Requested size: 171.64397pt x 170.71826pt.
-
-<Imagenes/pauli_gas/exclusion_rho2_dorso_0,1.png, id=639, 578.16pt x 433.62pt>
-File: Imagenes/pauli_gas/exclusion_rho2_dorso_0,1.png Graphic file (type png)
-
-<use Imagenes/pauli_gas/exclusion_rho2_dorso_0,1.png>
-Package pdftex.def Info: Imagenes/pauli_gas/exclusion_rho2_dorso_0,1.png used o
-n input line 312.
-(pdftex.def)             Requested size: 148.48013pt x 170.71826pt.
-
-<Imagenes/pauli_gas/exclusion_rho2_dorso_1.png, id=641, 578.16pt x 433.62pt>
-File: Imagenes/pauli_gas/exclusion_rho2_dorso_1.png Graphic file (type png)
-
-<use Imagenes/pauli_gas/exclusion_rho2_dorso_1.png>
-Package pdftex.def Info: Imagenes/pauli_gas/exclusion_rho2_dorso_1.png used on 
-input line 313.
-(pdftex.def)             Requested size: 183.22588pt x 170.71826pt.
-
-<Imagenes/pauli_gas/exclusion_zoom_rho0_dorso_0,01.png, id=643, 578.16pt x 433.
-62pt>
-File: Imagenes/pauli_gas/exclusion_zoom_rho0_dorso_0,01.png Graphic file (type 
-png)
- <use Imagenes/pauli_gas/exclusion_zoom_rho0_dorso_0,01.png>
-Package pdftex.def Info: Imagenes/pauli_gas/exclusion_zoom_rho0_dorso_0,01.png 
-used on input line 320.
-(pdftex.def)             Requested size: 171.64397pt x 170.71826pt.
-
-<Imagenes/pauli_gas/exclusion_zoom_rho0_dorso_0,1.png, id=645, 578.16pt x 433.6
-2pt>
-File: Imagenes/pauli_gas/exclusion_zoom_rho0_dorso_0,1.png Graphic file (type p
-ng)
- <use Imagenes/pauli_gas/exclusion_zoom_rho0_dorso_0,1.png>
-Package pdftex.def Info: Imagenes/pauli_gas/exclusion_zoom_rho0_dorso_0,1.png u
-sed on input line 321.
-(pdftex.def)             Requested size: 148.48013pt x 170.71826pt.
-
-<Imagenes/pauli_gas/exclusion_zoom_rho0_dorso_1.png, id=647, 578.16pt x 433.62p
-t>
-File: Imagenes/pauli_gas/exclusion_zoom_rho0_dorso_1.png Graphic file (type png
-)
- <use Imagenes/pauli_gas/exclusion_zoom_rho0_dorso_1.png>
-Package pdftex.def Info: Imagenes/pauli_gas/exclusion_zoom_rho0_dorso_1.png use
-d on input line 322.
-(pdftex.def)             Requested size: 183.22588pt x 170.71826pt.
-) [42 <./Imagenes/pauli_gas/exclusion_rho1_dorso_0,01.png> <./Imagenes/pauli_ga
-s/exclusion_rho1_dorso_0,1.png> <./Imagenes/pauli_gas/exclusion_rho1_dorso_1.pn
-g> <./Imagenes/pauli_gas/exclusion_rho2_dorso_0,01.png> <./Imagenes/pauli_gas/e
-xclusion_rho2_dorso_0,1.png> <./Imagenes/pauli_gas/exclusion_rho2_dorso_1.png> 
-<./Imagenes/pauli_gas/exclusion_zoom_rho0_dorso_0,01.png> <./Imagenes/pauli_gas
-/exclusion_zoom_rho0_dorso_0,1.png> <./Imagenes/pauli_gas/exclusion_zoom_rho0_d
-orso_1.png>]
-[43] (./apendice.tex
+<use Imagenes/pauli_gas/P_vs_T_maruyama.png>
+Package pdftex.def Info: Imagenes/pauli_gas/P_vs_T_maruyama.png used on input l
+ine 371.
+(pdftex.def)             Requested size: 227.61856pt x 178.27513pt.
+) [44 <./Imagenes/pauli_gas/P_vs_T_dorso.png> <./Imagenes/pauli_gas/P_vs_T_maru
+yama.png> <./Imagenes/pauli_gas/histogramas/hist_rho1_LJ.png>] (./apendice.tex
 Overfull \hbox (3.23763pt too wide) in paragraph at lines 8--10
 \T1/ptm/m/n/12 ni-co por sim-pli-ci-dad. En es-te en-sam-ble, la (den-si-dad de
 ) pro-ba-bi-li-dad de un da-do mi-cro-es-ta-do $\OML/zplm/m/it/12 x \OT1/zplm/m
@@ -1467,12 +1568,12 @@ lx/m/n/12 , \OT1/zplm/b/n/12 p[]\OT1/pplx/m/n/12 , .., \OT1/zplm/b/n/12 p[]\OT1
 /zplm/m/n/12 )$
  []
 
-[44] [45]
+[45] [46]
 LaTeX Font Info:    Try loading font information for T1+pcr on input line 84.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-) [46]
-<Imagenes/apendice/esquema_wynn.png, id=697, 313.9471pt x 79.26387pt>
+) [47]
+<Imagenes/apendice/esquema_wynn.png, id=747, 313.9471pt x 79.26387pt>
 File: Imagenes/apendice/esquema_wynn.png Graphic file (type png)
 
 <use Imagenes/apendice/esquema_wynn.png>
@@ -1480,7 +1581,7 @@ Package pdftex.def Info: Imagenes/apendice/esquema_wynn.png used on input line
 108.
 (pdftex.def)             Requested size: 147.9512pt x 37.3544pt.
 
-<Imagenes/apendice/ejemplo_wynn.png, id=698, 638.77354pt x 76.15549pt>
+<Imagenes/apendice/ejemplo_wynn.png, id=748, 638.77354pt x 76.15549pt>
 File: Imagenes/apendice/ejemplo_wynn.png Graphic file (type png)
 
 <use Imagenes/apendice/ejemplo_wynn.png>
@@ -1488,7 +1589,7 @@ Package pdftex.def Info: Imagenes/apendice/ejemplo_wynn.png used on input line
 110.
 (pdftex.def)             Requested size: 386.95331pt x 46.13405pt.
 
-<Imagenes/apendice/ejemplo_wynn_log.png, id=701, 578.16pt x 433.62pt>
+<Imagenes/apendice/ejemplo_wynn_log.png, id=751, 578.16pt x 433.62pt>
 File: Imagenes/apendice/ejemplo_wynn_log.png Graphic file (type png)
 
 <use Imagenes/apendice/ejemplo_wynn_log.png>
@@ -1496,7 +1597,7 @@ Package pdftex.def Info: Imagenes/apendice/ejemplo_wynn_log.png used on input l
 ine 127.
 (pdftex.def)             Requested size: 227.61856pt x 170.71231pt.
 
-<Imagenes/apendice/ejemplo_wynn_log_error.png, id=702, 578.16pt x 433.62pt>
+<Imagenes/apendice/ejemplo_wynn_log_error.png, id=752, 578.16pt x 433.62pt>
 File: Imagenes/apendice/ejemplo_wynn_log_error.png Graphic file (type png)
 
 <use Imagenes/apendice/ejemplo_wynn_log_error.png>
@@ -1508,17 +1609,17 @@ LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10.95> not available
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [47 <./Imagenes/apendice/ejemplo_wynn.png> <./Imagenes/apendice/esquema_wynn.p
+ [48 <./Imagenes/apendice/ejemplo_wynn.png> <./Imagenes/apendice/esquema_wynn.p
 ng>]
-[48 <./Imagenes/apendice/ejemplo_wynn_log.png> <./Imagenes/apendice/ejemplo_wyn
-n_log_error.png>] <Imagenes/apendice/F32.png, id=729, 578.16pt x 433.62pt>
+[49 <./Imagenes/apendice/ejemplo_wynn_log.png> <./Imagenes/apendice/ejemplo_wyn
+n_log_error.png>] <Imagenes/apendice/F32.png, id=778, 578.16pt x 433.62pt>
 File: Imagenes/apendice/F32.png Graphic file (type png)
 
 <use Imagenes/apendice/F32.png>
 Package pdftex.def Info: Imagenes/apendice/F32.png used on input line 191.
 (pdftex.def)             Requested size: 227.61856pt x 170.71231pt.
 
-<Imagenes/apendice/F52.png, id=730, 578.16pt x 433.62pt>
+<Imagenes/apendice/F52.png, id=779, 578.16pt x 433.62pt>
 File: Imagenes/apendice/F52.png Graphic file (type png)
 
 <use Imagenes/apendice/F52.png>
@@ -1527,7 +1628,7 @@ Package pdftex.def Info: Imagenes/apendice/F52.png used on input line 193.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [49 <./Imagenes/apendice/F32.png> <./Imagenes/apendice/F52.png>]
+ [50 <./Imagenes/apendice/F32.png> <./Imagenes/apendice/F52.png>]
 Overfull \hbox (8.41542pt too wide) detected at line 215
 [] \OT1/zplm/m/n/12 = \OT1/pplx/m/n/12 1 \OMS/zplm/m/n/12 ^^@ \OML/zplm/m/it/12
  h [] \OMS/zplm/m/n/12 r[]\OML/zplm/m/it/12 H [] \OMS/zplm/m/n/12 ^^Q \OT1/pplx
@@ -1542,7 +1643,7 @@ Overfull \hbox (12.50246pt too wide) in paragraph at lines 224--224
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 89.
- [50] [51]
+ [51] [52]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 89.
  (./Tesis.aux
 LaTeX Info: Redefining \. on input line 23.
@@ -1551,7 +1652,7 @@ LaTeX Info: Redefining \% on input line 23.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 89.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 89.
 Package rerunfilecheck Info: File `Tesis.out' has not changed.
-(rerunfilecheck)             Checksum: 6D053CDE90DEBBAF0FD1EDDE46C5E583;2811.
+(rerunfilecheck)             Checksum: 80FEA2E8E4B7626A72FC043E5009821B;2825.
 
 
 LaTeX Warning: There were undefined references.
@@ -1562,39 +1663,33 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 89.
  ) 
 Here is how much of TeX's memory you used:
- 11674 strings out of 493029
- 174013 string characters out of 6136233
+ 11726 strings out of 493029
+ 177148 string characters out of 6136233
  388663 words of memory out of 5000000
- 14706 multiletter control sequences out of 15000+600000
+ 14745 multiletter control sequences out of 15000+600000
  84208 words of font info for 167 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,18n,58p,472b,414s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{subfigure.27.2} has been referenced but does not 
-exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subfigure.27.1} has been referenced but does not ex
-ist, replaced by a fixed one
-
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/mathpazo/fplmbb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/math
-pazo/fplmr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathpazo/fplmr
-i.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/line1
-0.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-urw/palatino/uplri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
-tmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Tesis.pdf (51 pages, 4997338 bytes).
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/mathpazo/fplmbb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ma
+thpazo/fplmr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathpazo/fpl
+mri.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/lin
+e10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/urw/palatino/uplri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
+/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Tesis.pdf (52 pages, 5609711 bytes).
 PDF statistics:
- 846 PDF objects out of 1000 (max. 8388607)
- 618 compressed objects within 7 object streams
+ 894 PDF objects out of 1000 (max. 8388607)
+ 638 compressed objects within 7 object streams
  169 named destinations out of 1000 (max. 500000)
- 729 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 828 words of extra memory for PDF output out of 10000 (max. 10000000)
 
