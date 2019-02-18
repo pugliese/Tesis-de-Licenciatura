@@ -327,7 +327,7 @@ Esto último resulta a priori esperable dado que MPR es un integrador simplécti
 	\label{fig:flucvsh}
 \end{figure}
 
-\subsubsection{Primer diagrama de fases}
+\subsubsection{Primeros diagramas de fases}
 
 Como dijimos, al ser un sistema unidimensional $(q,p)$, el diagrama de fases queda definido univocamente por $H(q,p)\equiv E = \text{cte}$.
 Por lo tanto, la conservación de la energía por parte de los integradores resulta suficiente para obtener estas curvas $q(p)$ y así construir el diagrama.
@@ -338,16 +338,25 @@ Decidimos utilizar MPR para la evolución, dado que para $h=10^{-3}$ se tenía l
 Tomamos entonces un rango de condiciones iniciales $(q_i,p_i)=(5,p)$ con $p\in [-6,0]$ y analizamos las curvas $q(p)$ resultantes, sabiendo que el cambio de $p$ se traduce en un cambio de $E$. 
 Mantuvimos $q_i$ fijo dado que así emulabamos una colisión desde el infinito, dado que $V_P(5,p)\leq 4\times10^{-6}V_P(0,0) = 4\times10^{-6}D$ que podemos considerar nulo.
 Utilizamos los mismos parámetros para el potencial de Pauli ($D=10000$, $m=1=p_o=q_o$) por consistencia.
-En la \text{Figura \ref{fig:ej_diag_fases}} podemos ver estas curvas superpuestas en nuestro primer diagrama de fases.
+Hicimos esto una vez para cada integrador para así poder comparar la calidad de los diagramas de fases.
+En la \text{Figura \ref{fig:ej_diag_fases}} podemos ver estas curvas superpuestas en nuestros primeros diagramas de fases.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.9\textwidth]{choque1d/fases.png}
-	\caption{Diagrama de fases para $D=10000$, $m=1=p_o=q_o$ y $h=10^{-3}$. Además de la zona inaccesible, se evidencian las curvas de rebote y atraviese según lo previsto en \ref{sec:teo_fases}}
+\begin{figure}[H]
+	\centering	%trim={<left> <lower> <right> <upper>}
+	\includegraphics[trim = 11mm 0mm 20mm 5mm, clip, width=0.495\textwidth]{choque1d/fases_Euler.png}
+	\includegraphics[trim = 11mm 0mm 20mm 5mm, clip, width=0.495\textwidth]{choque1d/fases_RK2.png}
+	\includegraphics[trim = 11mm 0mm 20mm 5mm, clip, width=0.6\textwidth]{choque1d/fases.png}
+	\caption{Diagrama de fases para $D=10000$, $m=1=p_o=q_o$ y $h=10^{-3}$. Además de la zona inaccesible, se evidencian las curvas de rebote y atraviese según lo previsto en \ref{sec:teo_fases}.
+	Sin embargo, los métodos de Euler y RK2 no preservan la simetría ante reflexiones en $q$ y $p$}
 	\label{fig:ej_diag_fases}
 \end{figure}
 
-Resulta fundamental notar que el diagrama se compone de dos tipos de curva: rebotes y atravieses.
+El caso de Euler es notoriamente malo, donde se aprecian franjas desocupadas que no deberían existir. 
+Estas franjas indican que el integrador no pudo preservar apropiadamente la energía, dado que el $p^2$ posterior al choque es menor al inicial, lo cual concuerda con \ref{fig:energ_choq}.
+El caso de RK2 es menos apreciable, pero ciertamente hay una asimetría entre $q$ y $-q$ dado que los puntos de mayor cercanía de las curvas de rebote no están espejados respecto de $q=0$.
+Ciertamente, el integrador MPR genera un diagrama de fases que respeta mejor las simetrías de reflexión en $q$ y $p$, consistente con su capacidad para conservar la energía que vimos en \ref{fig:energ_choq}.
+
+Independientemente de esta simetría, es fundamental notar que el diagrama se compone de dos tipos de curva: rebotes y atravieses.
 En particular, los rebotes tienen dos puntos de máxima cercanía, en perfecta concordancia con lo analizado en \ref{sec:teo_fases} dado que tenemos $D^*=10^4>1/2$.
 Incluso puede verse que la transición de rebote a atraviese ocurre para $4.625\leq p_i\leq4.75$, consistente con
 \[ E_c = \frac{p_i^2}{4} = \frac{1}{2}\left( 1 + \log(2D) \right) \approx 5.45 \Longrightarrow p_i \approx 4.67 \]
@@ -412,7 +421,7 @@ El paso temporal fue $h=10^{-3}$ para $D\leq 1000$, $h=5\times10^{-3}$ para $500
 Los resultados pueden apreciarse en la \textbf{Figura \ref{fig:AvsD}} junto con algunos ejemplos del espacio de fases (con mayor definición cerca de la región de interés).
 En la misma figura está nuevamente el gráfico del área según el cálculo teórico, que resulta concordante.
 La primera observación es que $A=0$ para $D\leq 0.5$, donde las curvas de rebote son cóncavas (rebote simple) para $q\approx 0$ a diferencia del caso $D\geq 0.5$ donde son convexas 
-(para rebote doble, como en el ejemplo de la \textbf{Figura \ref{fig:ej_fases}}). 
+(para rebote doble, como en el ejemplo de la \textbf{Figura \ref{fig:ej_diag_fases}}). 
 De hecho, puede apreciarse que para $D=0.5$, las curvas son prácticamente verticales, marcando este cambio de convexidad.
 
 \begin{figure}[H]

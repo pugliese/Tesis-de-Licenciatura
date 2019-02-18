@@ -16,7 +16,7 @@ En particular, usamos MPR con el método de punto fijo de $k=5$ iteraciones para
 
 Buscamos estimar preliminarmente los tiempos, variando la cantidad de partículas $N$ y analizando el tiempo $\tau_{1000}$ que tardaba el programa en avanzar
 $1000$ pasos con $h=5\times10^{-4}$.
-Los resultados fueron desalentadores y se encuentran en la \textbf{Figura \ref{}}, donde podemos ver la esperada tendencia cuadrática con
+Los resultados fueron desalentadores y se encuentran en la \textbf{Figura \ref{fig:tiempo_vs_N}}, donde podemos ver la esperada tendencia cuadrática con
 $\tau_{1000} \approx 0.9753\mu s N^{1.988}$.
 Esto implica que para $N_{part}=1000$, el programa tardaba $\sim0.86s$ por paso, lo cual resulta simplemente prohibitivo al exigir días de simulación para termalizar el sistema.
 
@@ -25,7 +25,7 @@ Esto implica que para $N_{part}=1000$, el programa tardaba $\sim0.86s$ por paso,
 	\includegraphics[width=0.6\textwidth]{pauli_gas/tiempo_vs_N.png}
 	\caption{Tiempo necesario para avanzar un sistema de $N$ partículas en 1000 pasos con $h=5\times10^{-4}$.
 	La tendencia es cuadrática y exige $\sim0.86s$ por paso para $N=1000$, lo cual es prohibitivo.}
-	\label{fig:ej_diag_fases}
+	\label{fig:tiempo_vs_N}
 \end{figure}
 
 Esto no debería sorprendernos, dado que el método MPR resuelto por punto fijo exige el cómputo de fuerzas $k=5$ veces en total, más del doble de lo exigido por métodos clásicos como Velocity-Verlet.
@@ -105,7 +105,7 @@ Elegimos estas densidades en base al conocido diagrama de fases del potencial de
 	\includegraphics[width=0.4\textwidth]{pauli_gas/phase_diagram_LJ.png}
 	\caption{Diagrama de fases de un gas interactuando mediante Lennard-Jones.
 	Esto nos asegura que las densidades elegidas $\rho_{LJ,1}^* = 1.05$ y $\rho_{LJ,2}^* = 0.4$ corresponden a líquido+sólido y gas+líquido.}
-	\label{fig:ej_diag_fases}
+	\label{fig:ej_diag_fases_LJ}
 \end{figure}
 
 Usaremos estas simulaciones a modo de control, para poder apreciar mejor la fenomenología introducida por el potencial de Pauli.
@@ -319,12 +319,12 @@ desplazar el máximo de la distribución a $E$ mayores.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.33\textwidth]{pauli_gas/muvsT_rho0_dorso.png}
-	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.33\textwidth]{pauli_gas/muvsT_rho1_dorso.png}
-	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.33\textwidth]{pauli_gas/muvsT_rho2_dorso.png}
-	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.33\textwidth]{pauli_gas/muvsT_rho0_maruyama.png}
-	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.33\textwidth]{pauli_gas/muvsT_rho1_maruyama.png}
-	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.33\textwidth]{pauli_gas/muvsT_rho2_maruyama.png}
+	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.32\textwidth]{pauli_gas/muvsT_rho0_dorso.png}
+	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.32\textwidth]{pauli_gas/muvsT_rho1_dorso.png}
+	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.32\textwidth]{pauli_gas/muvsT_rho2_dorso.png}
+	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.32\textwidth]{pauli_gas/muvsT_rho0_maruyama.png}
+	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.32\textwidth]{pauli_gas/muvsT_rho1_maruyama.png}
+	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.32\textwidth]{pauli_gas/muvsT_rho2_maruyama.png}
 	\caption{Potencial químico exacto (FD) y el obtenido del ajuste en función de la temperatura del sistema.
   Ambos conjuntos de parámetros arrojan curvas cualitativamente similares, acercandose para $T$ mayores pero manteniendo $\mu_{aj}\leq \mu_{FD}$.}
 	\label{fig:muvsT}
@@ -339,10 +339,23 @@ desplazar el máximo de la distribución a $E$ mayores.
 	\label{fig:TvsT}
 \end{figure}
 
+Adicionalmente, podemos utilizar estos valores $T_{aj}$ y $\mu_{aj}$ para calcular la $\rho_{aj}$ correspondiente usando \eqref{eq:N_cont}, para analizar como estima el ajuste la densidad del sistema.
+En la \textbf{Figura \ref{}} podemos apreciar que esta $\rho_{aj}$ resulta una clara sobreestimación de $\rho$, pero que cumple $\rho_{aj}\approx\rho$ para $T$ suficientemente grande.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.48\textwidth]{pauli_gas/rho_vs_T_dorso.png}
+	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.48\textwidth]{pauli_gas/rho_vs_T_maruyama.png}
+	\caption{}
+	\label{fig:rhovsT}
+\end{figure}
+
 Respecto a las diferencias, además de la ya discutida temperatura, el potencial químico $\mu$ resulta $\sim 6$ veces mayor respecto al obtenido por los parámetros de Dorso, nuevamente
 debido a la diferencia en los $\rho$ introducida por el cambio de $q_o$.
-Además, resulta interesante recalcar que aunque los ajustes por FD para Maruyama resultan mejores que los de Dorso, la calidad de las estimaciones $\mu_{aj}$ y $T_{aj}$ es la misma.
-Por lo tanto, vemos los parámetros de Maruyama generan una distribución más similar a un Fermi gas, pero no necesariamente al Fermi gas con la $T$ y $\rho$ del sistema.
+Además, resulta interesante recalcar que aunque los ajustes por FD para Maruyama resultan mejores que los de Dorso, la calidad de las estimaciones $\mu_{aj}$ y $T_{aj}$ 
+(respecto al $\mu$ y $T$ originales) es la misma.
+Aún así, para Maruyama la sobreestimación de $\rho$ por $\rho_{aj}$ es menor al $15\%$ para todas las densidades, mientras que en el caso de Dorso llega hasta casi un $80\%$.
+Por lo tanto, vemos que los parámetros de Maruyama generan una distribución más similar a un Fermi gas, pero no necesariamente al Fermi gas con la $T$ y $\rho$ del sistema.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -395,12 +408,22 @@ En contraposición a lo anterior, su distribución resulta idénticamente la de 
 \end{figure}
 
 
-\subsection{Función de distribución radial}
+\subsection{Temperatura y presión del virial}
 
+A pesar de que nuestras simulaciones de Metropolis-Montecarlo tienen una temperatura $T$ definida, nos resultó razonable analizar si esta coincidia con la temperatura predicha por el teorema del virial.
+Utilizamos las 1600 muestras del sistema junto con \eqref{eq:virial_T} para calcular la temperatura del virial $T_V$.
+Los resultados para ambos conjuntos de parámetros y las 3 densidades pueden apreciarse en la \textbf{Figura \ref{fig:TvsT_sim}}, donde esta coincidencia se confirma perfectamente.
 
-\subsection{Presión}
+\begin{figure}[H]
+	\centering	%trim={<left> <lower> <right> <upper>}
+	\includegraphics[trim = 5mm 0mm 10mm 5mm, clip, width=0.4\textwidth]{pauli_gas/TvsT_virial_dorso.png}
+	\includegraphics[trim = 5mm 0mm 10mm 5mm, clip, width=0.4\textwidth]{pauli_gas/TvsT_virial_maruyama.png}
+	\caption{Graficos de temperatura del virial $T_V$ en función de la temperatura $T$ de la simulación para ambos conjuntos de parametros y las 3 densidades.
+	En ambos casos, la coincidencia entre $T_V$ y $T$ es exacta.}
+	\label{fig:TvsT_sim}
+\end{figure}
 
-Finalmente, calculamos la presión del sistema para ambos conjuntos de parámetros utilizando \eqref{eq:virial_P}.
+Confirmado esto, pasamos al cálculo de la presión para el gas de Pauli utilizando \eqref{eq:virial_P} para ambos conjuntos de parámetros
 Graficamos estas presiones para las 3 densidades reducidas en función de la temperatura y las mostramos en la \textbf{Figura \ref{fig:PvsT_sim}}.
 Podemos apreciar que ambos conjuntos de parametros arrojan curvas similares (salvo reescalamiento en $T$).
 
@@ -409,9 +432,21 @@ Podemos apreciar que ambos conjuntos de parametros arrojan curvas similares (sal
 	\includegraphics[trim = 5mm 0mm 10mm 5mm, clip, width=0.4\textwidth]{pauli_gas/P_vs_T_dorso.png}
 	\includegraphics[trim = 5mm 0mm 10mm 5mm, clip, width=0.4\textwidth]{pauli_gas/P_vs_T_maruyama.png}
 	\caption{Graficos de presión en función de la temperatura para ambos conjuntos de parametros y las 3 densidades.
-  Salvo el reescalamiento en $T$ resultan muy similares, donde parecería que $P(T=0)\neq0$.}
+	  Salvo el reescalamiento en $T$ resultan muy similares, donde parecería que $P(T=0)\neq0$.}
 	\label{fig:PvsT_sim}
 \end{figure}
 
 Como es de esperar, la presión coincide con $\rho T$ para $T$ alta y se mantiene levemente por ensima a medida que $T\to0$.
 Ciertamente, parecería que $P(T=0)\neq0$, una característica crucial de un gas de fermiones.
+Por lo tanto, decidimos comparar esta \textit{presión de degeneración} con la exacta $P_{FD}(T_{min})$ de un gas de fermiones a esa $T_{min}$ y $\rho$
+Aquí $T_{min}$ es la mínima temperatura que pudimos simular; $T_{min}=0.01$MeV para Dorso y $T_{min}=0.5$MeV para Maruyama.
+En la \textbf{Figura \ref{fig:Pdeg}} podemos ver que el gas de Pauli arroja presiones mayores, consistente con la sobreestimación de la densidad de los ajustes que vimos en la \textbf{Figura \ref{fig:rhovsT}}.
+A diferencia de los parámetros de Dorso, cuya sobreestimación varía entre $3.5$ y $1.5$, el caso de Maruyama arroja presiones de aproximadamente el doble.
+
+\begin{figure}[H]
+	\centering	%trim={<left> <lower> <right> <upper>}
+	\includegraphics[trim = 5mm 0mm 10mm 5mm, clip, width=0.6\textwidth]{pauli_gas/pres_deg.png}
+	\caption{Cociente entre la presión del gas de Pauli y la del gas de fermiones a la mínima temperatura analizada.
+	El gas de Pauli tiene presiones de alrededor del doble, con los valores de Maruyama siendo más cercanos.}
+	\label{fig:Pdeg}
+\end{figure}
