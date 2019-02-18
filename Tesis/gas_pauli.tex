@@ -11,7 +11,8 @@ El Hamiltoniano de este gas de Pauli será
 
 \subsection{Método de simulación}
 
-Con esto en mente, comenzamos extendiendo los algoritmos de la Sección \ref{sec:num_choque_1d} para un sistema de $N$ partículas en 3 dimensiones.
+Con esto en mente, comenzamos extendiendo los algoritmos de la Sección \ref{sec:num_choque_1d} para un sistema de $N$ partículas en 3 dimensiones, con el objetivo
+de confirmar si la noción de área excluida se preserva en el límite termodinámico.
 En particular, usamos MPR con el método de punto fijo de $k=5$ iteraciones para resolver la ecuación implícita que dicta la evolución temporal del sistema.
 
 Buscamos estimar preliminarmente los tiempos, variando la cantidad de partículas $N$ y analizando el tiempo $\tau_{1000}$ que tardaba el programa en avanzar
@@ -352,7 +353,7 @@ En la \textbf{Figura \ref{}} podemos apreciar que esta $\rho_{aj}$ resulta una c
 
 Respecto a las diferencias, además de la ya discutida temperatura, el potencial químico $\mu$ resulta $\sim 6$ veces mayor respecto al obtenido por los parámetros de Dorso, nuevamente
 debido a la diferencia en los $\rho$ introducida por el cambio de $q_o$.
-Además, resulta interesante recalcar que aunque los ajustes por FD para Maruyama resultan mejores que los de Dorso, la calidad de las estimaciones $\mu_{aj}$ y $T_{aj}$ 
+Además, resulta interesante recalcar que aunque los ajustes por FD para Maruyama resultan mejores que los de Dorso, la calidad de las estimaciones $\mu_{aj}$ y $T_{aj}$
 (respecto al $\mu$ y $T$ originales) es la misma.
 Aún así, para Maruyama la sobreestimación de $\rho$ por $\rho_{aj}$ es menor al $15\%$ para todas las densidades, mientras que en el caso de Dorso llega hasta casi un $80\%$.
 Por lo tanto, vemos que los parámetros de Maruyama generan una distribución más similar a un Fermi gas, pero no necesariamente al Fermi gas con la $T$ y $\rho$ del sistema.
@@ -381,7 +382,7 @@ Esto en principio parecería indicar que todos los parámetros del potencial de 
 
 Esto último resulta razonable si consideramos que la forma de la región excluida también es relevante para el problema.
 Su forma resulta basicamente elíptica, pero los parámetros $q_o$ y $p_o$ regulan sus ejes.
-La cantidad de parámetros involucrados en la $f_P$ y lo visto para las distribuciones de Mayuyama son prometedores, pues parecerían indicar que es posible obtener $D$, $q_o$ y $p_o$ tales que
+La cantidad de parámetros involucrados en la $f_P$ y lo visto para las distribuciones de Maruyama son prometedores, pues parecerían indicar que es posible obtener $D$, $q_o$ y $p_o$ tales que
 \[ g_{FD}(\varepsilon^*;\lambda^3\rho) \approx g_P(\varepsilon^*; D^*, T^*, \rho^*) \]
 con distinto grado de aproximación y rango de validez.
 Sin embargo, \textit{a priori} no es posible afirmar que estos parámetros $D$, $q_o$ y $p_o$ puedan ser independientes de la temperatura $T$ y $\rho$.
@@ -438,15 +439,3 @@ Podemos apreciar que ambos conjuntos de parametros arrojan curvas similares (sal
 
 Como es de esperar, la presión coincide con $\rho T$ para $T$ alta y se mantiene levemente por ensima a medida que $T\to0$.
 Ciertamente, parecería que $P(T=0)\neq0$, una característica crucial de un gas de fermiones.
-Por lo tanto, decidimos comparar esta \textit{presión de degeneración} con la exacta $P_{FD}(T_{min})$ de un gas de fermiones a esa $T_{min}$ y $\rho$
-Aquí $T_{min}$ es la mínima temperatura que pudimos simular; $T_{min}=0.01$MeV para Dorso y $T_{min}=0.5$MeV para Maruyama.
-En la \textbf{Figura \ref{fig:Pdeg}} podemos ver que el gas de Pauli arroja presiones mayores, consistente con la sobreestimación de la densidad de los ajustes que vimos en la \textbf{Figura \ref{fig:rhovsT}}.
-A diferencia de los parámetros de Dorso, cuya sobreestimación varía entre $3.5$ y $1.5$, el caso de Maruyama arroja presiones de aproximadamente el doble.
-
-\begin{figure}[H]
-	\centering	%trim={<left> <lower> <right> <upper>}
-	\includegraphics[trim = 5mm 0mm 10mm 5mm, clip, width=0.6\textwidth]{pauli_gas/pres_deg.png}
-	\caption{Cociente entre la presión del gas de Pauli y la del gas de fermiones a la mínima temperatura analizada.
-	El gas de Pauli tiene presiones de alrededor del doble, con los valores de Maruyama siendo más cercanos.}
-	\label{fig:Pdeg}
-\end{figure}

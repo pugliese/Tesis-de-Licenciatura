@@ -19,7 +19,7 @@ Para el potencial de Pauli, las güerzas cumplen $\mathbf{G}_{ij} = -\mathbf{G}_
 \sum_{j\neq i} \mathbf{G}_{ij} &= -D \sum_{i<j} \left(-\frac{1}{2}\right)\dpart{s_{ij}^2}{\mathbf{p}_i}e^{-\frac{1}{2}s_{ij}^2} = D \sum_{i\neq j} \frac{\mathbf{p}_i - \mathbf{p}_j}{p_o^2}e^{-\frac{1}{2}s_{ij}^2} \Longrightarrow \mathbf{G}_{ij} = (\mathbf{p}_i - \mathbf{p}_j)\frac{D}{p_o^2}e^{-\frac{1}{2}s_{ij}^2}
 \end{align*}
 
-Según lo esperado, dada la simetría entre $p$ y $q$ en $V_P$, las expresiones resultan completamente análogas frente al intercambio $\mathbf{q}\leftrightarrow\mathbf{p}$. 
+Según lo esperado, dada la simetría entre $p$ y $q$ en $V_P$, las expresiones resultan completamente análogas frente al intercambio $\mathbf{q}\leftrightarrow\mathbf{p}$.
 En nuestro caso particular de choque unidimensional, el Hamiltoniano toma la forma simplificada
 \[ H(q_1, p_1; q_2, p_2) = \frac{1}{2m}\left( p_1^2 +p_2^2\right) + De^{-\frac{1}{2}\left(\frac{(p_1-p_2)^2}{p_o^2} + \frac{(q_1 - q_2)^2}{q_o^2}\right)} \]
 pero esta expresión puede simplificarse aún más mediante el cambio de variables $x = x_1 - x_2$, $X = x_1 + x_2$ (donde $x$ se reemplaza $q$ o $p$ según corresponda), aprovechando que el hamiltoneano no depende de $Q$.
@@ -30,7 +30,7 @@ donde el impulso total $P$ se conserva al ser nula la suma de fuerzas (acción y
 Al ser el hamiltoneano definido a menos de una constante, podemos simplemente descartar el término $P^2/2m$ y continuar nuestro análisis.
 
 Estas nuevas variables resultan más apropiadas, dado que en ellas resultará más clara la existencia (o no) de una región excluida dentro del espacio de fases.
-Si el potencial emula bien el Principio de Exclusión de Pauli, deberiamos observar que $q$ y $p$ no pueden anularse simultaneamente. 
+Si el potencial emula bien el Principio de Exclusión de Pauli, deberiamos observar que $q$ y $p$ no pueden anularse simultaneamente.
 
 Es importante aclarar que el cambio de coordenadas $(q_1,q_2;p_1,p_2)\rightarrow (q,Q;p,P)$ así definida no resulta una transformación canónica pues no preserva los corchetes de Poisson originales $\poisson{q_i}{q_j} = 0 = \poisson{p_i}{p_j}$ y $\poisson{q_i}{p_j} = \delta_{ij}$
 \begin{align*}
@@ -49,12 +49,12 @@ A pesar de que resulta sencillo corregir esto dividiendo las nuevas variables po
 
 El Hamiltoniano definido por \eqref{eq:hamiltoniano_1D} dispone de 4 parámetros $m, q_o, p_o, D$ que determinarán su comportamiento cualitativo.
 Sin embargo, puede apreciarse que las constantes de $q_o$ y $p_o$ claramente resultan meros factores de escala de la interacción y probablemente no jueguen ningún rol en la forma funcional de los observables del sistema.
-Pero no solo $q_o$ y $p_o$ son irrelevantes, dado que usando el teorema $\Pi$, podemos redefinir variables para eliminar un tercer parámetro adicional. 
+Pero no solo $q_o$ y $p_o$ son irrelevantes, dado que usando el teorema $\Pi$, podemos redefinir variables para eliminar un tercer parámetro adicional.
 Elegimos la masa $m$ como el tercer parámetro a eliminar y , de esta manera, redefinimos $q$, $p$ y $H$ según
 \begin{equation}{\label{eq:unidades_red}}
 q^* = q/q_o \qquad p^* = p/p_o \qquad H^* = Hm/p_o^2
 \end{equation}
-de manera que el nuevo Hamiltoniano reducido resulte 
+de manera que el nuevo Hamiltoniano reducido resulte
 
 \begin{equation}{\label{eq:ham_red_1d}}
 H^*(q^*, p^*) = \frac{p^{*2}}{4} + \frac{Dm}{p_o^2}e^{-\frac{1}{2}(q^{*2}+p^{*2})} \equiv \frac{p^{*2}}{4} + D^* e^{-\frac{1}{2}(q^{*2}+p^{*2})}
@@ -68,11 +68,11 @@ Es importante aclarar que esta adimensionalización puede aplicarse igualmente a
 
 Un ejemplo de particular relevancia sobre esto es el \textit{área total excluída}.
 Como dijimos, el objetivo del potencial de Pauli es generar una región en el espacio de fases alrededor de cada partícula, impidiendo que estas se superpongan.
-En el espacio de fases de $(q,p)$, esta región debería estar centrada en el origen y esperamos una forma similar a una elipse. 
-Una forma de cuantificar esta región excluída es a través de su área $A$, que vía la adimensionalización podemos escribir como 
+En el espacio de fases de $(q,p)$, esta región debería estar centrada en el origen y esperamos una forma similar a una elipse.
+Una forma de cuantificar esta región excluída es a través de su área $A$, que vía la adimensionalización podemos escribir como
 
 \begin{equation}{\label{eq:area_red}}
-A = q_op_oA^*(D^*) = q_op_oA^*\left( \frac{Dm}{p_o^2} \right) 
+A = q_op_oA^*(D^*) = q_op_oA^*\left( \frac{Dm}{p_o^2} \right)
 \end{equation}
 
 Lo primero que podemos observar es la clara asimetría entre $q_o$ y $p_o$ para $A$, introducida por la existencia de un término cinético en \ref{eq:ham_red_1d}.
@@ -81,7 +81,7 @@ Este Hamiltoniano debe ser invariante ante el cambio $q\leftrightarrow p$ y $q_o
 En este caso, esperamos que la región prohibida sea una elipse con ejes proporcionales a $q_o$ y $p_o$.
 
 Más allá de lo anterior, esperamos que $A$ sea creciente con $D$ dado que este regula la intensidad del potencial.
-Para esto, basta pedir que $A^*(D^*)$ sea una función creciente de $D^*$, pero inevitablemente esto le exige ser una función decreciente en $p_o$. 
+Para esto, basta pedir que $A^*(D^*)$ sea una función creciente de $D^*$, pero inevitablemente esto le exige ser una función decreciente en $p_o$.
 Aún así, resulta esperable que el área excluída resulte creciente tanto en $p_o$ como en $q_o$, dado que regulan su alcance.
 Para $q_o$ esto es inmediato pues $A\propto q_o$, pero para $p_o$ necesitamos exigir
 
@@ -92,7 +92,7 @@ Para $q_o$ esto es inmediato pues $A\propto q_o$, pero para $p_o$ necesitamos ex
 En resumen, esperamos que
 
 \begin{equation}{\label{eq:props_area_red}}
-A^{*'}(x)\geq 0 \quad \text{ y } \quad A^{*'}\leq f(1)\sqrt{x} 
+A^{*'}(x)\geq 0 \quad \text{ y } \quad A^{*'}\leq f(1)\sqrt{x}
 \end{equation}
 
 
@@ -110,14 +110,14 @@ Claramente, la opción más económica es despejar $q^*(p^*)$ como
 q^{*2}(p^*) = -p^{*2} - 2 \log\left( \frac{E^*-p^{*2}/4}{D^*} \right) \equiv -p^{*2} - 2 \log\left( \frac{p_\infty^2-p^{*2}}{4D^*} \right)
 \end{equation}
 donde usamos que $E^* = p_\infty^{*2}/4$ para $q\to\infty$ y así reescribir intuitivamente la dependencia.
-Justamente, tenemos consistentemente $q^{*2}(p^*\to\pm p_\infty) = \infty$. 
+Justamente, tenemos consistentemente $q^{*2}(p^*\to\pm p_\infty) = \infty$.
 En particular, esto implica que la curva está acotada para $-p_\infty \leq p^* \leq p_\infty$ mientras que $q^*$ resulta a priori no acotado.
 
-Como podriamos haber intuído, las curvas de nivel \eqref{eq:qvsp} son invariantes ante reflexiones en $q$ y/o $p$, por lo que nos basta con analizar el caso $q^*\geq 0$, obteniendo la otra mitad del diagrama de fases por reflexión. 
+Como podriamos haber intuído, las curvas de nivel \eqref{eq:qvsp} son invariantes ante reflexiones en $q$ y/o $p$, por lo que nos basta con analizar el caso $q^*\geq 0$, obteniendo la otra mitad del diagrama de fases por reflexión.
 
 Dado que planteamos este potencial con el objetivo de obtener una región excluida alrededor del $(q,p)=(0,0)$, resulta natural analizar la curva $(q^*,p^*)$ que pasa por el $(0,0)$.
-Para esta curva, debe ser $E^* = H^*(0,0) = D^*$ y 
-\[ q^{*2} = -p^{*2} - 2\log\left( \frac{4D^*-p^{*2}}{4D^*} \right) 
+Para esta curva, debe ser $E^* = H^*(0,0) = D^*$ y
+\[ q^{*2} = -p^{*2} - 2\log\left( \frac{4D^*-p^{*2}}{4D^*} \right)
 = -p^{*2} - 2\log\left( 1-\frac{p^{*2}}{4D^*} \right) \]
 
 Para que esta curva que pasa por el $(0,0)$ exista, deben existir $(q^*, p^*)$ arbitrariamente cerca.
@@ -129,14 +129,14 @@ En caso contrario, la curva de nivel de $H^*= D^*$ consiste únicamente del punt
 
 Planteado esto, el próximo paso consiste en analizar la forma de las curvas de nivel $q^{*2}(p^*)$.
 Realizamos entonces un estudio de función, comenzando por los extremos de $q^{*2}(p^*)$
-\[ 0 = \dpart{q^{*2}}{p^*} = -2p^* - 2\frac{-2p^*}{p_\infty^2-p^{*2}} 
+\[ 0 = \dpart{q^{*2}}{p^*} = -2p^* - 2\frac{-2p^*}{p_\infty^2-p^{*2}}
 = \frac{-2p^*}{p_\infty^2-p^{*2}} \left( p_\infty^2-p^{*2} - 2 \right) \Leftrightarrow p^{*2} = p_\infty^2 - 2 \quad \text{ o } \quad p^* = 0 \]
 
-Nuevamente, vemos que estos extremos son simétricos respecto de $p^*=0$. 
+Nuevamente, vemos que estos extremos son simétricos respecto de $p^*=0$.
 Sin embargo, es más interesante notar que si $p_\infty^2 > 2$ o $E^* > 1/2$ existen 3 extremos.
 En caso contrario, solo existe uno.
 
-Para el caso $E^* > 1/2$, dado que $q^*$ viene desde el infinito en $\pm p_\infty$, es necesario que los extremos $p^{*2} = p_\infty^2 - 2$ sean mínimos y, por simetría, el extremo $p^*=0$ debe ser un máximo. Por otro lado, para el caso $E^*\leq 1/2$ solo tenemos un único extremo en $p^*=0$, que necesariamente debe ser un mínimo. 
+Para el caso $E^* > 1/2$, dado que $q^*$ viene desde el infinito en $\pm p_\infty$, es necesario que los extremos $p^{*2} = p_\infty^2 - 2$ sean mínimos y, por simetría, el extremo $p^*=0$ debe ser un máximo. Por otro lado, para el caso $E^*\leq 1/2$ solo tenemos un único extremo en $p^*=0$, que necesariamente debe ser un mínimo.
 
 Esquematicamente, tenemos entonces 2 tipos de curva, aquellas con dos mínimos (para $E^* > 1/2$) y aquellas con un mínimo (para $E^* \leq 1/2$).
 Esto, sin embargo, no está completo dado que aún no confirmamos que $q^{*2}\geq 0$ en los mínimos.
@@ -144,7 +144,7 @@ Esto, sin embargo, no está completo dado que aún no confirmamos que $q^{*2}\ge
 \[ q^{*2}(p^*=0) = -2\log \left( \frac{p_\infty^2}{4D^*} \right) = 2\log \left( \frac{D^*}{E^*} \right) \geq 0 \Leftrightarrow E^*\leq D^* \]
 \[ q^{*2}(p^{*2}=p^2_\infty-2) = 2-p_\infty^2 -2\log \left( \frac{2}{4D^*} \right) = 2 - p_\infty^2 + 2\log \left( 2D^* \right) \geq 0 \Leftrightarrow E^*\leq \frac{1}{2}\left( 1 + \log(2D^*) \right)  \]
 
-Tenemos entonces dos cotas para $E^*$ que, llamativamente, coinciden para el caso $D^*=1/2$. 
+Tenemos entonces dos cotas para $E^*$ que, llamativamente, coinciden para el caso $D^*=1/2$.
 Esto no es casual, dado que analizando ambas funciones vemos que para $D^*\geq1/2$ la segunda cota resulta estrictamente más fuerte que la primera.
 Es más, si recordamos que la segunda cota solo tiene sentido para $E^*>1/2$ reobtenemos
 \[ \frac{1}{2} ( 1 + \log(2D^*) ) > \frac{1}{2} \Longleftrightarrow D^* > \frac{1}{2} \]
@@ -152,24 +152,24 @@ Es más, si recordamos que la segunda cota solo tiene sentido para $E^*>1/2$ reo
 Por lo tanto, la existencia de ambos mínimos positivos ($E^*>1/2$ y $q^{*2}(p^{*2}=p^2_\infty-2)\geq 0$) se da si y solo si existe un área excluida ($D^*>1/2$).
 Dado que son condiciones equivalentes, asumamos $D^*>1/2$ y analicemos las curvas de nivel obtenidas.
 
-En particular, existe un valor de energía crítica $E^*_c = (1+\log(2D^*))/2$ para la cual $q^{*2}(p^{*2}=p^2_\infty-2) = 0$. 
+En particular, existe un valor de energía crítica $E^*_c = (1+\log(2D^*))/2$ para la cual $q^{*2}(p^{*2}=p^2_\infty-2) = 0$.
 Esto implica $q^*(p^{*2}=p^2_\infty-2)=0$ y, por lo tanto, tenemos una curva que conecta $(\infty, \pm p_\infty)$ con $(0,p^2_\infty-2)$.
 Por simetría de reflexión en $q$, tenemos una curva idéntica que conecta $(-\infty, \pm p_\infty)$ con $(0,p^2_\infty-2)$ y, por lo tanto, una única curva que conecta $(-\infty, \pm p_\infty)$ con $(\infty, \pm p_\infty)$.
 Esto también es válido $\forall$ $E^*\geq E^*_c$, dado que si $q^{*2}(p^{*2}=p_\infty^2-2)\leq 0$ y $q^{*2}(p^{*2}=p_\infty^2)\geq 0$, por continuidad debe existir un $p_\infty^2-2\leq p^*_c\leq p_\infty^2$  tal que $q^{*2}(p^*_c) = 0$ y el argumento anterior aplica de forma idéntica.
-Físicamente, esto corresponde al caso en que las partículas comienzan acercándose desde el infinito y se atraviesan, alejándose infinitamente de nuevo. 
+Físicamente, esto corresponde al caso en que las partículas comienzan acercándose desde el infinito y se atraviesan, alejándose infinitamente de nuevo.
 
 Sin embargo, para $E^*\leq E^*_c$, tenemos $q^{*2}(p^*) > 0$  $\forall$ $p^*$ (dado que el mínimo es estrictamente positivo).
-Este caso, por el contrario, corresponde a un rebote en el que las partículas se acercan hasta una distancia mínima para luego ser repelidas de nuevo hasta el infinito. 
+Este caso, por el contrario, corresponde a un rebote en el que las partículas se acercan hasta una distancia mínima para luego ser repelidas de nuevo hasta el infinito.
 Es interesante notar, sin embargo, que esta distancia mínima se alcanza dos veces, por lo que las particulas se acercan desde el infinito hasta una distancia mínima, se alejan una distancia finita, vuelven a acercarse a la distancia mínima y finalmente se alejan hasta el infinito.
 
-Para el caso $D^*\leq 1/2$, inevitablemente tenemos un solo mínimo en $p^*=0$ que resulta positivo si y solo si $E^*\leq D^*$. 
+Para el caso $D^*\leq 1/2$, inevitablemente tenemos un solo mínimo en $p^*=0$ que resulta positivo si y solo si $E^*\leq D^*$.
 En el caso particular $D^*=E^*$ tenemos una curva de nivel que viene desde $(\infty,\pm p_\infty)$ y llega hasta $(0,0)$ como habíamos visto previamente.
 Por lo tanto, tenemos curvas cóncavas cuyo mínimo tiende a $0$ a medida que $E^*$ tiende a $D^*$.
 Este caso corresponde nuevamente a un rebote.
 A diferencia del caso $D^*>1/2$, este caso corresponde a un rebote clásico: las partículas se acercan desde el infinito hasta una distancia mínima y luego se alejan infinitamente.
 
-Para $E^*>D^*$ tenemos que $q^{*2}(0) < 0$ y $q^{*2}(p^{*2}=p_\infty^2)\geq 0$. 
-Análogamente a lo anterior, por continuidad debe existir $0\leq p^*_c\leq p_\infty^2$ tal que $q^{*2}(p^*_c) = 0$ y nuevamente tenemos una curva que conecta $(-\infty, \pm p_\infty)$ con $(\infty, \pm p_\infty)$. 
+Para $E^*>D^*$ tenemos que $q^{*2}(0) < 0$ y $q^{*2}(p^{*2}=p_\infty^2)\geq 0$.
+Análogamente a lo anterior, por continuidad debe existir $0\leq p^*_c\leq p_\infty^2$ tal que $q^{*2}(p^*_c) = 0$ y nuevamente tenemos una curva que conecta $(-\infty, \pm p_\infty)$ con $(\infty, \pm p_\infty)$.
 
 En resumen, tenemos 4 casos que dan origen a 3 curvas distintas (ver \textbf{Tabla \ref{tab:casos_curvas}}).
 Estas curvas y sus diferencias pueden apreciarse en \textbf{Figura \ref{fig:curvas_teo}}.
@@ -189,16 +189,16 @@ Estas curvas y sus diferencias pueden apreciarse en \textbf{Figura \ref{fig:curv
 \begin{figure}[h]
 	\centering
 	\subfigure{\includegraphics[width=0.45\textwidth]{choque1d/curvas_teo_1.png}}
-	\subfigure{\includegraphics[width=0.45\textwidth]{choque1d/curvas_teo_2.png}}	
+	\subfigure{\includegraphics[width=0.45\textwidth]{choque1d/curvas_teo_2.png}}
 	\subfigure{\includegraphics[width=0.45\textwidth]{choque1d/curvas_teo_3.png}}
 	\subfigure{\includegraphics[width=0.45\textwidth]{choque1d/curvas_teo_4.png}}
 	\caption{Area de la región excluída en función de $D^*$ obtenida de integrar numéricamente \eqref{eq:area_int_ex}. Para valores altos parece haber una relación lineal entre $A^*$ y $\log D^*$.}
 	\label{fig:curvas_teo}
 \end{figure}
 
-La existencia de región excluida existe solo para $D^*>1/2$ puede apreciarse para las curvas de doble rebote, que parecen estar circunventando el origen. 
+La existencia de región excluida existe solo para $D^*>1/2$ puede apreciarse para las curvas de doble rebote, que parecen estar circunventando el origen.
 Como dijimos, a medida que $E^*\to E^*_c = (1+\log(2D^*))/2$ estas curvas acercarán sus mínimos al eje $q^*=0$ hasta transformarse en curvas de atraviese.
-Es justamente para $E^*\to E^*_c $ por debajo donde los mínimos de $q\geq0$ y $q\leq0$ se conectan, encerrando la región excluída. 
+Es justamente para $E^*\to E^*_c $ por debajo donde los mínimos de $q\geq0$ y $q\leq0$ se conectan, encerrando la región excluída.
 Por lo tanto, la curva $q^{*2}(p^*; E^*=E_c^*)$ define el perímetro de esta región y podemos utilizarla para calcular el área total encerrada según
 
 \begin{align*}
@@ -227,14 +227,14 @@ El resultado de esta integración numérica en un amplio rango de $D^*$ puede ap
 \end{figure}
 
 Recordando las propiedades \eqref{eq:props_area_red} que esperabamos de $A^*$, es inmediato de la \textbf{Figura \ref{fig:AvsD_teo}} que $A^*$ es creciente en $D^*$.
-La segunda propiedad, sin embargo, no resulta tan evidente. 
+La segunda propiedad, sin embargo, no resulta tan evidente.
 Computando la integral \eqref{eq:area_int_ex} para obtener $A^*(1)$, podemos graficar $A^*$ junto con $A^*(1)D^*$ para verificar esta segunda propiedad.
 En la \textbf{Figura \ref{fig:AvsD_teo_cota}} podemos apreciar que esta cota se cumple para  $0.5\leq A^*\leq 1$ y $250\leq A^*$, lo cual resulta llamativo.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{choque1d/AvsD_cota_teo.png}
-	\caption{Area de la región excluída en función de $D^*$ obtenida de integrar numéricamente \eqref{eq:area_int_ex}. Para valores altos parece haber una relación lineal entre $A^*$ y $\log D^*$.}
+	\caption{}
 	\label{fig:AvsD_teo_cota}
 \end{figure}
 
@@ -252,7 +252,7 @@ Más adelante retomaremos este análisis del espacio de fases desde un punto de 
 Como dijimos, las curvas $q(p)$ del diagrama de fases mantienen el Hamiltoneano $H(q,p)$ constante.
 A la hora de simular, un método que conserve la energía del sistema arrojará estas curvas $q(p)$ inmediatamente.
 
-Una simulación de dinámica molecular evolucionando el sistema con las ecuaciones de Hamilton con un integrador simpléctico nos asegura esto más, por lo que resulta mucho más natural 
+Una simulación de dinámica molecular evolucionando el sistema con las ecuaciones de Hamilton con un integrador simpléctico nos asegura esto más, por lo que resulta mucho más natural
 que otros métodos donde la energía fluctua (como Metropolis-Montecarlo).
 
 
@@ -268,7 +268,7 @@ Además, para simplificar la notación definimos \[y = \binom{p}{q} \qquad J = \
 \]
 
 Los integradores implementados son Euler, un Runge-Kutta de orden 2 (RK2) y MidPoint Rule (MPR).
-Los esquemas pueden apreciarse junto con su información relevante en la \textbf{Tabla \ref{tab:integradores}}. 
+Los esquemas pueden apreciarse junto con su información relevante en la \textbf{Tabla \ref{tab:integradores}}.
 La simplecticidad de MPR fue probada en \ref{sec:int_simpl} mientras que la no simplecticidad de Euler y RK2 se encuentra en el apéndice \ref{sec:no_simp}.
 
 \begin{table}[h]
@@ -335,7 +335,7 @@ Con este objetivo, configuramos el sistema inicialmente con una partícula en el
 Luego, evolucionamos el sistema muestreando los valores de $q = q_1 - q_2$, $p = p_1 - p_2$.
 Decidimos utilizar MPR para la evolución, dado que para $h=10^{-3}$ se tenía la mayor estabilidad de la energía y un tiempo de cómputo accesible.
 
-Tomamos entonces un rango de condiciones iniciales $(q_i,p_i)=(5,p)$ con $p\in [-6,0]$ y analizamos las curvas $q(p)$ resultantes, sabiendo que el cambio de $p$ se traduce en un cambio de $E$. 
+Tomamos entonces un rango de condiciones iniciales $(q_i,p_i)=(5,p)$ con $p\in [-6,0]$ y analizamos las curvas $q(p)$ resultantes, sabiendo que el cambio de $p$ se traduce en un cambio de $E$.
 Mantuvimos $q_i$ fijo dado que así emulabamos una colisión desde el infinito, dado que $V_P(5,p)\leq 4\times10^{-6}V_P(0,0) = 4\times10^{-6}D$ que podemos considerar nulo.
 Utilizamos los mismos parámetros para el potencial de Pauli ($D=10000$, $m=1=p_o=q_o$) por consistencia.
 Hicimos esto una vez para cada integrador para así poder comparar la calidad de los diagramas de fases.
@@ -351,7 +351,7 @@ En la \text{Figura \ref{fig:ej_diag_fases}} podemos ver estas curvas superpuesta
 	\label{fig:ej_diag_fases}
 \end{figure}
 
-El caso de Euler es notoriamente malo, donde se aprecian franjas desocupadas que no deberían existir. 
+El caso de Euler es notoriamente malo, donde se aprecian franjas desocupadas que no deberían existir.
 Estas franjas indican que el integrador no pudo preservar apropiadamente la energía, dado que el $p^2$ posterior al choque es menor al inicial, lo cual concuerda con \ref{fig:energ_choq}.
 El caso de RK2 es menos apreciable, pero ciertamente hay una asimetría entre $q$ y $-q$ dado que los puntos de mayor cercanía de las curvas de rebote no están espejados respecto de $q=0$.
 Ciertamente, el integrador MPR genera un diagrama de fases que respeta mejor las simetrías de reflexión en $q$ y $p$, consistente con su capacidad para conservar la energía que vimos en \ref{fig:energ_choq}.
@@ -393,11 +393,11 @@ Esto es un buen indicio y ocurre para $h=10^{-3}$ para ambos integradores, pero 
 En un tercer caso con $h=0.1$ que omitimos, ninguno de los 2 métodos cumplía esto.
 
 Para comprender este pico, nos basta analizar la \textbf{Figura \ref{fig:ej_diag_fases}} y notar que entre rebotes se da la mayor interacción.
-En esta región, las curvas de nivel se comprimen, aumentando considerablemente su densidad. 
-Es por esto que nuestro conjunto de puntos (inicialmente dispuestos en un cuadrado) tiende a alinearse en una figura predominantemente unidimensional, donde resulta claro que la estimación del área 
+En esta región, las curvas de nivel se comprimen, aumentando considerablemente su densidad.
+Es por esto que nuestro conjunto de puntos (inicialmente dispuestos en un cuadrado) tiende a alinearse en una figura predominantemente unidimensional, donde resulta claro que la estimación del área
 como superposición de elipses rígidas no es apropiada, sobreestimando el área.
 
-Sin embargo, nos resulta suficiente notar que el volumen de fases se conserva luego de cada choque, donde vemos nuevamente que el integrador MPR tiene una mayor robustez, 
+Sin embargo, nos resulta suficiente notar que el volumen de fases se conserva luego de cada choque, donde vemos nuevamente que el integrador MPR tiene una mayor robustez,
 manteniendo las propiedades de una evolución simpléctica para valores de $h$ mayores comparado a Euler.
 
 
@@ -414,20 +414,20 @@ Como antes, fijaremos $q_i=5$ pero no discriminaremos entre rebotes simples y do
 Realizamos esta búsqueda en forma binaria, tomando un $p_{max}$ que cumpla que $C(q_i, p_{max})$ sea un atraviese, sabiendo que $C(q_i, 0)$ \textbf{\textit{siempre}} es un rebote.
 Obtenemos el $p_{max}$ tomando un valor inicial $p_max = -3$ y duplicándolo hasta obtener un atraviese.
 Con estos 2 valores de impulso, iteramos la busqueda binaria hasta que $|p_{max}-p_{min}|\leq tol$.
-El valor de $tol$ resulta arbitrario, por lo que tomamos uno dependiente de $D^*$ según $tol \sim \sqrt{D^*}\times 10^{-4}$, pues consideramos que para $D^*=10^4$ 
+El valor de $tol$ resulta arbitrario, por lo que tomamos uno dependiente de $D^*$ según $tol \sim \sqrt{D^*}\times 10^{-4}$, pues consideramos que para $D^*=10^4$
 una $tol = 10^{-2}$ resultaba apropiada y lo extendimos usando la cota $A^*\leq \sqrt{D^*}$.
 El paso temporal fue $h=10^{-3}$ para $D\leq 1000$, $h=5\times10^{-3}$ para $5000\leq D\leq 50000$ y $h=10^{-4}$ para $D\geq 100000$.
 
 Los resultados pueden apreciarse en la \textbf{Figura \ref{fig:AvsD}} junto con algunos ejemplos del espacio de fases (con mayor definición cerca de la región de interés).
 En la misma figura está nuevamente el gráfico del área según el cálculo teórico, que resulta concordante.
-La primera observación es que $A=0$ para $D\leq 0.5$, donde las curvas de rebote son cóncavas (rebote simple) para $q\approx 0$ a diferencia del caso $D\geq 0.5$ donde son convexas 
-(para rebote doble, como en el ejemplo de la \textbf{Figura \ref{fig:ej_diag_fases}}). 
+La primera observación es que $A=0$ para $D\leq 0.5$, donde las curvas de rebote son cóncavas (rebote simple) para $q\approx 0$ a diferencia del caso $D\geq 0.5$ donde son convexas
+(para rebote doble, como en el ejemplo de la \textbf{Figura \ref{fig:ej_diag_fases}}).
 De hecho, puede apreciarse que para $D=0.5$, las curvas son prácticamente verticales, marcando este cambio de convexidad.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[trim = 0mm 0mm 15mm 10mm, clip, width=\columnwidth]{choque1d/AvsD_full_teo.pdf}
-	\caption{Area prohibida en función de intensidad de potencial junto con algunos de los espacios de fase asociados. 
+	\caption{Area prohibida en función de intensidad de potencial junto con algunos de los espacios de fase asociados.
 	Tenemos $A^*=0$ para $D\leq 0.5$ y $A\sim \log{D^*}$ para $D\geq 1$ en perfecto acuerdo con la formulación teórica.}
 	\label{fig:AvsD}
 \end{figure}
@@ -445,8 +445,3 @@ Ambos coinciden dentro del (amplio) rango estudiado.
 	correctamente. La linea punteada marca $D^*=1/2$, donde la forma funcional de $p_b$ cambia.}
 	\label{fig:pbvsD}
 \end{figure}
-
-
-
-
-
