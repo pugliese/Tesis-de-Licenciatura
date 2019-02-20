@@ -92,14 +92,14 @@ Para $q_o$ esto es inmediato pues $A\propto q_o$, pero para $p_o$ necesitamos ex
 En resumen, esperamos que
 
 \begin{equation}{\label{eq:props_area_red}}
-A^{*'}(x)\geq 0 \quad \text{ y } \quad A^{*'}\leq f(1)\sqrt{x}
+A^{*'}(x)\geq 0 \quad \text{ y } \quad A^*(x)\leq A^*(1)\sqrt{x}
 \end{equation}
 
 
 
-\subsubsection{Espacio de fases}{\label{sec:teo_fases}}
+\subsubsection{Diagrama de fases}{\label{sec:teo_fases}}
 
-Ahora si, atacaremos el Hamiltoniano reducido de \eqref{eq:ham_red_1d} con el objetivo de obtener el espacio de fases.
+Ahora si, atacaremos el Hamiltoniano reducido de \eqref{eq:ham_red_1d} con el objetivo de obtener el diagrama de fases.
 En nuestro caso, teniendo dos solo coordenadas $(q^*,p^*)$, esto consiste en obtener las curvas $q^*(p^*)$ o $p^*(q^*)$ a través de las ecuaciones de Hamilton.
 
 Sin embargo, como dijimos, las ecuaciones de Hamilton para $(q^*,p^*)$ no se preservan, pero esto no es un problema.
@@ -192,7 +192,7 @@ Estas curvas y sus diferencias pueden apreciarse en \textbf{Figura \ref{fig:curv
 	\subfigure{\includegraphics[width=0.45\textwidth]{choque1d/curvas_teo_2.png}}
 	\subfigure{\includegraphics[width=0.45\textwidth]{choque1d/curvas_teo_3.png}}
 	\subfigure{\includegraphics[width=0.45\textwidth]{choque1d/curvas_teo_4.png}}
-	\caption{Area de la región excluída en función de $D^*$ obtenida de integrar numéricamente \eqref{eq:area_int_ex}. Para valores altos parece haber una relación lineal entre $A^*$ y $\log D^*$.}
+	\caption{Posibles trayectores en el espacio de fases para los 4 casos posibles de $E^*$ y $D^*$.}
 	\label{fig:curvas_teo}
 \end{figure}
 
@@ -212,7 +212,7 @@ Mediante el cambio de variables $x = (p_\infty^2-p^2)/2$, $dx = -p dp \Rightarro
 A^* = 4\int_{1}^{2E_c^*} \frac{\sqrt{-4E_c^* + 2x - 2\log(x) + 4E_c^* - 2}}{\sqrt{4E_c^* - 2x}} dx
 = 4\int_{1}^{2E_c^*} \frac{\sqrt{x -1 - \log(x)}}{\sqrt{2E_c^* - x}} dx
 \end{equation}
-donde debemos recordar que $2E_c^* = 1 + \log(2D^*) $ y que $A^*$ es el área reducida, siendo el área total $A = q_op_oA^*$.
+donde debemos recordar que $A^*$ es el área reducida, siendo el área total $A = q_op_oA^*$.
 
 Sin embargo, la integral de \eqref{eq:area_int_ex} no puede expresarse como una combinación de funciones conocidas, lo cual nos impide por completo obtener una forma funcional clara.
 Aún así, podemos realizar una integración numérica de $A^*$ vía regla de trapecios.
@@ -228,7 +228,7 @@ El resultado de esta integración numérica en un amplio rango de $D^*$ puede ap
 
 Recordando las propiedades \eqref{eq:props_area_red} que esperabamos de $A^*$, es inmediato de la \textbf{Figura \ref{fig:AvsD_teo}} que $A^*$ es creciente en $D^*$.
 La segunda propiedad, sin embargo, no resulta tan evidente.
-Computando la integral \eqref{eq:area_int_ex} para obtener $A^*(1)$, podemos graficar $A^*$ junto con $A^*(1)D^*$ para verificar esta segunda propiedad.
+Computando la integral \eqref{eq:area_int_ex} para obtener $A^*(1)$, podemos graficar $A^*$ junto con $A^*(1)\sqrt{D^*}$ para verificar esta segunda propiedad.
 En la \textbf{Figura \ref{fig:AvsD_teo_cota}} podemos apreciar que esta cota se cumple para  $0.5\leq A^*\leq 1$ y $250\leq A^*$, lo cual resulta llamativo.
 
 \begin{figure}[h]
@@ -300,7 +300,8 @@ Cabe aclarar, sin embargo, que sistemas con más partículas pueden a priori exi
 A modo de comparación, corrimos una simulaciones del choque de 2 partículas en 1D, muestreando el Hamiltoniano (de ahora en más, la energía) a lo largo del recorrido.
 Consistentemente con lo que vimos en la sección \ref{sec:teo_fases}, durante el choque de 2 partículas pueden darse 2 situaciones: rebote o atraviese, dependiendo del valor inicial del Hamiltoniano $E$ y el valor de $D$.
 
-Dado que en general nos interesa trabajar con potenciales de Pauli con región excluida, configuramos el potencial de Pauli con $D = 10000$ y aprovechamos la adimensionalización para tomar $qo = 1 = po = m$ tal que $D^*=D>1/2$.
+Dado que en general nos interesa trabajar con potenciales de Pauli con región excluida, configuramos el potencial de Pauli con $D = 10000$ y aprovechamos la adimensionalización para tomar $qo = 1 = po = m$ tal que 
+$D^*=D>1/2$.
 En este caso particular, analizaremos un atravesado.
 El sistema comienza con una de las partículas en el origen con impulso nulo (en la posición $(0, 0)$ del espacio de fases) y otra a distancia $6$ e impulso $-4$ (en el $(6, -4)$).
 
@@ -319,11 +320,15 @@ Es interesante notar que RK2 tiende a aumentar $E$ mientras que Euler tiende a d
 Realizamos estos choques para distintos valores de $h$ (y las mismas condiciones iniciales) y analizamos la fluctuación relativa de energía (siempre positiva para este hamiltoneano).
 Los resultados pueden apreciarse en la \textbf{Figura \ref{fig:flucvsh}}, donde se confirma la clara superioridad de MPR a la hora de conservar la energía.
 Esto último resulta a priori esperable dado que MPR es un integrador simpléctico; no obstante, al ser resuelta la ecuación con un método de punto fijo, esto pudo haber dejado de ser cierto.
+Aún así, vemos un cierto rebote para $h\leq10^{-3}$, mostrando que el error relativo comienza a empeorar para $h$ demasiado pequeño.
+Esto es llamativo, pero probablemente se deba a complicaciones a la hora de resolver la ecuación implícita mediante punto fijo; es posible que deba tomarse un número $k$ de iteraciones mayor
+para valores tan pequeños de $h$.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[trim = 0mm 0mm 15mm 10mm, clip, width=0.6\columnwidth]{choque1d/fluct_vs_h.png}
-	\caption{Fluctuaciones de energía en función de paso temporal para distintos integradores.}
+	\caption{Fluctuaciones de energía en función de paso temporal para distintos integradores.
+	El integrador MPR se muestra superior en todo el rango, pero tiene un rebote para $h\leq10^{-3}$, probablemente debido a errores al resolver la ecuación implícita.}
 	\label{fig:flucvsh}
 \end{figure}
 

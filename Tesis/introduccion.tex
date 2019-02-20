@@ -90,7 +90,7 @@ la noción de exclusión de Pauli: dos partículas no pueden estar en el mismo e
 Es importante notar que este potencial no es de núcleo duro y, por lo tanto, es posible que dos partículas se superpongan para energías suficientemente altas donde $D$ sea despreciable.
 Esto es deseable dado que para energías (o temperaturas) altas esperamos recuperar el gas clásico de Maxwell-Boltzmann al desaparecer $V_P$.
 
-Este potencial fue inicialmente propuesto por Wiletz \textbf{CITAS WILETZ} y continuado por Dorso y Randrup \textbf{CITAS DORSO PAULI} y utilizado en múltiples trabajos desde entonces.
+Este potencial fue inicialmente propuesto por Wiletz \textbf{CITAS WILETZ} y continuado por Dorso \textbf{CITAS DORSO PAULI} y utilizado en múltiples trabajos desde entonces.
 Los parámetros $D$, $q_o$ y $p_o$ varian en cada trabajo, adaptándose según la característica que se busque analizar.
 Existen formulaciones alternativas como la de Piekarewicz \textbf{CITA PIEKA} que proponen distinto tipo de exclusión; exclusión en $q$ y en $p$ independientemente.
 
@@ -407,10 +407,37 @@ Aprovechando la simetría de $q$, la probabilidad de aceptación resulta se simp
 De esta forma, si tenemos que $\Delta E = E_y - E_x \leq 0$ aceptamos inmediatamente. Si resulta $\Delta E > 0$, aceptamos con probabilidad $e^{-\beta\Delta E}$.
 
 
+\subsection{Teorema $\Pi$ y adimensionalización}{\label{sec:intro_pi}}
+
+
+
+\subsection{Función de distribución radial}{\label{sec:intro_gr}}
+
+En el estudio del potencial de Pauli, resulta interesante analizar si pueden existir fases de no gaseosas de un sistema que interactua mediante este potencial.
+Sin embargo, las simulaciones vía el algoritmo de Metropolis-Montecarlo tiene la inherente incapacidad de analizar observables asociados a la evolución temporal del sistema.
+Esto hace que algunos indicadores como el \textit{coeficiente de Lindemann} resulten dificiles de interpretar a la hora de observar transiciones de fase.
+Esto ocurre porque este coeficiente mide las fluctuaciones en la posición de las partículas como una forma de analizar su desplazamiento, lo cual carece de sentido para una simulación de Montecarlo.
+
+Sin embargo, la función de distribución radial $g(r)$ analiza la probabilidad de encontrar 2 partículas a una distancia $r$ dada, lo cual facilmente podemos obtener de una simulación de Montecarlo.
+Esta función de distribución radial se define según \textbf{CITAR HAILE}
+\begin{equation}{\label{eq:def_gr}}
+ g(r) = \frac{2}{N}\frac{\left< N(r,\Delta r) \right>}{\rho V(r,\Delta r)} \approx \frac{2}{N}\frac{\left< N_k(r,\Delta r) \right>}{\rho 4\pi  r^2\Delta r}
+\end{equation}
+donde $N(r,\Delta r)$ es la cantidad de pares de partículas cuya distancia se encuentra entre $r$ y $r+\Delta r$ y $V(r,\Delta r)$ es el volumen de un cascarón esférico de radio interior $r$ y 
+radio exterior $r+\Delta r$.
+La aproximación vale para $\Delta r$ pequeño, lo cual es ciertamente deseable para tener una discretización fina.
+
+Para un sistema gaseoso, esperamos que $g(r)$ tienda a 1 rapidamente, dado que el sistema es caótico y tiende a tener partículas a todas las distancias.
+En contraposición, un sistema sólido tendrá un $g(r)$ compuesta por picos en distancias características dependientes de la estructura de la red.
+Un sistema líquido tendrá una $g(r)$ intermedia, con ciertas oscilaciones alrededor de 1.
+En los 3 casos, debemos tener $g(r)\to 1$ para $r$ suficientemente grande.
+
+
+
 \subsection{Materia Nuclear}{\label{sec:intro_NM}}
 
 \textbf{CITAR TESIS MOLINELLI}
-La Materia Nuclear (NM) consiste en un sistema termodinámico de nucleones electricamente neutros, interactuando unicamente mediante un potencial nuclear efectivo (sin Coulomb).
+La Materia Nuclear (NM) consiste en un sistema termodinámico de nucleones electricamente neutros, interactuando unicamente mediante interacción nuclear (sin Coulomb).
 En general, cuantificamos mediante $\delta=(N_n - N_p)/N$ la asimetría entre la cantidad neutrones $N_n$ y protones $N_p$.
 Para $\delta=0$, decimos que el sistema es \textit{simétrico}.
 Este parámetro se suma a los habituales $T$ y $\rho$ a la hora de obtener una ecuación de estado $U(T,\rho, \delta)$.
@@ -418,3 +445,22 @@ Este parámetro se suma a los habituales $T$ y $\rho$ a la hora de obtener una e
 Ciertamente, no debe confundirse NM con la materia nuclear de los átomos.
 La formulación de NM asume sistemas infinitos, extensivos y neutros muy diferentes a los nucleos atómicos.
 Esta cuestión dificulta la vinculación directa de los resultados teóricos con los obtenidos experimentalmente.
+
+En el abordaje clásico del problema, se modela la interacción nuclear como un potencial efectivo.
+Existen múltiples formulaciones de este potencial, pero aquí nos concentraremos en el conocido como QCNM, cuyo potencial de interacción entre \textit{todos los nucleones} es\textbf{CITA DORSO NUCLEAR}
+
+\begin{equation}{\label{eq:pot_QCNM}}
+ V_N(r) = V_o \left[ \left(\frac{r_1}{r}\right)^{p_1} - \left(\frac{r_2}{r}\right)^{p_2} \right] \left( 1 + e^{\frac{r-d}{a}} \right)^{-1}
+\end{equation}
+
+Este potencial fue inspirado por el potencial de Lennard-Jonnes, que resulta atractivo a distancia finita y repulsivo a corta distancia, como se espera de la interacción nuclear.
+Sin embargo, para corregir el alcance de este potencial se introdujo un decaimiento exponencial.
+La intensidad del potencial se tomó $V_o=25.93$MeV con potencias $p_1=6.2$ y $p_2=3.0$, distancias características $r_1=1.757$fm y $r_2=1.771$fm y modulación exponencial $d=3.35$fm y $a=5/6$fm.
+De esta manera, hay un mínimo de potencial en $r\approx 2.138$fm de $-5.722$MeV.
+
+
+El hecho de que este potencial trate de forma idéntica protones y neutrones no es una característica general.
+Existen potenciales como el CMD que separan la interacción entre $V_{np}$ y $V_{nn/pp}$ donde la interacción entre nucleones idénticos es puramente repulsiva mientras que la interacción proton-neutron 
+es atractivo a distancia finita y repulsivo a distancias cortas.
+
+En general, los parámetros de todos estos potenciales se ajustan para que la energía y la densidad de saturación coincidan con los valores experimentales $E_{NM}^{sat}=16$MeV y $\rho_{sat}=0.16$fm$^{-3}$.

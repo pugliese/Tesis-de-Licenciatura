@@ -118,7 +118,7 @@ En total, se tomaron $200\times 8 = 1600$ muestras del sistema para cada tempera
 Sin más preambulos, a continuación se encuentran los resultados.
 
 
-\subsection{Area excluida}
+\subsection{Area excluida}{\label{sec:area_exc}}
 
 La propiedad más relevante del potencial de Pauli es la región excluida que estudiamos en el choque unidimensional en la seccion \ref{sec:choque1D}.
 Esto, sin embargo, fue para un sistema de $N=2$ partículas y una única dimensión.
@@ -202,7 +202,8 @@ Estos gráficos resultan muy similares, mostrando la clara tendencia hacia el ga
 	\includegraphics[trim = 5mm 0mm 50mm 5mm, clip, height=0.3\textwidth]{pauli_gas/exclusion/exclusion_rho0_dorso_3.png}
 	\includegraphics[trim = 24mm 0mm 20mm 5mm, clip, height=0.3\textwidth]{pauli_gas/exclusion/exclusion_rho0_GIvsdorso_3.png}
 	\caption{Comparación de gas de Pauli con parámetros de Dorso y gas ideal.
-  La coincidencia resulta evidente y muestra que siempre existe una región despoblada cerca del origen, pero no elíptica.}
+    La coincidencia resulta evidente y muestra que siempre existe una región despoblada cerca del origen, pero no elíptica.
+    Esta zona surge por cuestiones estadísticas (probablidad nula de superposición exacta) y no tiene relación alguna con la exclusión de Pauli.}
 	\label{fig:exclusion_dorso_vs_GI}
 \end{figure}
 
@@ -406,6 +407,83 @@ En contraposición a lo anterior, su distribución resulta idénticamente la de 
 	\caption{Distribuciones de energía cinética para gas de Lennard Jones y $\rho^* = 1.05$.
 	La distribución resulta inequivocamente Maxwell-Boltzmann.}
 	\label{fig:hist_rho1_LJ}
+\end{figure}
+
+
+\subsection{Función de distribución radial}
+
+El paso siguiente en el análisis del gas de Pauli es preguntarse si efectivamente es un gas.
+Buscamos entonces posibles transiciones de fase del sistema a través de la función de distribución radial $g(r)$ definida en \eqref{eq:def_gr}. 
+Para esto utilizamos los mismos estados de la sección \ref{sec:area_exc}, obteniendo histogramas para las distintas $T$ y $\rho^*$.
+Para cada densidad tomamos $\Delta r = L/800$, por lo que tendriamos $400$ valores de $r$.
+Esto se debe a que para un sistema con condiciones perdiódicas de contorno y criterio de mínima imagen, no tiene sentido analizar $r\geq L/2$ por la geometría cúbica del sistema.
+
+Podemos ver los resultados para los parámetros de Dorso en la \textbf{Figura \ref{fig:gr_dorso}}.
+
+\begin{figure}[H]
+	\centering	%trim={<left> <lower> <right> <upper>}
+	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho0_dorso_0,01.png}
+	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho0_dorso_0,1.png}
+	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho0_dorso_1.png}
+	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho1_dorso_0,01.png}
+	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho1_dorso_0,1.png}
+	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho1_dorso_1.png}
+	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho2_dorso_0,01.png}
+	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho2_dorso_0,1.png}
+	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho2_dorso_1.png}
+	\caption{Funciones de distribución radial para el gas de Pauli con parámetros de Dorso.
+	Para densidades bajas y temperaturas bajas, la $g(r)$ tiende a la de un líquido.}
+	\label{fig:gr_dorso}
+\end{figure}
+
+Ciertamente, para temperatura alta $T=1$MeV el sistema es puramente gaseoso independientemente de $\rho^*$, lo cual es esperable.
+Para temperatura intermedia $T=0,1$MeV comienzan a aparecer diferencias entre las distintas $\rho^*$, tendiendo a una $g(r)$ más similar a la de un líquido.
+Para temperatura intermedia $T=0,01$MeV esta tendencia se reafirma, con un comportamiento claramente líquido para $\rho^*=0.125$ y $\rho^*=1$.
+Esto implica que la transición a líquido se vuelve más apreciable (ocurre a mayor $T$) para densidades menores, lo cual no es muy intuitivo.
+
+Para confirmar estas ideas, enfriamos aún más el sistema con $\rho^*=3.375$ para analizar si la transición a líquido ocurría para alguna temperatura $T$ menor.
+Las correspondientes distribuciones pueden apreciarse en la \textbf{Figura \ref{fig:gr_dorso_frias}}.
+Ciertamente, allí podemos ver que la transición a líquido no ocurre aún bajando $T$ dos ordenes de magnitud, lo que nos lleva a pensar que los sistemas muy densos son estrictamente gases.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho0_dorso_0,0001.png}
+	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho0_dorso_0,001.png}
+	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho0_dorso_0,005.png}
+	\label{fig:gr_dorso_frias}
+	\caption{}
+\end{figure}
+
+Esto puede entenderse si recordamos que Pauli es más que un potencial repulsivo, pues depende del momento $p$. 
+Para minimizar la energía de interacción, las distancias en el espacio de fases $s_{ij}^2$ deben ser lo más altas posibles.
+Bajo esta noción, un sistema de alta densidad $\rho^*\gg1$ solo puede aumentar su $s_{ij}^2 = q_{ij}^2/q_o^2 + p_{ij}^2/p_o^2$ mediante $p_{ij}$.
+Por lo tanto, resulta imposible para el sistema tener conjuntos de partículas ligadas, pues esto implicaría impulsos similares, impidiendo la aparición de un líquido.
+
+Un estado sólido es aún más improbable, pues exige impulsos $p$ pequeños e inevitablemente valores $p_{ij}$ pequeños.
+Por lo tanto, aún logrando ubicar las partículas en algún tipo de red, la interacción de Pauli inevitablemente generaría la existencia de impulsos elevados, impidiendo que las partículas mantengan
+su posición de equilibrio por mucho tiempo.
+
+Por completitud, mostramos las $g(r)$ obtenidas para los parámetros de Maruyama en la \textbf{Figura \ref{fig:gr_maruyama}}.
+Las mismas observaciones hechas para los parámetros de Dorso aplican aquí también, pues el comportamiento cualitativo es idéntico. 
+Esto es razonable respecto a nuestro argumento anterior, pues aludimos a propiedades cualitativas del potencial de Pauli, independientes de sus parámetros.
+
+Sin embargo, sigue siendo importante recalcar que este análisis depende del parámetro reducido $\rho^*=\rho q_o^3$, lo cual es relevante si el sistema tiene más de una distancia característica.
+La introducción de otros potenciales pueden ciertamente cambiar este comportamiento, forzando al sistema a alcanzar estos estados no gaseosos. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho0_maruyama_0,5.png}
+	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho0_maruyama_3.png}
+	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho0_maruyama_20.png}
+	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho1_maruyama_0,5.png}
+	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho1_maruyama_3.png}
+	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho1_maruyama_20.png}
+	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho2_maruyama_0,5.png}
+	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho2_maruyama_3.png}
+	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho2_maruyama_20.png}
+	\caption{Funciones de distribución radial para el gas de Pauli con parámetros de Maruyama.
+	Similar al caso de Dorso, para densidades bajas y temperaturas bajas la $g(r)$ tiende a la de un líquido.}
+	\label{fig:gr_maruyama}
 \end{figure}
 
 
