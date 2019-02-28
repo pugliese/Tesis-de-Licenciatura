@@ -14,7 +14,7 @@
 
 %----------- Agregados para el caso de ustedes -------------------------------
 \usepackage[spanish]{babel}% idioma castellano
-\usepackage[utf8]{inputenc}% esto es para poder poner los tildes directamente. Puede que cambie de versión a versión de sistema operativos (más información en http://www.aq.upm.es/Departamentos/Fisica/agmartin/webpublico/latex/FAQ-CervanTeX/FAQ-CervanTeX-6.html )
+\usepackage[utf8]{inputenc}% esto es para poder poner los tildes directamente. Puede que cambie de versión a versión de sistema operativos 
 \usepackage{graphicx} % para insertar figuras
 \usepackage{subfigure} % para insertar figuras dentro de figuras
 \usepackage{times} % plataforma
@@ -25,6 +25,7 @@
 \usepackage{braket}
 \usepackage{amsthm}
 \usepackage{cancel}
+\usepackage{imakeidx}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -54,16 +55,29 @@
 
 \usepackage{mathrsfs}
 % Abreviaturas
-%\newcommand\RR{\mathbb{R}}
 
-\newtheorem{theorem}{Theorem}
+\newtheorem{theorem}{Teorema}
 \providecommand{\dpart}[2]{\frac{\partial#1}{\partial#2}}
 \providecommand{\poisson}[2]{\left\{#1; #2 \right\}_{Poisson}}
 
 \graphicspath{{Imagenes/}}
+\makeindex
+\numberwithin{figure}{section}
 
 \begin{document}
 
+\input{caratula.tex}
+
+\newpage
+ 
+\input{resumen.tex}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+\setcounter{page}{1}
 \section{Introducción}
  \input{introduccion.tex}
 
@@ -77,18 +91,23 @@
 \section{Gas de Pauli}{\label{sec:pauli_gas}}
 \input{gas_pauli.tex}
 
+\newpage
+
 \section{Nuclear Matter}{\label{sec:NM}}
 \input{NM.tex}
 
 \newpage
 
 \section{Conclusiones}{\label{sec:conc}}
-%\input{NM.tex}
+\input{conclusiones.tex}
+
+\newpage
+\appendix
+\input{apendice.tex}
 
 \newpage
 
-\section{Apéndice}
- \input{apendice.tex}
-
-
+\bibliographystyle{ieeetr}
+\bibliography{biblio}  
+\printindex
 \end{document}

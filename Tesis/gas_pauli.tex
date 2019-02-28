@@ -1,11 +1,13 @@
-En esta sección, extenderemos el número de partículas a $N_{part}=1000$, transformando nuestro choque unidimensional en un gas de particulas interactuantes vía potencial
+En esta sección, extenderemos el número de partículas a $N_{part}=1000$, transformando nuestro choque unidimensional en un gas de partículas interactuantes vía potencial
 de Pauli: un \textit{gas de Pauli}.
 Como dijimos, nuestro objetivo es confirmar si es posible utilizar este potencial para reproducir las distribuciones de un gas de fermiones no interactuantes (o \textit{gas de Fermi}).
+Con esto en mente, asumiremos que nuestras $N_{part}=1000$ no disponen de grados de libertad internos, por lo que la interacción del potencial de Pauli ocurre entre todas; 
+será un gas de Fermi con $g=1$.
 
 El Hamiltoniano de este gas de Pauli será
 
 \begin{equation}{\label{eq:pauli_gas_ham}}
- H(\mathbf{q}_1, ...,\mathbf{q}_N; \mathbf{q}_1,..., \mathbf{q}_N) = \sum_{i=1}^{N} \frac{p_i^2}{2m} + \sum_{i=1}^N\sum_{j=1}^{i-1} De^{-\frac{1}{2}s_{ij}^2}
+ H(\mathbf{q}_1, ...,\mathbf{q}_N; \mathbf{p}_1,..., \mathbf{p}_N) = \sum_{i=1}^{N} \frac{p_i^2}{2m} + \sum_{i=1}^N\sum_{j=1}^{i-1} De^{-\frac{1}{2}s_{ij}^2}
  \quad \text{ con } \quad s_{ij}^2 = \frac{|\mathbf{q}_i-\mathbf{q}_j|^2}{q_o^2} + \frac{|\mathbf{p}_i-\mathbf{p}_j|^2}{p_o^2}
 \end{equation}
 
@@ -29,15 +31,15 @@ Esto implica que para $N_{part}=1000$, el programa tardaba $\sim0.86s$ por paso,
 	\label{fig:tiempo_vs_N}
 \end{figure}
 
-Esto no debería sorprendernos, dado que el método MPR resuelto por punto fijo exige el cómputo de fuerzas $k=5$ veces en total, más del doble de lo exigido por métodos clásicos como Velocity-Verlet.
+Esto no debería sorprendernos, dado que el método MPR resuelto por punto fijo exige el cómputo de fuerzas (y güerzas) $k=5$ veces en total, más del doble de lo exigido por métodos clásicos como Velocity-Verlet.
 Además, cabe aclarar que deben computarse las \textit{güerzas} en adición a las fuerzas habituales.
 Por último, se suman las complejidades propias del potencial en si, que exige no solo el cálculo de la distancia en el espacio sino también el de la distancia en impulsos y de la necesidad
 de computar una exponencial, siempre más costoso computacionalmente que cualquier potencia.
 
 Incluso este $k=5$ resultaba insuficiente a medida que $N$ aumentaba, lo cual es razonable si consideramos que la velocidad de convergencia del método de punto fijo (sección \ref{sec:imp_integs})
 depende de $N$ a través de $\nabla^2H$.
-De hecho, debió tomarse $h=5\times10^{-4}$ (la mitad que en las simulaciones del choque 1D) para mantener la estabilidad del algoritmo durante estras pruebas, lo cual indirectamente exige una
-mayor cantidad de pasos para alcanzar un equilibrio y muestrear propiedades del sistema.
+De hecho, debió tomarse $h=5\times10^{-4}$ (la mitad que en las simulaciones del choque unidimensional) para mantener la estabilidad del algoritmo durante estas pruebas, 
+lo cual indirectamente exige una mayor cantidad de pasos para alcanzar un equilibrio y muestrear propiedades del sistema.
 
 Frente a esto, consideramos más apropiado el uso del método de Metropolis-Montecarlo descripto en \ref{sec:alg_mm} para el Hamiltoniano \eqref{eq:pauli_gas_ham}.
 La principal ventaja de este método es que resulta lineal en $N$ dado que el cómputo de $\Delta E$ al modificar la $k$-esima partícula es
@@ -57,23 +59,23 @@ La forma general de estas variaciones fue entonces $\Delta x = x_o f_x(T, \rho, 
 Además, impusimos una distancia de corte en el espacio de fases $s_{cut}^2=10$ tal que $V_P=0$ si $s_{ij}\geq s_{cut}$.
 Esto lo logramos mediante un \textit{shift} del potencial
 \[ V_P(s_{ij}^2) = \left\{\begin{matrix} D(e^{-\frac{1}{2}s_{ij}^2}-e^{-\frac{1}{2}s_{cut}^2}) & \text{si } s_{ij}\leq s_{cut} \\ 0 & \text{si } s_{ij}\geq s_{cut} \end{matrix}\right. \]
-donde $e^{-\frac{1}{2}s_{cut}^2}\approx 6.7\times10^{-3}\sim 1\%$ del máximo de interacción para $s_{cut}^2=10$.
+donde $e^{-\frac{1}{2}s_{cut}^2}\approx 6.7\times10^{-3}\sim 0,7\%$ del máximo de interacción para $s_{cut}^2=10$.
 
 Tomamos un sistema con condiciones de contorno periódicas (PBC) y utilizamos el criterio de mínima imagen, para lo cual resultaba necesario que el tamaño $L$ de la caja cumpla
 \[ L >2 s_{cut}q_o \approx 6.32q_o \]
-de forma tal que no sea posible la interacción con más de una imagen simultaneamente.
+de forma tal que no sea posible la interacción con más de una imagen simultáneamente.
 
-En lo que sigue, analizaremos propiedades de un gas de Pauli bajo dos conjuntos de parámetros habitualmente utilizados en la literatura para Pauli.
+En lo que sigue, analizaremos propiedades de un gas de Pauli bajo dos conjuntos de parámetros habitualmente utilizados en la literatura.
 En ambos casos, tomaremos una masa $m=100m_p$ con $m_p=938MeV/c^2$ la masa del protón; un elección arbitraria y, en el fondo, no más que una variación del $D^*$.
 
-El primero de estos conjuntos de parámetros corresponde a Dorso \textit{et al} con
+El primero de estos conjuntos de parámetros corresponde a Dorso \cite{Dorso1987} con
 \begin{equation}{\label{eq:params_dorso}}
  \begin{matrix}
   p_o = 2.067 MeV\times 10^{-22}s/fm (= 61.969 MeV/c) & q_o = 6 fm\\
   D = \left(\frac{\hbar}{q_op_o}\right)^3 34.32MeV = \left(\frac{1}{1.88}\right)^3 34.32MeV = 5.165MeV & D^* = 126.16
  \end{matrix}
 \end{equation}
-y el segundo a Maruyama \textit{et al}
+y el segundo a Maruyama \cite{Maruyama2012}
 \begin{equation}{\label{eq:params_maruyama}}
  \begin{matrix}
   p_o = 120 MeV/c & q_o = 1.644 fm\\
@@ -83,7 +85,7 @@ y el segundo a Maruyama \textit{et al}
 
 En comparación con \eqref{eq:params_dorso}, los parámetros de \eqref{eq:params_maruyama} generan un potencial de mucho mayor intensidad pero con un alcance mucho mayor en $p$
 respecto a su alcance en $q$.
-Además, tiene un $D^*$ casi 11 veces mayor, pero tiene un área excluida muy similar
+Además, tiene un $D^*$ casi 11 veces mayor, pero tiene un área excluida muy similar gracias a su elección de $q_o$ y $p_o$
 \[ A_M\sim 45\hbar \qquad \text{ vs } \qquad  A_D\sim 28\times1.88\hbar \sim 52\hbar\]
 Cualquier diferencia entre ambos, entonces, se deberá a cuestiones morfológicas del área excluida definidas por sus $D^*$ tan distintos.
 El resto serán cuestiones de escala definidas por $q_o$ y $p_o$.
@@ -91,21 +93,22 @@ El resto serán cuestiones de escala definidas por $q_o$ y $p_o$.
 Analizamos estos parámetros para 3 densidades distintas, pero dado que el $q_o$ de \eqref{eq:params_dorso} resulta casi 4 veces mayor al de \eqref{eq:params_maruyama}, decidimos mantener
 constantes las \textit{densidades reducidas} $\rho^* = q_o^3\rho$.
 Elegimos entonces $\rho_o^* = (3/2)^3 = 3.375 $, $\rho_1^* = 1 $ y $\rho_2^* = (1/2)^3 = 0.125 $ representando densidades altas, intermedias y bajas, respectivamente.
-Enfriamos estos sistemas desde una $T$ inicial alta (dependiente de $p_o$) donde esperabamos que el sistema se comporte como un gas ideal y enfriabamos sucesivamente para observar los
-efectos termodinámicos del potencial de Pauli.
+Enfriamos estos sistemas desde una $T$ inicial alta (dependiente del conjunto de parámetros) donde esperábamos que el sistema se comporte como un gas ideal y enfriábamos sucesivamente 
+para observar los efectos termodinámicos del potencial de Pauli.
 
 Finalmente, hicimos simulaciones similares para un gas interactuando mediante un potencial de Lennard-Jones (LJ)
 \[ V_{LJ}(r) = \varepsilon\left( \left( \frac{\sigma}{r} \right)^{12} - \left( \frac{\sigma}{r} \right)^6 \right) \]
-cuya única dependencia proviene de 2 parámetros $\sigma$ y $\varepsilon$, lo cual nos permite facilmente trabajar en unidades reducidas donde $\sigma=1=\varepsilon=m$.
-Analogamente, analizaremos las densidades $\rho_{LJ,1}^* = 1.05$ y $\rho_{LJ,2}^* = 0.4$ representando densidades altas y bajas, respectivamente.
+cuya única dependencia proviene de 2 parámetros $\sigma$ y $\varepsilon$, lo cual nos permite fácilmente trabajar en unidades reducidas donde $\sigma=1=\varepsilon=m$.
+Análogamente, analizamos las densidades $\rho_{LJ,1}^* = 1.05$ y $\rho_{LJ,2}^* = 0.4$ representando densidades altas y bajas, respectivamente.
 
 Elegimos estas densidades en base al conocido diagrama de fases del potencial de Lennard-Jones, que nos aseguran que corresponden a gas+líquido, líquido+sólido y sólido.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.4\textwidth]{pauli_gas/phase_diagram_LJ.png}
+	\includegraphics[width=0.6\textwidth]{pauli_gas/phase_diagram_LJ.png}
 	\caption{Diagrama de fases de un gas interactuando mediante Lennard-Jones.
-	Esto nos asegura que las densidades elegidas $\rho_{LJ,1}^* = 1.05$ y $\rho_{LJ,2}^* = 0.4$ corresponden a líquido+sólido y gas+líquido.}
+	Esto nos asegura que las densidades elegidas $\rho_{LJ,1}^* = 1.05$ y $\rho_{LJ,2}^* = 0.4$ corresponden a líquido+sólido y gas+líquido.
+	Este gráfico fue extraído de \cite{BOOK:HAILE}.}
 	\label{fig:ej_diag_fases_LJ}
 \end{figure}
 
@@ -115,12 +118,12 @@ El enfriamiento se realizó reduciendo la temperatura por etapas, esperando a qu
 $(\mathbf{q}_1, ..., \mathbf{q}_N;\mathbf{p}_1, ..., \mathbf{p}_N)$ del sistema (las $6N$ coordenadas).
 Este proceso de enfriamiento+muestreo se realizó 8 veces en total, inicializando distintas semillas, para tener una mayor cantidad de muestras y mayor descorrelación entre ellas.
 En total, se tomaron $200\times 8 = 1600$ muestras del sistema para cada temperatura.
-Sin más preambulos, a continuación se encuentran los resultados.
+Sin más preámbulos, a continuación se encuentran los resultados.
 
 
-\subsection{Area excluida}{\label{sec:area_exc}}
+\subsection{Área excluida}{\label{sec:area_exc}}
 
-La propiedad más relevante del potencial de Pauli es la región excluida que estudiamos en el choque unidimensional en la seccion \ref{sec:choque1D}.
+La propiedad más relevante del potencial de Pauli es la región excluida que estudiamos en el choque unidimensional en la sección \ref{sec:choque1D}.
 Esto, sin embargo, fue para un sistema de $N=2$ partículas y una única dimensión.
 Resulta razonable entonces preguntarse si los resultados de la sección \ref{sec:choque1D} siguen siendo válidos.
 
@@ -135,12 +138,12 @@ unidimensional nuevamente este problema.
 En este caso, dado que usamos el criterio de mínima imagen a la hora de calcular las interacciones, lo usaremos también para calcular las distancias $\Delta q$, por lo que ningún
 par de partículas se alejará más de $\sqrt{3}L/2$.
 
-Esta formulación hubiera sido válida (aunque poco natural) para el caso del choque unidimensional de \ref{sec:choque1D}, donde veriamos solo el cuadrante superior derecho de los diagramas de
-fases como el de la \textbf{Figura \ref{fig:ej_diag_fases}}.
-Esto implica que hay un factor $4$ relacionando las áreas de las regiones excluidas consideradas de una u otra forma.
+Esta formulación habría sido válida (aunque poco natural) para el caso del choque unidimensional de \ref{sec:choque1D}, donde veríamos solo el cuadrante superior derecho de los diagramas de
+fases de la \textbf{Figura \ref{fig:ej_diag_fases}}.
+Por simetría, esto implica que hay un factor $4$ relacionando las áreas de las regiones excluidas consideradas de una u otra forma.
 
 Tomando las distribuciones de las 8 repeticiones realizadas, hicimos un histograma 2D de los $(\Delta q_{ij},\Delta p_{ij})$ para cada $\rho^*$ y conjunto de parámetros.
-Seleccionamos 2 de estas densidades $\rho^*$ y algunas temperaturas para mostrar en las \textbf{Figuras \ref{fig:exclusion_dorso}} y \textbf{\ref{fig:exclusion_dorso}} los histogramas
+Seleccionamos 2 de estas densidades $\rho^*$ y algunas temperaturas para mostrar en las \textbf{Figuras \ref{fig:exclusion_dorso}} y \textbf{\ref{fig:exclusion_maruyama}} los histogramas
 para los parámetros de Dorso y Maruyama, respectivamente.
 Más allá de la diferencia en escalas (que analizaremos en mayor profundidad en \ref{sec:dist_energ}), vemos que ambos conjuntos de parámetros a $T$ baja presentan una región elíptica alrededor
 del origen totalmente despoblada.
@@ -155,7 +158,7 @@ Al aumentar la temperatura, esta región parece desaparecer progresivamente.
 	\includegraphics[trim = 15mm 0mm 50mm 5mm, clip, height=0.3\textwidth]{pauli_gas/exclusion/exclusion_rho2_dorso_0,1.png}
 	\includegraphics[trim = 12mm 0mm 20mm 5mm, clip, height=0.3\textwidth]{pauli_gas/exclusion/exclusion_rho2_dorso_1.png}
 	\caption{Ocupación del espacio de fases $(\Delta q, \Delta p)$ para los parámetros de Dorso y las dos densidades extremas $\rho^*=0.125$ (baja) y $\rho^*=3.375$ (alta).
-  Para temperaturas bajas, se evidencia la existencia de una región excluida.}
+  Para temperaturas bajas, existe una región excluida.}
 	\label{fig:exclusion_dorso}
 \end{figure}
 \begin{figure}[H]
@@ -167,15 +170,17 @@ Al aumentar la temperatura, esta región parece desaparecer progresivamente.
 	\includegraphics[trim = 15mm 0mm 50mm 5mm, clip, height=0.3\textwidth]{pauli_gas/exclusion/exclusion_rho2_maruyama_3.png}
 	\includegraphics[trim = 12mm 0mm 20mm 5mm, clip, height=0.3\textwidth]{pauli_gas/exclusion/exclusion_rho2_maruyama_20.png}
 	\caption{Ocupación del espacio de fases $(\Delta q, \Delta p)$ para los parámetros de Maruyama y las dos densidades extremas $\rho^*=0.125$ (baja) y $\rho^*=3.375$ (alta).
-  Para temperaturas bajas, se evidencia la existencia de una región excluida.}
+  Para temperaturas bajas, existe una región excluida.}
 	\label{fig:exclusion_maruyama}
 \end{figure}
 
 Surge entonces una pregunta: ¿la región excluida desaparece o simplemente se vuelve despreciable frente al espacio total ocupado?.
-Para esto, nos concentramos en una región alrededor del origen de aproximadamente $5q_o\times5p_o$ para poder apreciar la exclusión con mayor definición.
+Ciertamente, el aumento de $T$ expande la posibilidad de ocupación del espacio de fases, a modo que la región excluida puede resultar imperceptible.
+Para dirimir esto, nos concentramos en una región alrededor del origen de aproximadamente $5q_o\times5p_o$ para poder apreciar la exclusión con mayor definición.
 En la \textbf{Figura \ref{fig:exclusion_zoom_rho0_dorso}} podemos ver esto para $\rho^*=3.375$ y los parámetros de Dorso.
 Efectivamente, vemos que la zona sin eventos $\Delta y$ de $T=0.01MeV$ comienza a poblarse al aumentar la temperatura, difuminando sus límites hasta que pierde
 su forma elíptica.
+
 Desde el punto de vista de la mecánica estadística, esto suena razonable, dado que a $T$ alta el ensamble empieza a tener probabilidad suficientemente alta como para
 aceptar regularmente la superposición de 2 partículas a pesar del costo energético $\sim D$.
 Cuanto mayor sea $T$, mayor es el costo energético puede aceptar y así puede acercar aún más estas partículas hasta que eventualmente se desdibuja completamente el área excluida.
@@ -186,12 +191,12 @@ Cuanto mayor sea $T$, mayor es el costo energético puede aceptar y así puede a
 	\includegraphics[trim = 5mm 0mm 50mm 5mm, clip, height=0.3\textwidth]{pauli_gas/exclusion/exclusion_zoom_rho0_dorso_0,01.png}
 	\includegraphics[trim = 24mm 0mm 50mm 5mm, clip, height=0.3\textwidth]{pauli_gas/exclusion/exclusion_zoom_rho0_dorso_0,1.png}
 	\includegraphics[trim = 24mm 0mm 20mm 5mm, clip, height=0.3\textwidth]{pauli_gas/exclusion/exclusion_zoom_rho0_dorso_1.png}
-	\caption{Acercamiento a la región de interés cerca del origen. Se evidencia la aparición de una región excluida a medida que desciende $T$.}
+	\caption{Acercamiento a la región de interés cerca del origen. Se evidencia la aparición de la región excluida a medida que desciende $T$.}
 	\label{fig:exclusion_zoom_rho0_dorso}
 \end{figure}
 
 Resulta entonces razonable cuestionarse si estos histogramas coinciden realmente con los de un gas ideal a $T$ suficientemente alta.
-Las distribuciones de un gas ideal son conocidas, siendo las part\`iculas independientes; tienen distribución uniforme dentro de la caja en $\mathbf{q}$ y una
+Las distribuciones de un gas ideal son conocidas, siendo las partículas independientes; tienen distribución uniforme dentro de la caja en $\mathbf{q}$ y una
 distribución de MB en su impulso según \eqref{eq:dist_MB_imp}.
 Simulamos entonces 8 configuraciones distintas usando estas distribuciones y analizamos su espacio de $\Delta y$ como antes.
 Para $T=3MeV$ y $\rho^*=3.375$ podemos apreciar los resultados para el gas ideal y para el potencial con parámetros de Dorso.
@@ -199,21 +204,22 @@ Estos gráficos resultan muy similares, mostrando la clara tendencia hacia el ga
 
 \begin{figure}[H]
 	\centering	%trim={<left> <lower> <right> <upper>}
-	\includegraphics[trim = 5mm 0mm 50mm 5mm, clip, height=0.3\textwidth]{pauli_gas/exclusion/exclusion_rho0_dorso_3.png}
-	\includegraphics[trim = 24mm 0mm 20mm 5mm, clip, height=0.3\textwidth]{pauli_gas/exclusion/exclusion_rho0_GIvsdorso_3.png}
+	\includegraphics[trim = 5mm 0mm 50mm 5mm, clip, height=0.35\textwidth]{pauli_gas/exclusion/exclusion_rho0_dorso_3.png}
+	\includegraphics[trim = 24mm 0mm 20mm 5mm, clip, height=0.35\textwidth]{pauli_gas/exclusion/exclusion_rho0_GIvsdorso_3.png}
 	\caption{Comparación de gas de Pauli con parámetros de Dorso y gas ideal.
     La coincidencia resulta evidente y muestra que siempre existe una región despoblada cerca del origen, pero no elíptica.
-    Esta zona surge por cuestiones estadísticas (probablidad nula de superposición exacta) y no tiene relación alguna con la exclusión de Pauli.}
+    Esta zona surge por cuestiones estadísticas (probabilidad nula de superposición exacta) y no por exclusión de Pauli.}
 	\label{fig:exclusion_dorso_vs_GI}
 \end{figure}
 
 Es interesante notar que tampoco para gas ideal clásico tenemos mucha población cerca del origen.
-Esto ciertamente puede deberse a cuestiones estadísticas; la probabilidad de que 2 partículas se superpongan exactamente es nula y decrece como
-$\sim\Delta q**2\Delta p**2$ para $\Delta y\to0$ gracias al jacobiano de esféricas.
+Esto se debe a cuestiones estadísticas; la probabilidad de que 2 partículas se superpongan exactamente es nula y decrece como
+$\sim\Delta q^2\Delta p^2$ para 
+$\Delta y\to0$ gracias al jacobiano de coordenadas esféricas.
 
 Sabiendo que efectivamente existe un región excluida, la siguiente cuestión es analizar si es la misma que para el choque unidimensional.
 Para esto podemos analizar el área que estudiamos previamente, en particular los resultados de $A^*$.
-Conociendo el area de cada bin, podemos contar la cantidad que están desocupados en un entorno del origen y así estimar el área de la región excluida.
+Conociendo el área de cada bin, podemos contar la cantidad que están desocupados en un entorno del origen y así estimar el área de la región excluida.
 En la \textbf{Figura \ref{fig:AvsT}} podemos apreciar el área reducida $A^*$ en función de la temperatura para las distintas densidades y conjuntos de parámetros.
 Además, marcamos el valor estimado para $A^*$ en la sección \ref{sec:choque1D} para el $D^*$ correspondiente a cada conjunto de parámetros.
 El caso de Dorso es muy consistente con el resultado anterior, reduciéndose a media que aumenta $T$ según lo esperado.
@@ -224,7 +230,7 @@ Es posible que no hayamos alcanzado temperaturas suficientemente bajas en el cas
 	\centering	%trim={<left> <lower> <right> <upper>}
 	\includegraphics[trim = 5mm 0mm 10mm 5mm, clip, width=0.4\textwidth]{pauli_gas/AvsT_dorso.png}
 	\includegraphics[trim = 5mm 0mm 10mm 5mm, clip, width=0.4\textwidth]{pauli_gas/AvsT_maruyama.png}
-	\caption{Area reducida en función de temperatura obtenida de los histogramas 2D.
+	\caption{Área reducida en función de temperatura obtenida de los histogramas 2D.
   La línea punteada marca el valor de $A^*$ para el $D^*$ de cada configuración, pero solo resulta coincidente para los parámetros de Dorso.}
 	\label{fig:AvsT}
 \end{figure}
@@ -232,8 +238,11 @@ Es posible que no hayamos alcanzado temperaturas suficientemente bajas en el cas
 
 \subsection{Distribución de energía cinética}{\label{sec:dist_energ}}
 
-Con toda esa información, hicimos los histogramas de energía cinética del Pauli gas y los comparamos con las distribuciones de Fermi-Dirac (FD) y Maxwell-Boltzmann (MB)
-a esa misma $T$ y $\rho$ y con la misma masa $m$, según las ecuaciones \eqref{eq:dist_FD} y \eqref{eq:dist_MB}, respectivamente.
+Como dijimos, la distribución de energía cinética \eqref{eq:dist_FD} es una característica fundamental del gas de Fermi y, por lo tanto, algo que buscamos 
+emular con nuestro gas de Pauli.
+
+Con las 1600 muestras mencionadas, construimos los histogramas de energía cinética del gas de Pauli y los comparamos con las distribuciones de Fermi-Dirac (FD) y Maxwell-Boltzmann 
+(MB) a esa misma $T$ y $\rho$ y con la misma masa $m$, según las ecuaciones \eqref{eq:dist_FD} y \eqref{eq:dist_MB}, respectivamente.
 
 \begin{figure}[H]
 	\centering
@@ -248,12 +257,6 @@ a esa misma $T$ y $\rho$ y con la misma masa $m$, según las ecuaciones \eqref{e
 	\caption{Distribuciones de energía cinética para los parámetros de Dorso en \eqref{eq:params_dorso} y $\rho^* = \rho_1^* = 1$}
 	\label{fig:hist_rho1_dorso}
 \end{figure}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\textwidth]{pauli_gas/histogramas/hist_rho2_dorso.png}
-	\caption{Distribuciones de energía cinética para los parámetros de Dorso en \eqref{eq:params_dorso} y $\rho^* = \rho_2^* = 0.125$}
-	\label{fig:hist_rho2_dorso}
-\end{figure}
 
 Comenzando con los parámetros \eqref{eq:params_dorso}, vemos los histogramas de las 3 densidades en las \textbf{Figuras \ref{fig:hist_rho0_dorso}},
 \textbf{\ref{fig:hist_rho1_dorso}} y \textbf{\ref{fig:hist_rho2_dorso}} para algunas temperaturas seleccionadas.
@@ -261,32 +264,28 @@ Además de compararlos con las distribuciones de MB y FD, incluimos un ajuste po
 Esto último equivale a buscar los $T'$ y $\rho'$ cuya distribución de FD es más similar a la distribución de Pauli; es considerar que es posible que nuestro gas de Pauli
 emule un gas de Fermi bajo distintas condiciones termodinámicas.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{pauli_gas/histogramas/hist_rho2_dorso.png}
+	\caption{Distribuciones de energía cinética para los parámetros de Dorso en \eqref{eq:params_dorso} y $\rho^* = \rho_2^* = 0.125$}
+	\label{fig:hist_rho2_dorso}
+\end{figure}
+
 En los 3 casos, podemos apreciar como la distribución se aleja de MB a medida que la temperatura desciende según lo esperado.
 Sin embargo, esta separación comienza a una temperatura mayor que la separación de FD respecto a MB.
-De hecho, los datos no tienden a acercarse a FD luego de alejarse de MB; solo hay coindicencia de las 3 distribuciones (simultaneamente) a $T$ alta.
+De hecho, los datos no tienden a acercarse a FD luego de alejarse de MB; solo hay coincidencia de las 3 distribuciones (simultáneamente) a $T$ alta.
 Similar a FD, el pico del histograma de los datos no parece acercarse al origen, una de las principales diferencias con MB.
-Sin embargo, este pico se da para energías cinéticas mucho mayores que el de FD, lo cual hace pensar que este gas de Pauli sobreestima la exclusión entre las particulas, alejándolas
+Sin embargo, este pico se da para energías cinéticas mucho mayores que el de FD, lo cual hace pensar que este gas de Pauli sobrestima la exclusión entre las partículas, alejándolas
 más de lo que debería.
 
-Más particularmente, podemos notar que la distribución a $T$ baja para $\rho_o^*$ y $\rho_1^*$ tiene 2 máximos en lugar de uno, lo cual es muy llamativo.
+Más en particular, podemos notar que la distribución a $T$ baja para $\rho_o^*$ y $\rho_1^*$ tiene 2 máximos en lugar de uno, lo cual es muy llamativo.
 Para $\rho_2^*$, solo hay un máximo, pero la curva entre este máximo y el origen es cóncava en lugar de convexa a diferencia tanto de MB como FD como de las otras densidades.
 Además, la separación de los datos respecto a MB se da a temperaturas cada vez menores a medida que aumentamos $\rho^*$, lo cual también ocurre con FD.
-Esto es razonable, dado que la noción de temperatura alta está muy asociada a la de densidad baja como discutimos en \ref{sec:intro_fermi_gas}.
+Esto es razonable, dado que la noción de temperatura alta está muy asociada a la de densidad baja mediante el parámetro $\lambda^3\rho$ como discutimos en \ref{sec:intro_fermi_gas}.
 
 Por el lado de los ajustes, los resultados son prometedores principalmente para temperaturas intermedias; temperaturas para las cuales FD y MB aún no difieren demasiado.
 Esto nuevamente depende de $\rho$, pues los ajustes son razonablemente acertados para $T\geq 0.5MeV$ en el caso $\rho^*=3.375$, $T\geq 0.3MeV$ para $\rho^*=1$ y $T\geq 0.1MeV$ para $\rho^*=0.125$.
 
-Con los histogramas obtenidos utilizando los parámetros de Maruyama \eqref{eq:params_maruyama} ocurre algo muy similar, como puede verse en las \textbf{Figuras \ref{fig:hist_rho0_maruyama}},
-\textbf{\ref{fig:hist_rho1_maruyama}} y \textbf{\ref{fig:hist_rho2_maruyama}}.
-Sin embargo, es ciertamente notable que la forma del histograma de los datos parece acompañar mejor a la distribución de FD y que los ajustes por FD resultan mucho más certeros, siendo
-razonables para valores de $T$ considerablemente bajos.
-Además, surge inmediatamente la diferencia de escalas entre temperaturas; las transiciones de las distribuciones del Pauli gas ocurren a $T$ un orden de magnitud mayor para estos parámetros.
-Esto es llamativo y puede ciertamente estar asociado al hecho de que el $D^*$ mismo aumentó un orden de magnitud.
-
-Esto ocurre en menor medida para la distribución de FD.
-Es razonable que ocurra dado que, aunque los $\rho^*$ no cambiaron, si lo hicieron las densidades $\rho$ al cambiar el $q_o$.
-Dado que el $q_o$ de Maruyama es menor, las densidades $\rho$ aumentaron, redefiniendo la noción de alta temperatura para valores de $T$ mayores.
-Esto ciertamente nos muestra que el parámetro $q_o$ también influye a la hora de simular una distribución de FD vía un gas de Pauli.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{pauli_gas/histogramas/hist_rho0_maruyama.png}
@@ -299,6 +298,14 @@ Esto ciertamente nos muestra que el parámetro $q_o$ también influye a la hora 
 	\caption{Distribuciones de energía cinética para los parámetros de Maruyama en \eqref{eq:params_maruyama} y $\rho^* = \rho_1^* = 1$}
 	\label{fig:hist_rho1_maruyama}
 \end{figure}
+
+Con los histogramas obtenidos utilizando los parámetros de Maruyama \eqref{eq:params_maruyama} ocurre algo muy similar, como puede verse en las \textbf{Figuras \ref{fig:hist_rho0_maruyama}},
+\textbf{\ref{fig:hist_rho1_maruyama}} y \textbf{\ref{fig:hist_rho2_maruyama}}.
+Sin embargo, es ciertamente notable que la forma del histograma de los datos parece acompañar mejor a la distribución de FD y que los ajustes por FD resultan mucho más certeros, siendo
+razonables para valores de $T$ considerablemente bajos.
+Además, surge inmediatamente la diferencia de escalas entre temperaturas; las transiciones de las distribuciones del Pauli gas ocurren a $T$ un orden de magnitud mayor para estos parámetros.
+Esto es llamativo y puede ciertamente estar asociado al hecho de que el $D^*$ mismo aumentó un orden de magnitud.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{pauli_gas/histogramas/hist_rho2_maruyama.png}
@@ -306,18 +313,17 @@ Esto ciertamente nos muestra que el parámetro $q_o$ también influye a la hora 
 	\label{fig:hist_rho2_maruyama}
 \end{figure}
 
+Pero más llamativo aún es que los parámetros de Dorso sobrestimen más la exclusión que los de Maruyama, aún cuando $D^*_M \sim 11 D^*_D$.
+Ciertamente, parecería que $D^*$ no es el único parámetro relevante en la distribución de energías cinéticas.
+
+Esto ocurre en menor medida para la distribución de FD.
+Es razonable que ocurra dado que, aunque los $\rho^*$ no cambiaron, si lo hicieron las densidades $\rho$ al cambiar el $q_o$.
+Dado que el $q_o$ de Maruyama es menor, las densidades $\rho$ aumentaron, redefiniendo la noción de alta temperatura para valores de $T$ mayores.
+Esto ciertamente nos muestra que el parámetro $q_o$ también influye a la hora de simular una distribución de FD vía un gas de Pauli.
+
 Los gráficos de las \textbf{Figuras \ref{fig:muvsT}} y \textbf{\ref{fig:TvsT}} muestran la dependencia de los parámetros ajustados con la temperatura
 $T$ y la densidad reducida $\rho^*$ para ambos conjuntos de parámetros.
 Podemos ver que tanto para los parámetros de Dorso como para los de Maruyama, el comportamiento cualitativo es el mismo.
-Para empezar, los gráficos de la \textbf{Figura \ref{fig:muvsT_dorso}} y \textbf{Figura \ref{fig:muvsT_maruyama}} muestran que el $\mu$ de FD tiende a la energía de Fermi $E_F\equiv \mu(T=0,\rho)$,
-confirmado que en todos los casos alcanzamos el régimen de bajas temperaturas para FD.
-Notamos además que para $T$ alta, ambos $\mu$ coinciden, lo cual es razonable dado que estamos en MB, pero a medida que $T$ desciende vemos que $\mu_{aj}\leq\mu_{FD}$.
-A pesar de que la coincidencia para $\rho^*=3.375$ es practicamente inexistente, para $\rho^*=0.125$ esta coincidencia se da en todo el rango de $T$ estudiado.
-Algo muy similar ocurre para la $T_{aj}$, que resulta siempre levemente superior a $T$.
-Es justamente este $T_{aj}$ quien marca la diferencia entre el ajuste por FD y el FD exacto para $\rho^*=0.125$ donde $\mu_{aj}\approx\mu_{FD}$.
-
-Estas propiedades marcan los dos defectos de Pauli respecto a FD; $T_{aj}\geq T$ implica que la cola de la distribución se extiende para $E$ mayores mientras que $\mu_{aj}\leq\mu_{FD}$ tiende a
-desplazar el máximo de la distribución a $E$ mayores.
 
 \begin{figure}[H]
 	\centering
@@ -328,7 +334,7 @@ desplazar el máximo de la distribución a $E$ mayores.
 	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.32\textwidth]{pauli_gas/muvsT_rho1_maruyama.png}
 	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.32\textwidth]{pauli_gas/muvsT_rho2_maruyama.png}
 	\caption{Potencial químico exacto (FD) y el obtenido del ajuste en función de la temperatura del sistema.
-  Ambos conjuntos de parámetros arrojan curvas cualitativamente similares, acercandose para $T$ mayores pero manteniendo $\mu_{aj}\leq \mu_{FD}$.}
+		Ambos conjuntos de parámetros arrojan curvas cualitativamente similares, acercándose para $T$ mayores pero manteniendo $\mu_{aj}\leq \mu_{FD}$.}
 	\label{fig:muvsT}
 \end{figure}
 \begin{figure}[H]
@@ -336,19 +342,31 @@ desplazar el máximo de la distribución a $E$ mayores.
 	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.48\textwidth]{pauli_gas/TvsT_dorso.png}
 	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.48\textwidth]{pauli_gas/TvsT_maruyama.png}
 	\caption{Temperatura obtenida del ajuste en función de la temperatura del sistema para las 3 densidades reducidas estudiadas.
-  La recta continua marca la identidad, a la que $T_{aj}$ tiende para alta $T$ para ambos conjuntos de parámetros.
-  En general, es $T_{aj}\geq T$.}
+		La recta continua marca la identidad, a la que $T_{aj}$ tiende para alta $T$ para ambos conjuntos de parámetros.
+		En general, es $T_{aj}\geq T$.}
 	\label{fig:TvsT}
 \end{figure}
 
+Para empezar, los gráficos de la \textbf{Figura \ref{fig:muvsT}} muestran que el $\mu$ de FD tiende a la energía de Fermi $E_F\equiv \mu(T=0,\rho)$,
+confirmado que en todos los casos alcanzamos el régimen de bajas temperaturas para FD.
+Notamos además que para $T$ alta, ambos $\mu$ coinciden, lo cual es razonable dado que estamos en MB, pero a medida que $T$ desciende vemos que $\mu_{aj}\leq\mu_{FD}$.
+A pesar de que la coincidencia para $\rho^*=3.375$ es prácticamente inexistente, para $\rho^*=0.125$ esta coincidencia se da en todo el rango de $T$ estudiado.
+Algo muy similar ocurre para la $T_{aj}$, que resulta siempre levemente superior a $T$.
+Es justamente este $T_{aj}$ quien marca la diferencia entre el ajuste por FD y el FD exacto para $\rho^*=0.125$ donde $\mu_{aj}\approx\mu_{FD}$.
+
+Estas propiedades marcan los dos defectos de Pauli respecto a FD; $T_{aj}\geq T$ implica que la cola de la distribución se extiende para $E$ mayores mientras que $\mu_{aj}\leq\mu_{FD}$ tiende a
+desplazar el máximo de la distribución a $E$ mayores.
+
 Adicionalmente, podemos utilizar estos valores $T_{aj}$ y $\mu_{aj}$ para calcular la $\rho_{aj}$ correspondiente usando \eqref{eq:N_cont}, para analizar como estima el ajuste la densidad del sistema.
-En la \textbf{Figura \ref{}} podemos apreciar que esta $\rho_{aj}$ resulta una clara sobreestimación de $\rho$, pero que cumple $\rho_{aj}\approx\rho$ para $T$ suficientemente grande.
+En la \textbf{Figura \ref{fig:rhovsT}} podemos apreciar que esta $\rho_{aj}$ resulta una clara sobrestimación de $\rho$, pero que cumple $\rho_{aj}\approx\rho$ para $T$ suficientemente grande.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.48\textwidth]{pauli_gas/rho_vs_T_dorso.png}
 	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.48\textwidth]{pauli_gas/rho_vs_T_maruyama.png}
-	\caption{}
+	\caption{Densidad equivalente del ajuste por FD para las distintas densidades y conjuntos de parámetros en función de $T$.
+	Hay convergencia para $T$ grande, pero a medida que desciende surge una sobrestimación.
+	Esta sobrestimación., sin embargo, es mucho menor para los parámetros de Maruyama.}
 	\label{fig:rhovsT}
 \end{figure}
 
@@ -356,19 +374,19 @@ Respecto a las diferencias, además de la ya discutida temperatura, el potencial
 debido a la diferencia en los $\rho$ introducida por el cambio de $q_o$.
 Además, resulta interesante recalcar que aunque los ajustes por FD para Maruyama resultan mejores que los de Dorso, la calidad de las estimaciones $\mu_{aj}$ y $T_{aj}$
 (respecto al $\mu$ y $T$ originales) es la misma.
-Aún así, para Maruyama la sobreestimación de $\rho$ por $\rho_{aj}$ es menor al $15\%$ para todas las densidades, mientras que en el caso de Dorso llega hasta casi un $80\%$.
+Aún así, para Maruyama la sobrestimación de $\rho$ por $\rho_{aj}$ es menor al $15\%$ para todas las densidades, mientras que en el caso de Dorso llega hasta casi un $80\%$.
 Por lo tanto, vemos que los parámetros de Maruyama generan una distribución más similar a un Fermi gas, pero no necesariamente al Fermi gas con la $T$ y $\rho$ del sistema.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Para entender esto, podemos nuevamente adimensionalizar el problema, analizando los parámetros que definen la forma de las distintas distribuciones.
-Dado que las distribuciones de energía cinética $f(\varepsilon)$ son extensivas, podemos obtener una magnitud intensiva del sistema dividiendolas por el número de partículas $N$.
+Para entender esto, podemos nuevamente adimensionalizar el problema utilizando el teorema $\Pi$ de la sección \ref{sec:intro_pi} y analizando los parámetros que definen la forma de las distintas distribuciones.
+Dado que las distribuciones de energía cinética $f(\varepsilon)$ son extensivas, podemos obtener una magnitud intensiva del sistema dividiéndolas por el número de partículas $N$.
 Esta nueva distribución intensiva solo puede depender de parámetros intensivos del sistema, como son la temperatura $T$ y la densidad $\rho$ pero también de parámetros microscópicos como
 la masa $m$ y la constante de Planck $\hbar$.
 Recordando las expresiones de $f_{FD}(\varepsilon)$ y $f_{MB}(\varepsilon)$ de \eqref{eq:dist_FD} y \eqref{eq:dist_MB}, vemos inmediatamente que podemos reescribir
 \[ f_{MB}(\varepsilon;N,T) = \frac{N}{T}g_{MB}(\varepsilon^*) \]
 \[ f_{FD}(\varepsilon;N, V, T, m, \hbar) = \frac{N}{T}g_{FD}(\varepsilon^*;\lambda^3\rho) \to \frac{N}{T}g_{MB}(\varepsilon^*) \text{ para } \lambda^3\rho\to0 \]
-donde $\varepsilon^* = \varepsilon/T$ y $\lambda$ es la longitud de onda términa previamente definida.
+donde $\varepsilon^* = \varepsilon/T$ y $\lambda$ es la longitud de onda térmica.
 En resumen, la adimensionalización nos permite eliminar 3 variables, mientras que la linealidad en $N$ nos permite eliminar una cuarta.
 
 Podemos hacer un razonamiento análogo para la distribución $f_P(\varepsilon)$ de un gas de Pauli.
@@ -379,46 +397,35 @@ con la definición habitual $D^*=Dm/p_o^2$, $T^*=Tm/p_o^2$ y $\rho^* = \rho q_o^
 
 Bajo estas consideraciones, la única diferencia entre la $f_P$ obtenida con los distintos parámetros para Pauli se debe $D^*$ y $T^*$ (pues mantuvimos $\rho^*$); a los parámetros $D$ y $p_o$.
 Sin embargo, la similitud entre $f_P$ y $f_{FD}$ cambia pues $f_{FD}$ depende de $\rho$ en lugar de $\rho^*$, reescalando las temperaturas.
-Esto en principio parecería indicar que todos los parámetros del potencial de Pauli son relevantes a la hora de emular la distribución de FD.
+Esto combinado con lo visto previamente parecería indicar que todos los parámetros del potencial de Pauli son relevantes a la hora de emular la distribución de FD.
 
 Esto último resulta razonable si consideramos que la forma de la región excluida también es relevante para el problema.
-Su forma resulta basicamente elíptica, pero los parámetros $q_o$ y $p_o$ regulan sus ejes.
+Su forma resulta básicamente elíptica, pero los parámetros $q_o$ y $p_o$ regulan sus ejes.
 La cantidad de parámetros involucrados en la $f_P$ y lo visto para las distribuciones de Maruyama son prometedores, pues parecerían indicar que es posible obtener $D$, $q_o$ y $p_o$ tales que
 \[ g_{FD}(\varepsilon^*;\lambda^3\rho) \approx g_P(\varepsilon^*; D^*, T^*, \rho^*) \]
 con distinto grado de aproximación y rango de validez.
-Sin embargo, \textit{a priori} no es posible afirmar que estos parámetros $D$, $q_o$ y $p_o$ puedan ser independientes de la temperatura $T$ y $\rho$.
-Esto ciertamente es deseable, pero un estudio pormenorizado de estas cuestiones excede el alcance de este trabajo.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Por último, mostramos en las \textbf{Figuras \ref{fig:hist_rho0_LJ}} y \textbf{\ref{fig:hist_rho1_LJ}} las distribuciones de energía cinética obtenidas para un gas de LJ.
-En contraposición a lo anterior, su distribución resulta idénticamente la de MB según lo que discutimos en \ref{ap:boltzmann}, independientemente de $T$.
+Sin embargo, si afirmar que estos parámetros $D$, $q_o$ y $p_o$ puedan ser independientes de la temperatura $T$ y $\rho$ o no excede el alcance de este trabajo.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{pauli_gas/histogramas/hist_rho0_LJ.png}
 	\caption{Distribuciones de energía cinética para gas de Lennard Jones y $\rho^* = 0.4$.
-	La distribución resulta inequivocamente Maxwell-Boltzmann.}
+		La distribución resulta inequívocamente Maxwell-Boltzmann.}
 	\label{fig:hist_rho0_LJ}
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{pauli_gas/histogramas/hist_rho1_LJ.png}
 	\caption{Distribuciones de energía cinética para gas de Lennard Jones y $\rho^* = 1.05$.
-	La distribución resulta inequivocamente Maxwell-Boltzmann.}
+		La distribución resulta inequívocamente Maxwell-Boltzmann.}
 	\label{fig:hist_rho1_LJ}
 \end{figure}
 
+Por último, mostramos en las \textbf{Figuras \ref{fig:hist_rho0_LJ}} y \textbf{\ref{fig:hist_rho1_LJ}} las distribuciones de energía cinética obtenidas para un gas de LJ.
+En contraposición a lo anterior, su distribución resulta idénticamente la de MB según lo que discutimos en el \textbf{Apéndice \ref{ap:boltzmann}}, independientemente de $T$.
 
-\subsection{Función de distribución radial}
 
-El paso siguiente en el análisis del gas de Pauli es preguntarse si efectivamente es un gas.
-Buscamos entonces posibles transiciones de fase del sistema a través de la función de distribución radial $g(r)$ definida en \eqref{eq:def_gr}. 
-Para esto utilizamos los mismos estados de la sección \ref{sec:area_exc}, obteniendo histogramas para las distintas $T$ y $\rho^*$.
-Para cada densidad tomamos $\Delta r = L/800$, por lo que tendriamos $400$ valores de $r$.
-Esto se debe a que para un sistema con condiciones perdiódicas de contorno y criterio de mínima imagen, no tiene sentido analizar $r\geq L/2$ por la geometría cúbica del sistema.
-
-Podemos ver los resultados para los parámetros de Dorso en la \textbf{Figura \ref{fig:gr_dorso}}.
+\subsection{Función de distribución radial}{\label{sec:gr_pauli_gas}}
 
 \begin{figure}[H]
 	\centering	%trim={<left> <lower> <right> <upper>}
@@ -432,9 +439,18 @@ Podemos ver los resultados para los parámetros de Dorso en la \textbf{Figura \r
 	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho2_dorso_0,1.png}
 	\includegraphics[trim = 5mm 0mm 17mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho2_dorso_1.png}
 	\caption{Funciones de distribución radial para el gas de Pauli con parámetros de Dorso.
-	Para densidades bajas y temperaturas bajas, la $g(r)$ tiende a la de un líquido.}
+		Para densidades bajas y temperaturas bajas, la $g(r)$ tiende a la de un líquido.}
 	\label{fig:gr_dorso}
 \end{figure}
+
+El paso siguiente en el análisis del gas de Pauli es preguntarse si efectivamente es un gas.
+Buscamos entonces posibles transiciones de fase del sistema a través de la función de distribución radial $g(r)$ definida en \eqref{eq:def_gr}. 
+Para esto utilizamos los mismos estados de la sección \ref{sec:area_exc}, obteniendo histogramas para las distintas $T$ y $\rho^*$.
+Para cada densidad tomamos $\Delta r = L/800$, por lo que tendríamos $400$ valores de $r$.
+Esto se debe a que para un sistema con condiciones periódicas de contorno y criterio de mínima imagen, no tiene sentido analizar $r\geq L/2$ por la geometría cúbica del sistema.
+
+Podemos ver los resultados para los parámetros de Dorso en la \textbf{Figura \ref{fig:gr_dorso}}.
+
 
 Ciertamente, para temperatura alta $T=1$MeV el sistema es puramente gaseoso independientemente de $\rho^*$, lo cual es esperable.
 Para temperatura intermedia $T=0,1$MeV comienzan a aparecer diferencias entre las distintas $\rho^*$, tendiendo a una $g(r)$ más similar a la de un líquido.
@@ -450,8 +466,9 @@ Ciertamente, allí podemos ver que la transición a líquido no ocurre aún baja
 	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho0_dorso_0,0001.png}
 	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho0_dorso_0,001.png}
 	\includegraphics[trim = 5mm 0mm 20mm 5mm, clip, width=0.32\textwidth]{pauli_gas/distribuciones_radiales/gr_rho0_dorso_0,005.png}
+	\caption{Funciones de distribución radial para los parámetros de Dorso en $\rho^*=3,375$.
+	A pesar de la tan baja temperatura, el sistema resulta predominantemente gaseoso.}
 	\label{fig:gr_dorso_frias}
-	\caption{}
 \end{figure}
 
 Esto puede entenderse si recordamos que Pauli es más que un potencial repulsivo, pues depende del momento $p$. 
@@ -465,7 +482,7 @@ su posición de equilibrio por mucho tiempo.
 
 Por completitud, mostramos las $g(r)$ obtenidas para los parámetros de Maruyama en la \textbf{Figura \ref{fig:gr_maruyama}}.
 Las mismas observaciones hechas para los parámetros de Dorso aplican aquí también, pues el comportamiento cualitativo es idéntico. 
-Esto es razonable respecto a nuestro argumento anterior, pues aludimos a propiedades cualitativas del potencial de Pauli, independientes de sus parámetros.
+Esto es razonable respecto a nuestro argumento anterior, pues aludimos a propiedades generales del potencial de Pauli, independientes de sus parámetros.
 
 Sin embargo, sigue siendo importante recalcar que este análisis depende del parámetro reducido $\rho^*=\rho q_o^3$, lo cual es relevante si el sistema tiene más de una distancia característica.
 La introducción de otros potenciales pueden ciertamente cambiar este comportamiento, forzando al sistema a alcanzar estos estados no gaseosos. 
@@ -486,10 +503,11 @@ La introducción de otros potenciales pueden ciertamente cambiar este comportami
 	\label{fig:gr_maruyama}
 \end{figure}
 
+\newpage
 
 \subsection{Temperatura y presión del virial}
 
-A pesar de que nuestras simulaciones de Metropolis-Montecarlo tienen una temperatura $T$ definida, nos resultó razonable analizar si esta coincidia con la temperatura predicha por el teorema del virial.
+A pesar de que nuestras simulaciones de Metropolis-Montecarlo tienen una temperatura $T$ definida, nos resultó razonable analizar si esta coincidía con la temperatura predicha por el teorema del virial.
 Utilizamos las 1600 muestras del sistema junto con \eqref{eq:virial_T} para calcular la temperatura del virial $T_V$.
 Los resultados para ambos conjuntos de parámetros y las 3 densidades pueden apreciarse en la \textbf{Figura \ref{fig:TvsT_sim}}, donde esta coincidencia se confirma perfectamente.
 
@@ -497,23 +515,23 @@ Los resultados para ambos conjuntos de parámetros y las 3 densidades pueden apr
 	\centering	%trim={<left> <lower> <right> <upper>}
 	\includegraphics[trim = 5mm 0mm 10mm 5mm, clip, width=0.4\textwidth]{pauli_gas/TvsT_virial_dorso.png}
 	\includegraphics[trim = 5mm 0mm 10mm 5mm, clip, width=0.4\textwidth]{pauli_gas/TvsT_virial_maruyama.png}
-	\caption{Graficos de temperatura del virial $T_V$ en función de la temperatura $T$ de la simulación para ambos conjuntos de parametros y las 3 densidades.
+	\caption{Gráficos de temperatura del virial $T_V$ en función de la temperatura $T$ de la simulación para ambos conjuntos de parámetros y las 3 densidades.
 	En ambos casos, la coincidencia entre $T_V$ y $T$ es exacta.}
 	\label{fig:TvsT_sim}
 \end{figure}
 
 Confirmado esto, pasamos al cálculo de la presión para el gas de Pauli utilizando \eqref{eq:virial_P} para ambos conjuntos de parámetros
 Graficamos estas presiones para las 3 densidades reducidas en función de la temperatura y las mostramos en la \textbf{Figura \ref{fig:PvsT_sim}}.
-Podemos apreciar que ambos conjuntos de parametros arrojan curvas similares (salvo reescalamiento en $T$).
+Podemos apreciar que ambos conjuntos de parámetros arrojan curvas similares (salvo reescalamiento en $T$).
 
 \begin{figure}[H]
 	\centering	%trim={<left> <lower> <right> <upper>}
 	\includegraphics[trim = 5mm 0mm 10mm 5mm, clip, width=0.4\textwidth]{pauli_gas/P_vs_T_dorso.png}
 	\includegraphics[trim = 5mm 0mm 10mm 5mm, clip, width=0.4\textwidth]{pauli_gas/P_vs_T_maruyama.png}
-	\caption{Graficos de presión en función de la temperatura para ambos conjuntos de parametros y las 3 densidades.
+	\caption{Gráficos de presión en función de la temperatura para ambos conjuntos de parámetros y las 3 densidades.
 	  Salvo el reescalamiento en $T$ resultan muy similares, donde parecería que $P(T=0)\neq0$.}
 	\label{fig:PvsT_sim}
 \end{figure}
 
-Como es de esperar, la presión coincide con $\rho T$ para $T$ alta y se mantiene levemente por ensima a medida que $T\to0$.
+Como es de esperar, la presión coincide con $\rho T$ para $T$ alta y se mantiene levemente por encima a medida que $T\to0$.
 Ciertamente, parecería que $P(T=0)\neq0$, una característica crucial de un gas de fermiones.

@@ -1,4 +1,4 @@
-\subsection{Distribución de Boltzmann}{\label{ap:boltzmann}}
+\section{Distribución de Boltzmann}{\label{ap:boltzmann}}
 
 La distribución de Boltzmann se da para todos los sistemas (interactuantes o no) de partículas distinguibles (o clásicas) cuyos potenciales sean independientes de los momentos.
 Estos Hamiltoneanos tienen la forma
@@ -25,7 +25,7 @@ Analogamente a la cuenta anterior, vemos que esto arroja
 {\left(\prod_{j=1}^N\int e^{-\beta\frac{p^2}{2m_j}} d^{3}p\right) \int e^{-\beta U(\mathbf{q}_1,..,\mathbf{q}_N)} d^{3N}q}
 = \frac{e^{-\beta\frac{p_i^2}{2m_i}}}{\int e^{-\beta\frac{p^2}{2m_i}} d^3p} \]
 
-Efectuando la integral del denominador, obtenemos finalmente la probabilidad de un dado impulso $\mathbf{p}_i$.
+Efectuando la integral del denominador, obtenemos finalmente la probabilidad de $\mathbf{p}_i$.
 \begin{equation}{\label{eq:dist_MB_imp}}
 f_i(\mathbf{p}_i) = \left(\frac{\beta}{2\pi m_i} \right)^{3/2} e^{-\beta\frac{p_i^2}{2m_i}}
 \end{equation}
@@ -44,7 +44,7 @@ del sistema en su totalidad.
 Sin embargo, analizar la probabilidad de que la partícula tenga una dada energía cinética $\varepsilon = p^2/2m_i$ permitirá independizarnos de la masa.
 Analogamente a lo anterior, planteamos normalización y utilizamos el cambio de variables $2m_i\varepsilon = p^2$ con $d\varepsilon = pdp/m = \sqrt{2m\varepsilon}dp/m$
 
-\[ 1 = \int_0^\infty f_i(p) dp = \int_0^\infty 4\pi\left(\frac{\beta}{2\pi m_i} \right)^{3/2} e^{-\beta\varepsilon} 2m_i\varepsilon\frac{m_i}{\sqrt{2m_i\varepsilon}} d\varepsilon
+\[ 1 = \int_0^\infty f_i(p) dp = \int_0^\infty 4\pi\left(\frac{\beta}{2\pi m_i} \right)^{3/2} e^{-\beta\varepsilon} \frac{2m_i\varepsilon m_i}{\sqrt{2m_i\varepsilon}} d\varepsilon
 = \int_0^\infty 2\pi\left(\frac{\beta}{2\pi m_i} \right)^{3/2} e^{-\beta\varepsilon} (2m_i)^{3/2}\sqrt{\varepsilon} d\varepsilon \]
 
 Por lo tanto, la probabilidad de que la $i$-esima partícula tenga una dada energía cinética $\varepsilon$ es identicamente igual para todas las partículas
@@ -55,9 +55,9 @@ y por lo tanto nos permite obtener una propiedad global del sistema.
 Si cada partícula tiene probabilidad $f(\varepsilon)d\varepsilon$ de tener energía cinética $\varepsilon$, entonces la cantidad de partículas con esa energía cinética es $Nf(\varepsilon)d\varepsilon$.
 Esta es la distribución de energía cinética del sistema.
 
+\newpage
 
-
-\subsection{Cálculo de las funciones de Fermi}
+\section{Cálculo de las funciones de Fermi}{\label{ap:func_fermi}}
 
 En esta sección, hablaremos del método utilizado para computar las $f_\nu(z)$ con especial interés en el caso $\nu=3/2$ que aparece al buscar $\mu(N,V,T)$
 y, en menor medida, el caso $\nu=5/2$ asociado a la presión.
@@ -83,10 +83,10 @@ Sin embargo, para $z = 0.75$, el error relativo ya escala a un $2\%$ y para $z=0
 Una forma de lograr esto sería aumentando el $m$ de las sumas parciales, pero esto conlleva el problema inherente de que los sumandos son estrictamente crecientes en módulo para $z\geq 1$.
 Eventualmente, estos valores pueden ser suficientemente grandes como para incurrir en \texttt{overflows} o cancelaciones catastróficas.
 
-\subsubsection{Algoritmo de Wynn}
+\subsection{Algoritmo de Wynn}
 
 Dado que la expresión de las $f_\nu(z)$ como serie de potencias resulta problemática para $z\geq 1$, podemos recurrir a otras formas.
-Una de estas es la aproximación de Padé por una función racional (cociente de polinomios)
+Una de estas es la aproximación de Padé por una función racional (cociente de polinomios)\cite{BOOK:SPR_NUM}
 \[ [L/M]_{f_\nu}(z) \equiv \frac{P_L(z)}{Q_M(z)} \approx f_\nu(z) \]
 donde $P_L(z)$ y $Q_M(z)$ son polinomios de grado $L$ y $M$, respectivamente.
 Estos polinomios no nos interesan dado que utilizaremos el \textit{algoritmo $\epsilon$ de Wynn} para obtener las aproximaciones diagonales $[p/p]_{f_\nu}(z) = \epsilon(0, 2p)$
@@ -105,9 +105,9 @@ Esto corresponde a la mitad superior de la antidiagonal, por lo que la cantidad 
 
 \begin{figure}[H]
 	\centering
-	\subfigure[Recurrencia entre elementos]{\includegraphics[width=0.26\columnwidth]{apendice/esquema_wynn.png}{\label{fig:wynn_esquema}}}
+	\subfigure[Recurrencia entre elementos]{\includegraphics[width=0.4\columnwidth]{apendice/esquema_wynn.png}{\label{fig:wynn_esquema}}}
 	\hspace{0.05\columnwidth}
-	\subfigure[Ejemplo del cómputo para el caso $p=1$]{\includegraphics[clip, width=0.68\columnwidth]{apendice/ejemplo_wynn.png}{\label{fig:wynn_ejemplo}}}
+	\subfigure[Ejemplo del cómputo para el caso $p=1$]{\includegraphics[clip, width=0.85\columnwidth]{apendice/ejemplo_wynn.png}{\label{fig:wynn_ejemplo}}}
 	\caption{Arreglo de los coeficientes $\epsilon$ en una tabla para facilitar su cómputo}
 	\label{fig:wynn}
 \end{figure}
@@ -118,15 +118,15 @@ relativo de $\sim10^{-6}$ más que aceptable.
 
 Aunque, en general, las $f_\nu(z)$ no poseen una expresión analítica contra la que podamos comparar la eficacia del algoritmo, el caso particular $\nu=1$ si tiene
 expresión analítica: $f_1(z) = \log(z+1)$.
-A modo de ejemplo, en la \textbf{Figura \ref{fig:ej_wynn_log}} las aproximaciones a $f_1(z) = \log(z+1)$ mediante el algoritmo de Wynn y sus errores relativos.
+A modo de ejemplo, mostramos en la \textbf{Figura \ref{fig:ej_wynn_log}} las aproximaciones a $f_1(z) = \log(z+1)$ mediante el algoritmo de Wynn y sus errores relativos.
 Usamos como valor ``exacto'' el arrojado por la función \texttt{log} del paquete \texttt{numpy} de \texttt{Python}.
 Puede verse que en el rango $0\leq z\leq 20$, la aproximación con $2p=20$ resulta indistinguible del exacto.
 
 \begin{figure}[H]
 	\centering
-	\subfigure[Valor absoluto]{\includegraphics[width=0.4\columnwidth]{apendice/ejemplo_wynn_log.png}}
-	\hspace{0.05\columnwidth}
-	\subfigure[Error relativo]{\includegraphics[width=0.4\columnwidth]{apendice/ejemplo_wynn_log_error.png}}
+	\subfigure[Valor absoluto]{\includegraphics[width=0.49\columnwidth]{apendice/ejemplo_wynn_log.png}}
+%	\hspace{0.05\columnwidth}
+	\subfigure[Error relativo]{\includegraphics[width=0.49\columnwidth]{apendice/ejemplo_wynn_log_error.png}}
 	\caption{Aproximaciones del método de Wynn a la función $f_1(z) = \log(z+1)$, calculada usando el paquete \texttt{numpy} de \texttt{Python}.
 	Podemos ver que rapidamente converge a la función para $p=10$, que resulta indistinguible de la exacta.}
 	\label{fig:ej_wynn_log}
@@ -141,7 +141,7 @@ Por lo tanto, los $\epsilon(n,0)$ se vuelven muy grandes y problemáticos para t
 Para el caso $\nu=3/2$, observamos las primeras inestabilidades para $z\approx 30$.
 
 
-\subsubsection{Aproximación de Sommerfeld y forma final}
+\subsection{Aproximación de Sommerfeld y forma final}
 
 Para $z$ grande, necesitamos otra forma de computar la $f_\nu(z)$.
 Surge la pregunta entonces: ¿existe un $z_m$ suficientemente grande para el cual nos baste conocer $f_\nu(z)$ para $z\leq z_m$?
@@ -149,7 +149,7 @@ Esta pregunta surge de recordar el objetivo de partida: encontrar el $z$ que cum
 A priori, $\alpha$ no está acotado superiormente, por lo que necesitamos conocer los $z$ para los cuales $f_\nu(z)\to\infty$.
 En particular, estamos interesados en que tanto debemos aumentar $z$ para que $f_\nu(z)$ aumente una dada cantidad.
 
-Para esto, utilizamos el conocido lema de Sommerfeld que nos permite aproximar
+Para esto, utilizamos el conocido lema de Sommerfeld\cite{BOOK:PATHRIA} que nos permite aproximar
 \begin{equation}{\label{eq:sommerfeld}}
  \int_0^\infty \frac{\Phi(x)}{e^{x-\eta}+1}dx = \int_0^\eta \Phi(x) dx + \frac{\pi^2}{6}\left( \frac{d\Phi}{dx} \right)\Bigg|_{x=\eta} +
  \frac{7\pi^4}{360}\left( \frac{d^3\Phi}{dx^3} \right)\Bigg|_{x=\eta} + ...
@@ -157,8 +157,8 @@ Para esto, utilizamos el conocido lema de Sommerfeld que nos permite aproximar
 
 Para el caso de $f_\nu(z)$, podemos usar este lema con $\Phi(x) = x^{\nu-1}/\Gamma(\nu)$ y $z = e^{\eta}$ (o $\eta = \log z$), obteniendo
 \begin{equation}{\label{eq:dirac_sommerfeld}}
-f_\nu(z) = \frac{1}{\Gamma(\nu)}\left[ \frac{(\log z)^\nu}{\nu} + \frac{\pi^2}{6}(\nu - 1)(\log z)^{\nu-2} + \frac{7\pi^4}{360}(\nu - 1)(\nu - 2)(\nu - 3)(\log z)^{\nu - 4}
-+ O((\log z)^{\nu-6})  \right]
+f_\nu(z) = \frac{(\log z)^\nu}{\Gamma(\nu)}\left[ \frac{1}{\nu} + \frac{\pi^2}{6}\frac{(\nu - 1)}{(\log z)^2} + \frac{7\pi^4}{360}\frac{(\nu - 1)(\nu - 2)(\nu - 3)}{(\log z)^4}
++ O((\log z)^{-6})  \right]
 \end{equation}
 
 Esto nos dice que para $z$ suficientemente grande, las $f_\nu(z)$ se comportan como potencias del logaritmo de $z$.
@@ -171,10 +171,9 @@ $\sim10^{-3}$ aceptable (para $\nu=3/2$).
 La ventaja de esto es que para $z\geq 20$ tenemos un método explícito y veloz para evaluar $f_{3/2}(z)$, por lo que podemos utilizar algún método para hallar la
 raíz de $g(z) = 0 = f_{3/2}(z) - N\lambda^3/gV$ (en nuestro caso, bisecciones).
 Por otro lado, para $0\leq z\leq 20$ construimos una Look-Up Table de $\sim 2500$ puntos, interpolando para obtener los valores de $f_\nu(z)$.
-En resumen
+En resumen, para $\nu=3/2$ tenemos
 
-\[  \left(\nu = \frac{3}{2}\right) \qquad
- \left\{\begin{matrix}
+\[ \left\{\begin{matrix}
   0 \leq z \leq 20 & \text{Look-Up Table: } \left\{\begin{matrix}
 		    0 \leq z \leq 0.65 & \text{Sumas parciales: } f_{3/2}(z) = \sum_{l=1}^{20} (-1)^{l+1} z^l/l^\nu \\
 		    0.65 \leq z \leq 20 & \text{Wynn: } \quad f_{3/2}(z) = \epsilon(0,20)
@@ -188,16 +187,16 @@ Esta aproximación de la $f_{5/2}(z)$ tiene una calidad similar a la de $f_{3/2}
 
 \begin{figure}[H]
 	\centering
-	\subfigure[Función $f_{3/2}(z)$ utilizada para obtener $\mu(N,V,T)$]{\includegraphics[width=0.4\columnwidth]{apendice/F32.png}}
-	\hspace{0.05\columnwidth}
-	\subfigure[Función $f_{5/2}(z)$ asociada a la presión del sistema]{\includegraphics[width=0.4\columnwidth]{apendice/F52.png}}
+	\subfigure[Función $f_{3/2}(z)$ utilizada para obtener $\mu(N,V,T)$]{\includegraphics[width=0.49\columnwidth]{apendice/F32.png}}
+%	\hspace{0.05\columnwidth}
+	\subfigure[Función $f_{5/2}(z)$ asociada a la presión del sistema]{\includegraphics[width=0.49\columnwidth]{apendice/F52.png}}
 	\caption{Forma final de las $f_\nu(z)$ utilizando la separación en 3 métodos: sumas parciales, Wynn y Sommerfeld. Puede verse que empalman correctamente.}
 	\label{fig:f32_f52}
 \end{figure}
 
+\newpage
 
-
-\subsection{Teorema del virial}{\label{ap:teo_virial}}
+\section{Teorema del virial}{\label{ap:teo_virial}}
 
 El teorema del virial es un resultado general para sistemas con $q$ y $p$ acotados que surge tanto de la mecánica clásica como de la mecánica estadística.
 Nos concentraremos en la versión de mecánica estadística deducida para el ensamble canónico y aprovechando la equivalencia de ensambles en el límite termodinámico.
@@ -208,7 +207,7 @@ En particular, analizaremos los valores medios de los observables
 &= \frac{1}{Z\beta}\int  e^{-\beta H} d^{3N}qd^{3N}p = k_B T
 \end{align*}
 donde hemos usado que el sistema se encuentra acotado en $q$ para cancelar la integral con la derivada.
-Podemos hacer un procedimiento análogo para $p_i$ y así obtener
+Podemos hacer un procedimiento análogo para $p_i$ (usando que también está acotado en $p$) y así obtener
 \begin{equation}{\label{eq:teo_virial_T}}
   \left< \dpart{H}{q_i}q_i \right> = k_B T = \left< \dpart{H}{p_i}p_i \right>
 \end{equation}
@@ -220,19 +219,20 @@ Utilizando las ecuaciones de Hamilton, podemos deducir de \eqref{eq:teo_virial_T
 \end{equation}
 
 Dado que ya tenemos una forma de obtener $T$, resulta natural considerar una fórmula para obtener $P$.
-Para esto utilizaremos \ref{eq:teo_virial_mec} separando $\dot{p}_i = F_i = F_i^{int}+F_i^{ext}$ y sumando sobre todas las coordenadas del sistema tal que
+Para esto utilizaremos \eqref{eq:teo_virial_mec} separando $\dot{p}_i = F_i = F_i^{int}+F_i^{ext}$ y sumando sobre todas las coordenadas del sistema tal que
 \[ 0 = \left< \sum_{i=1}^{3N} \dot{q}_ip_i + F_i^{int}q_i \right> + \left< \sum_{i=1}^{3N}F_i^{ext}q_i \right>  \]
-donde vemos que el segundo término corresponde a una especie de trabajo de las fuerzas externas que equivale a $-3PV$\textbf{CITA HAILE, APENDICE B}.
+donde vemos que el segundo término corresponde\cite{BOOK:HAILE} a $-3PV$.
 Por lo tanto, la presión resulta
 \begin{equation}{\label{eq:teo_virial_P}}
 P = \frac{1}{3V}\left< \sum_{i=1}^{3N} \dot{q}_ip_i + F_i^{int}q_i \right>
 \end{equation}
 
 Para el caso de un potencial no dependiente de momentos, el primer término de la sumatoria se reduce a la energía cinética.
-Sin embargo, para un sistema con interacción como la de Pauli agregará un término de \textit{g\"uerzas}.
+Sin embargo, para un sistema con interacción como la de Pauli agregará un término de \textit{g\"uerzas} $p_i\dpart{V}{p_i}$.
 
+\newpage
 
-\subsection{Integradores no simplécticos: Euler y Runge-Kutta}{\label{sec:no_simp}}
+\section{Integradores no simplécticos: Euler y Runge-Kutta}{\label{sec:no_simp}}
 
 En este apéndice, demostraremos que los métodos de Euler y un Runge-Kutta de orden 2 explícitos no son simplécticos.
 Comenzaremos con el método de Euler de esquema
@@ -265,7 +265,9 @@ tiene una derivada respecto de $y_n$ más complicada
 Para anular los ordenes cuadrático y cúbico, se requiere basicamente $\nabla^2H(y_n) = \nabla^2H(y_{n+1/2})$, pero el término cuártico en $h$ es no nulo.
 Por lo tanto, este método RK2 no es simpléctico.
 
-\subsection{Implementación de interacción de Pauli}
+\newpage
+
+\section{Implementación de interacción de Pauli}
 
 El objetivo fue generar un método para implementar el cálculo de las fuerzas totales en un sistema de $N_{part}$ partículas para un potencial dado. 
 Esta función \texttt{forces} debía ser tan general como fuese posible para así evitar problemas a la hora de cambiar el potencial. 
@@ -274,11 +276,11 @@ Implementamos estas funciones en \texttt{C} y, posteriormente, comparamos su vel
 La opción \texttt{O0} es la opción por default en la que no hay optimizaciones mientras que \texttt{O1} es la opción con optimizaciones elementales. 
 Por otro lado, la optimización \texttt{O2} realiza todas las optimizaciones que no envuelven \textit{space-speed tradeoff} (mayor uso de memoria en pos de aumentar la velocidad). La opción \texttt{O3}, en cambio, 
 si realiza este tipo de optimizaciones como el inlineado de funciones y la vectorización de ciclos. 
-Finalmente, la opción \texttt{Ofast} hace todo esto junto optimizaciones que no son \textit{standard-compliant} como \texttt{-ffast-math}; librería con funciones matemáticas implementadas para tener una mayor 
+Finalmente, la opción \texttt{Ofast} hace todo esto junto con optimizaciones que no son \textit{standard-compliant} como \texttt{-ffast-math}; librería con funciones matemáticas implementadas para tener una mayor 
 velocidad pero no necesariamente arrojar resultados con la exactitud apropiada. 
 
-Teniendo estas funciones implementadas de la mejor manera, podríamos compilarlas en una librería dinámica y llamarlas desde \texttt{Python}.
-De esta manera, podiamos aprovechar la velocidad de cómputo de \texttt{C} junto con la versatilidad de una sesión interactiva de \texttt{Python}.
+Teniendo estas funciones implementadas de la mejor manera, podemos compilarlas en una librería dinámica y llamarlas desde \texttt{Python}.
+De esta manera, aprovechamos la velocidad de cómputo de \texttt{C} junto con la versatilidad de una sesión interactiva de \texttt{Python}.
 
 Con esto en mente, planteamos 9 posibles implementaciones de la función \texttt{forces} combinando distintos rasgos. 
 En todos los casos (excepto el primero), \texttt{forces} llamaba otras funciones para ejecutar el cálculo de la fuerza (\texttt{pair\_force}) o energía (\texttt{pair\_energ}) de interacción entre 2 partículas. 
@@ -297,7 +299,7 @@ Los rasgos que modificamos fueron:
 Comparamos todas estas funciones con una función \texttt{forces1} sin funciones auxiliares que, en principio, sería la más veloz. Así, fue posible evaluar que tanta velocidad de ejecución se perdía en pos de 
 la encapsulación del potencial. 
 
-\subsubsection{Estabilización del tiempo de ejecución}
+\subsection{Estabilización del tiempo de ejecución}
 
 Preliminarmente, buscamos el valor de $N_{part}$ a partir del cual el tiempo de ejecución resultaba $\tau\sim N_{part}^2$ dado que la cantidad de interacciones que \texttt{forces} calculaba es 
 $N_{part}(N_{part}-1)/2\sim N_{part}^2$, bajo la hipótesis de que el tiempo de cómputo de la interacción entre 2 partículas es independiente de sus posiciones. 
@@ -314,7 +316,7 @@ Los resultados se muestran en la \textbf{Figura \ref{fig:TvsNpart}} y permiten e
 	\label{fig:TvsNpart}
 \end{figure}
 
-\subsubsection{Comparación: Potencial de Morse}
+\subsection{Comparación: Potencial de Morse}
 
 El primer potencial que implementamos fue el de Morse
 \[ V_{M} (r) = D\left[1-e^{-\alpha (r-r_{eq})}\right]^2\]
@@ -331,7 +333,7 @@ Realizamos 9 implementaciones del mismo, destacando la implementación 1 por ser
 \end{quote}
 
 \begin{multicols}{3}
-\begin{lstlisting}
+\begin{lstlisting}[language=C, basicstyle=\scriptsize\tt]
 float forces1(...){
 	...
 	for(i=0;i<N;i++){
@@ -348,7 +350,7 @@ float forces1(...){
 }
 \end{lstlisting}
 \columnbreak
-\begin{lstlisting}
+\begin{lstlisting}[language=C, basicstyle=\scriptsize\tt]
 float forces5(...){
 	...
 	for(i=0;i<N;i++){
@@ -374,7 +376,7 @@ float pair_energ(params,..){
 \end{lstlisting}
 
 \columnbreak
-\begin{lstlisting}
+\begin{lstlisting}[language=C, basicstyle=\scriptsize\tt]
 float forces9(...){
 	...
 	for(i=0;i<N;i++){
@@ -458,7 +460,7 @@ Esto último puede deberse a que la separación en 2 funciones obliga a calcular
 pasa como parámetro precalculado). 
 Dado que la exponencial no es una función elemental, sus tiempos elevados de calculo pueden causar esta discrepancia.
 
-\subsubsection{Comparación: Potencial de Lennard-Jones}
+\subsection{Comparación: Potencial de Lennard-Jones}
 
 Con el objetivo de confirmar que la abismal diferencia entre la implementación 9 y la 1 se debe al cálculo de \texttt{exp}, realizamos un análisis similar al anterior para el potencial de Lennard-Jones 
 \[ V_{LJ} (r) =  4\varepsilon \left[ \left(\frac{r}{\sigma}\right)^{12} -\left(\frac{r}{\sigma}\right)^{6} \right] \]
@@ -490,7 +492,7 @@ En particular, comparando las \textbf{Figuras \ref{fig:CompEsp}} y \textbf{\ref{
 Esto permitiría pensar que aproximadamente la mitad del tiempo de cómputo se invierte en calcular \texttt{exp}, hecho que oculta la diferencia real entre la implementación 1 y 5 de Morse, 
 que ahora pasa a ser $\sim 20\%$. 
 
-\subsubsection{Inlineado de funciones}
+\subsection{Inlineado de funciones}
 
 Los resultados previos parecen apuntar al hecho de que los tiempos de simulación se ven afectados por el hecho de que la función \texttt{forces} llame funciones auxiliares \texttt{pair\_force} 
 y \texttt{pair\_energ}. 
@@ -528,11 +530,9 @@ Sin embargo, puede verse como el cálculo de \texttt{exp} nuevamente enmascara l
 	\label{fig:CompEsp_morse_inline}
 \end{figure}
 
-Con todo este análisis, resulta inmediato elegir la implementación de \texttt{forces} con dos funciones auxiliares \texttt{pair\_force} y \texttt{pair\_energ} inlineadas sin parametros precalculados, 
+Con todo este análisis, resulta inmediato elegir la implementación de \texttt{forces} con dos funciones auxiliares \texttt{pair\_force} y \texttt{pair\_energ} inlineadas sin parámetros precalculados, 
 que devuelvan el modulo de la fuerza. Esta opción ya era la óptima del punto de vista de ingeniería de software y, gracias al previo análisis, resulta equivalente en términos de velocidad.
 
 Con esto tenemos una encapsulación total del potencial, permitiendo la implementación de un \texttt{forces} como marco general que funciona para cualquier par de funciones auxiliares \texttt{pair\_force} y 
 \texttt{pair\_energ}. 
-Estas funciones auxiliares son las que introducirán efectivamente el potencial dentro del cálculo; para cambiar el potencial basta cambiar estas funciones auxiliares.
-
-\end{document}
+Estas funciones auxiliares son las que introducirán efectivamente el potencial dentro del cálculo; cambiarlas basta para cambiar el potencial.
