@@ -1,6 +1,7 @@
 \subsection{Primeras simulaciones}
 
 El objetivo de esta sección es analizar la influencia del potencial de Pauli \eqref{eq:def_int_pauli} en la simulación de NM. 
+Dado que trabajaremos nuevamente con $N=1000$ partículas, utilizaremos un método de Metropolis-Montecarlo para realizar la simulación.
 Como dijimos, el potencial nuclear de QCNM \eqref{eq:pot_QCNM} no distingue entre protones y neutrones, por lo que a efectos de ese potencial tenemos $N=N_n+N_p$ partículas idénticas.
 Con la introducción del potencial de Pauli, separaremos las $N=1000$ partículas según sus componentes de spin e isospin, por lo que $N = N_n^\uparrow+N_n^\downarrow+N_p^\uparrow+N_p^\downarrow$.
 En particular, nos interesa un caso simétrico, tomamos $N_n^\uparrow=N_n^\downarrow=N_p^\uparrow=N_p^\downarrow = N/4 = 250\equiv n$.

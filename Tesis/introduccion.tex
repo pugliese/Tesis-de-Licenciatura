@@ -10,7 +10,7 @@ De esta propiedad de los fermiones surge el principio de exclusión de Pauli, qu
 De otra forma, sería imposible lograr que la función de onda sea antisimétrica, dado que si tuviésemos dos partículas $i$ y $j$ en el mismo estado, la permutación $\hat{P}_{ij}$ mantendría
 $\ket{\Psi}$ invariante en lugar de cambiar su signo.
 
-Según el teorema de spin-estadística de Dirac, los fermiones poseen spin semi-entero $s=l+1/2$, razón por la que los nucleones (protones y neutrones) y los electrones son fermiones.
+Según el teorema de spin-estadística de Dirac\cite{Pauli1940}, los fermiones poseen spin semi-entero $s=l+1/2$, razón por la que los nucleones (protones y neutrones) y los electrones son fermiones.
 La exclusión de Pauli es fundamental a la hora de comprender la dinámica de fermiones a bajas temperaturas.
 Dada esta exclusión, aún a temperatura cero resulta imposible que todos los fermiones condensen a sus autoestados (de única partícula) de menor energía. 
 Esto hace que los distintos niveles de energía se ``llenen'' uno a uno, lo cual inevitablemente genera sistemas con mayor energía total.
@@ -70,7 +70,8 @@ donde $G(\varepsilon)$ es la degeneración de estados con energía $\varepsilon$
 En el límite de altas temperaturas (o baja densidad), esperamos que el sistema pierda sus propiedades cuánticas y recuperemos el gas clásico, donde las partículas
 se vuelven distinguibles nuevamente.
 Además de recuperar la ecuación de estado del gas ideal, esperamos que en el límite $\lambda^3\rho\to0$, la distribución de energías cinéticas tienda a la de un gas clásico.
-Para un sistema de partículas clásico interactuando con potenciales dependientes de la posición $U(\mathbf{q}_1,..,\mathbf{q}_N)$, la distribución de energías cinéticas resulta
+
+Para un sistema de partículas clásico interactuando con potenciales dependientes de la posición $U(\mathbf{q}_1,..,\mathbf{q}_N)$, la distribución de energías cinéticas
 corresponde a la de Boltzmann (ver \textbf{Apéndice \ref{ap:boltzmann}}).
 \begin{equation}{\label{eq:dist_MB}}
  f_{MB}(\varepsilon) = N\sqrt{\frac{4\beta^3\varepsilon}{\pi}}e^{-\beta\varepsilon}
@@ -104,7 +105,7 @@ Esto es deseable dado que para energías (o temperaturas) altas esperamos recupe
 
 Este potencial fue inicialmente propuesto por Dorso \cite{Dorso1987, Dorso1988, Dorso1993} y utilizado en múltiples trabajos desde entonces\cite{Maruyama2012, Taruna2008}.
 Los parámetros $D$, $q_o$ y $p_o$ varían en cada trabajo, adaptándose según la característica que se busque analizar.
-Existen formulaciones alternativas como la de Piekarewicz \cite{Taruna2008} que proponen otra forma de abordar la exclusión de Pauli; exclusión en $q$ y en $p$ independientemente.
+Existen formulaciones alternativas como la de Piekarewicz \cite{Taruna2008} y la de Wilets \cite{Wilets1977} que proponen otra forma de abordar la exclusión de Pauli; exclusión en $q$ y en $p$ independientemente.
 
 La dependencia del potencial con el impulso trae aparejada una serie de dificultades a la hora de hacer simulaciones de Dinámica Molecular.
 Más allá de la inmediata dificultad para evolucionar el sistema (que analizaremos en la sección que sigue), surge la dificultad de definir algunas magnitudes termodinámicas del
@@ -263,7 +264,7 @@ Ahora si podemos probar la simplecticidad de MPR
 Sin embargo, es inmediato notar que el esquema de MPR no es explícito; no es posible obtener $y_{n+1}$ como una combinación de funciones conocidas aplicadas a $y_n$ para un hamiltoniano $H$ arbitrario.
 El integrador puede volverse explícito para hamiltonianos particulares (como el oscilador armónico), pero no lo será en general.
 
-Otro método simpléctico ampliamente utilizado es \textit{Velocity-Verlet} que,a demás de tener el mismo orden resulta explícito para hamiltonianos separables
+Otro método simpléctico ampliamente utilizado es \textit{Velocity-Verlet} que, además de tener el mismo orden resulta explícito para hamiltonianos separables
 \[ H(\mathbf{q}_1,..,\mathbf{q}_N,\mathbf{p}_1,..,\mathbf{p}_N) = \sum_i \frac{p_i^2}{2m} + U(\mathbf{q}_1,..,\mathbf{q}_N)\]
 
 El esquema tiene dos versiones, pero la más utilizada es
@@ -290,6 +291,7 @@ El costo computacional de estas implementaciones resulta prohibitivo para sistem
 
 En la \textbf{Figura \ref{fig:comp_integ_gatito}} podemos ver una comparación de la conservación del volumen de fases para un péndulo simple para los distintos integradores, algunos de los cuales 
 compararemos en la sección \ref{sec:choque1D}.
+Allí vemos efectivamente la superioridad de los integradores simplécticos (Verlet, Midpoint Rule y Euler simpléctico) a la hora de conservar el volumen inicial.
 
 \begin{figure}[H]
 	\centering	%trim={<left> <lower> <right> <upper>}
@@ -479,7 +481,7 @@ De esta manera, podemos reescribir la relación anterior como
 
 Para problemas de mecánica, suele ser $r=3$ en correspondencia con las 3 unidades fundamentales: masa $M$, distancia $L$ y tiempo $T$.
 Si agregamos la termodinámica, se suma la temperatura $\theta$, generalmente acompañada de la constante de Boltzmann $k_B$.
-Es por esto que es muy habitual trabajar directamente con la magnitud $k_BT$, cuyas unidades son de energía y pueden relacionarse con las de la mecánica $[k_BT] = ML^2/T^2$.
+Es por esto que es habitual trabajar directamente con $k_BT$, cuyas unidades son de energía y pueden relacionarse con las de la mecánica $[k_BT] = ML^2/T^2$.
 
 Es por eso que en general, en las simulaciones de mecánica estadística solemos tomar directamente $k_B=1$ (medimos la temperatura en unidades de energía) y tenemos $r=3$.
 Esto significa que no necesitamos analizar las $n$ variables del sistema, sino las $n-3$ variables adimensionales, lo cual es muy valioso al permitirnos acotar el espacio de búsqueda.
@@ -507,7 +509,7 @@ Esto será particularmente útil en las secciones \ref{sec:choque1D} y \ref{sec:
 \subsection{Función de distribución radial}{\label{sec:intro_gr}}
 
 En el estudio del potencial de Pauli, resulta interesante analizar si pueden existir fases no gaseosas de un sistema interactuando mediante este potencial.
-Sin embargo, las simulaciones vía el algoritmo de Metropolis-Montecarlo tiene una inherente dificultad para muestrear observables asociados a la evolución temporal del sistema.
+Sin embargo, las simulaciones vía el algoritmo de Metropolis-Montecarlo tienen una inherente dificultad para muestrear observables asociados a la evolución temporal del sistema.
 Esto hace que algunos indicadores como el \textit{coeficiente de Lindemann} resulten difíciles de interpretar a la hora de observar transiciones de fase.
 Esto ocurre porque este coeficiente mide las fluctuaciones en la posición de las partículas como una forma de analizar su desplazamiento, lo cual carece de sentido para una simulación de Montecarlo.
 
@@ -543,15 +545,16 @@ Ciertamente, no debe confundirse NM con los nucleones de los átomos.
 La formulación de NM asume sistemas infinitos, extensivos y neutros muy diferentes a los núcleos atómicos.
 Esta cuestión dificulta la vinculación directa de los resultados teóricos con los obtenidos experimentalmente.
 
-En el abordaje clásico del problema, se modela la interacción nuclear como un potencial efectivo.
-Existen múltiples formulaciones de este potencial, pero aquí nos concentraremos en el conocido como QCNM\cite{Dorso1988} (\textit{Quasi-Classical Nuclear Matter}), cuyo potencial de interacción entre \textit{todos los nucleones} es
+El problema del análisis de sistemas nucleares, debido a su complejidad, requiere el uso de modelos clásicos o semiclásicos;, se modela la interacción nuclear como un potencial efectivo.
+Existen múltiples formulaciones de este potencial, muchas de las cuales incluso se han utilizado conjuntamente al potencial de Pauli \cite{Maruyama2012,Perez-Garcia2008}.
+Aquí nos concentraremos en el conocido como QCNM\cite{Dorso1988} (\textit{Quasi-Classical Nuclear Matter}), cuyo potencial de interacción entre \textit{todos los nucleones} es
 
 \begin{equation}{\label{eq:pot_QCNM}}
  V_N(r) = V_o \left[ \left(\frac{r_1}{r}\right)^{p_1} - \left(\frac{r_2}{r}\right)^{p_2} \right] \left( 1 + e^{\frac{r-d}{a}} \right)^{-1}
 \end{equation}
 
 Este potencial fue inspirado por el potencial de Lennard-Jonnes, que resulta atractivo a distancia finita y repulsivo a corta distancia, como se espera de la interacción nuclear.
-Sin embargo, para corregir el alcance de este potencial se introdujo un decaimiento exponencial.
+Sin embargo, para corregir el alcance de este potencial (que debe ser corto) se introdujo un decaimiento exponencial.
 La intensidad del potencial se tomó $V_o=25.93$MeV con potencias $p_1=6.2$ y $p_2=3.0$, distancias características $r_1=1.757$fm y $r_2=1.771$fm y modulación exponencial $d=3.35$fm y $a=0.833$fm.
 De esta manera, hay un mínimo de potencial en $r\approx 2.138$fm de $-5.722$MeV, como puede apreciarse en la \textbf{Figura \ref{fig:graf_QCNM}}.
 
@@ -581,7 +584,7 @@ En este régimen de pastas, la curva se vuelve cuasi-constante, oscilando alrede
 	\label{fig:curva_Evsrho_dorso}
 \end{figure}
 
-Estas estructuras se observan principalmente en simulaciones de \textit{Neutron Star Matter} (NSM), donde se sabe que surgen de la competencia entre interacciones nucleares (como CMD o QCNM) e interacción de Coulomb. 
+Estas estructuras se observan principalmente en simulaciones de \textit{Neutron Star Matter} (NSM)\cite{Alcain}, donde se sabe que surgen de la competencia entre interacciones nucleares (como CMD o QCNM) e interacción de Coulomb. 
 Para sistemas con interacción nuclear sin Coulomb, sin embargo, se sospecha que pueden deberse a efectos de tamaño finito y/o a las condiciones de contorno periódicas.
 
 En contraposición a NSM, las pastas halladas en NM suelen disponer de una única estructura por celda.
