@@ -106,7 +106,6 @@ Esto corresponde a la mitad superior de la antidiagonal, por lo que la cantidad 
 \begin{figure}[H]
 	\centering
 	\subfigure[Recurrencia entre elementos]{\includegraphics[width=0.4\columnwidth]{apendice/esquema_wynn.png}{\label{fig:wynn_esquema}}}
-	\hspace{0.05\columnwidth}
 	\subfigure[Ejemplo del cómputo para el caso $p=1$]{\includegraphics[clip, width=0.85\columnwidth]{apendice/ejemplo_wynn.png}{\label{fig:wynn_ejemplo}}}
 	\caption{Arreglo de los coeficientes $\epsilon$ en una tabla para facilitar su cómputo}
 	\label{fig:wynn}
@@ -125,10 +124,9 @@ Puede verse que en el rango $0\leq z\leq 20$, la aproximación con $2p=20$ resul
 \begin{figure}[H]
 	\centering
 	\subfigure[Valor absoluto]{\includegraphics[width=0.49\columnwidth]{apendice/ejemplo_wynn_log.png}}
-%	\hspace{0.05\columnwidth}
 	\subfigure[Error relativo]{\includegraphics[width=0.49\columnwidth]{apendice/ejemplo_wynn_log_error.png}}
 	\caption{Aproximaciones del método de Wynn a la función $f_1(z) = \log(z+1)$, calculada usando el paquete \texttt{numpy} de \texttt{Python}.
-	Podemos ver que rapidamente converge a la función para $p=10$, que resulta indistinguible de la exacta.}
+	Vemos que converge a la función para $p=10$, que resulta indistinguible de la exacta.}
 	\label{fig:ej_wynn_log}
 \end{figure}
 

@@ -416,8 +416,9 @@ Esto conlleva, en otras cosas, al Teorema de Liouville y la conservación del vo
 La evolución de una dada región de condiciones iniciales en el espacio de fases preserva su volumen total.
 
 Por lo tanto, otro criterio para calificar la efectividad de los integradores es la conservación del volumen de fases a lo largo de la evolución.
-Para esto, realizamos una simulación tomando un conjunto de valores iniciales $(q_i, p_i)$ y evolucionándolos en paralelamente en el tiempo.
-En cada paso, asumiendo que cada punto era una elipse rígida de área definida, calculamos el volumen del conjunto de puntos como la suma de sus volúmenes individuales.
+Para esto, realizamos una simulación tomando un conjunto de valores iniciales $(q_i, p_i)$ y evolucionándolos paralelamente en el tiempo.
+Asumimos que cada uno de los puntos era el centro de una elipse rígida de ejes definidos, de forma que la región total asociada al conjunto era la unión de estas elípses.
+Así, calculamos para cada tiempo el volumen de esta región total para poder analizar su evolución en el tiempo.
 
 Hicimos esto para curvas de rebote (doble) con 81 condiciones iniciales en un cuadrado de $0.04\times0.04$ alrededor del $(6, -4)$ y los mismos parámetros de antes para Pauli.
 Tomamos estas elipses suficientemente grandes como para cubrir completamente este cuadrado inicial, por lo que hubo considerable superposición de volúmenes.

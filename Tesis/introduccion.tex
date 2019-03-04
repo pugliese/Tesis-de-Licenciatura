@@ -12,10 +12,10 @@ $\ket{\Psi}$ invariante en lugar de cambiar su signo.
 
 Según el teorema de spin-estadística de Dirac, los fermiones poseen spin semi-entero $s=l+1/2$, razón por la que los nucleones (protones y neutrones) y los electrones son fermiones.
 La exclusión de Pauli es fundamental a la hora de comprender la dinámica de fermiones a bajas temperaturas.
-Dada esta exclusión, aún a temperatura cero resulta imposible que todos los fermiones condensen a sus estados (de única partícula) de menor energía. 
+Dada esta exclusión, aún a temperatura cero resulta imposible que todos los fermiones condensen a sus autoestados (de única partícula) de menor energía. 
 Esto hace que los distintos niveles de energía se ``llenen'' uno a uno, lo cual inevitablemente genera sistemas con mayor energía total.
 Gracias a esto puede explicarse desde la conducción eléctrica en metales\cite[pp. 247]{BOOK:PATHRIA} hasta la \textit{presión de degeneración} 
-(presión no nula a temperatura cero) que evita el colapso de las enanas blancas \cite[pp2. 59]{BOOK:PATHRIA}.
+(presión no nula a temperatura cero) que evita el colapso de las enanas blancas \cite[pp. 259]{BOOK:PATHRIA}.
 
 El sistema de fermiones no interactuantes es el más simple, cuya estadística es bien conocida, siendo su función de partición gran canónica y ocupación media\cite[pp. 231]{BOOK:PATHRIA}
 \begin{equation}
@@ -80,8 +80,8 @@ corresponde a la de Boltzmann (ver \textbf{Apéndice \ref{ap:boltzmann}}).
 
 \subsection{Potencial de Pauli}{\label{sec:intro_pauli}}
 
-Dado que la distribución \eqref{eq:dist_MB} es común a todo sistema de partículas distinguibles (o clásicas) cuyos Hamiltonianos cuya dependencia con el momento
-sea a través de la energía cinética (ver  \textbf{Apéndice \ref{ap:boltzmann}})
+Dado que la distribución \eqref{eq:dist_MB} es común a todo sistema de partículas distinguibles (o clásicas) cuyos Hamiltonianos dependan del momento únicamente
+a través de la energía cinética (ver  \textbf{Apéndice \ref{ap:boltzmann}})
 \[ H(\mathbf{q}_1,..,\mathbf{q}_N,\mathbf{p}_1,..,\mathbf{p}_N) = \sum_i \frac{p_i^2}{2m} + U(\mathbf{q}_1,..,\mathbf{q}_N)\]
 la única forma de obtener una distribución de energías distinta con partículas distinguibles es introduciendo potenciales dependientes de momentos al Hamiltoniano.
 
@@ -102,7 +102,7 @@ la noción de exclusión de Pauli: dos partículas no pueden estar en el mismo e
 Es importante notar que este potencial no es de núcleo duro y, por lo tanto, es posible que dos partículas se superpongan para energías suficientemente altas donde $D$ sea despreciable.
 Esto es deseable dado que para energías (o temperaturas) altas esperamos recuperar el gas clásico de Maxwell-Boltzmann al desaparecer $V_P$.
 
-Este potencial fue inicialmente propuesto por Wiletz \cite{Wilets1977} y continuado por Dorso \cite{Dorso1987, Dorso1988, Dorso1993} y utilizado en múltiples trabajos desde entonces\cite{Maruyama2012, Taruna2008}.
+Este potencial fue inicialmente propuesto por Dorso \cite{Dorso1987, Dorso1988, Dorso1993} y utilizado en múltiples trabajos desde entonces\cite{Maruyama2012, Taruna2008}.
 Los parámetros $D$, $q_o$ y $p_o$ varían en cada trabajo, adaptándose según la característica que se busque analizar.
 Existen formulaciones alternativas como la de Piekarewicz \cite{Taruna2008} que proponen otra forma de abordar la exclusión de Pauli; exclusión en $q$ y en $p$ independientemente.
 
@@ -288,12 +288,14 @@ Esto resulta muy relevante, dado que implica que el uso de Dinámica Molecular p
 de algún método para resolver ecuaciones implícitas como \eqref{eq:MPR}.
 El costo computacional de estas implementaciones resulta prohibitivo para sistemas de muchas partículas, como mostraremos más adelante.
 
-En la \textbf{Figura \ref{fig:comp_integ_gatito}} podemos ver una comparación de la conservación del volumen de fases para un péndulo simple para los distintos integradores, algunos de los cuales compararemos en la sección \ref{sec:choque1D}.
+En la \textbf{Figura \ref{fig:comp_integ_gatito}} podemos ver una comparación de la conservación del volumen de fases para un péndulo simple para los distintos integradores, algunos de los cuales 
+compararemos en la sección \ref{sec:choque1D}.
 
 \begin{figure}[H]
 	\centering	%trim={<left> <lower> <right> <upper>}
 	\includegraphics[width=0.9\textwidth]{introduccion/Comparacion_integradores.png}
-	\caption{Comparación de distintos integradores (simplécticos o no) a la hora de conservar el volumen de fases al integrar un péndulo ideal.
+	\caption{Comparación de la evolución de un dado volumen utilizando distintos integradores (simplécticos o no) para un péndulo ideal.
+		Los integradores simplécticos (Verlet, Midpoint Rule y Euler simpléctico) preservan el volumen mejor que los no simplécticos.
 		Estas imágenes fueron tomadas de \cite[pp. 188]{BOOK:SPR_INT}}
 	\label{fig:comp_integ_gatito}
 \end{figure}

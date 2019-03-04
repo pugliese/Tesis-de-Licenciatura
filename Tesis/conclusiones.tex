@@ -1,31 +1,41 @@
-A lo largo de esta tesis analizamos las propiedades introducidas por el potencial de Pauli.
+A lo largo de este trabajo analizamos las propiedades introducidas por el potencial de Pauli.
 Comenzamos con un simple análisis del choque unidimensional de 2 partículas, donde pudimos apreciar la principal propiedad de este potencial: una región excluida en el espacio de fases $(\Delta q, \Delta p)$.
 Esta región es aproximadamente elíptica y emula la noción de exclusión de Pauli, evitando que las partículas se aglutinen cerca del origen.
-Sin embargo, esta región solo existe si el parámetro reducido $D^*=mD/p_o^2$ cumple $D^*>1/2$, lo cual impone ciertas condiciones sobre la intensidad $D$ y el alcance en momentos $p_o$ de cualquier conjunto de parámetros que busque emular esta exclusión de Pauli.
+Sin embargo, esta región solo existe si el parámetro reducido $D^*=mD/p_o^2$ cumple $D^*>1/2$, lo cual impone ciertas condiciones sobre la intensidad $D$ y el alcance en momentos $p_o$ de cualquier conjunto de 
+parámetros que busque emular esta exclusión de Pauli.
 Finalmente, vimos que el área total de esta región resulta $A=q_op_oA^*$ donde $A^*$ crece logaritmicamente con $D^*=mD/p_o^2$.
 
 Realizamos este análisis en forma teórica y luego numérica, integrando las ecuaciones de movimiento con un método simpléctico.
 Para esto último, debimos implementar un método de punto fijo dado que \textit{todos} los integradores simplécticos resultan implícitos para hamiltonianos no separables.
 Pudimos mostrar que el integrador Mid-Point Rule (MPR) resuelto mediante el método de punto fijo era efectivamente simpléctico, reproduciendo resultados idénticos a los teóricos.
-A pesar de las limitaciones computacionales del método, resulta claro que este potencial e integrador son viables aún para sistemas con más partículas.
+A pesar de las limitaciones computacionales del método, resulta claro que este potencial e integrador son viables aún para sistemas finitos, como sería el caso de núcleos atómicos de $\sim 100$ nucleones.
 
 Durante este pasaje de 2 a $N=1000$ partículas la existencia de una región excluida se mantiene, pero aparece la dependencia adicional con la temperatura.
 A medida que $T$ aumenta, la región excluida se vuelve irrelevante no solo por la expansión del espacio de fases ocupado sino por la reducción directa de la misma. 
 Eventualmente, la ocupación del espacio de fases resulta idéntica a la de un gas ideal.
 Para $T$ baja, la región excluida parece ser idéntica a la del choque unidimensional con el mismo $D^*$.
 Además, esta región logra evitar el aglutinamiento de partículas con impulso $p\approx0$ y la existencia de presión no nula a $T=0$, dos de las propiedades fundamentales del gas de Fermi.
-Aunque la distribución de energías cinéticas $f_P(\varepsilon;\rho,T)$ no resulta similar a la de Fermi-Dirac $f_{FD}(\varepsilon;\rho,T)$, vimos que una elección apropiada de los parámetros $q_o$, $p_o$ y $D$ permite que $f_P(\varepsilon;\rho,T)\approx f_{FD}(\varepsilon;\rho',T')$, pero no parecería ser posible que $(\rho',T') = (\rho, T)$.
+Aunque la distribución de energías cinéticas $f_P(\varepsilon;\rho,T)$ no resulta similar a la de Fermi-Dirac $f_{FD}(\varepsilon;\rho,T)$, vimos que una elección apropiada de los parámetros $q_o$, $p_o$ y $D$ 
+permite que $f_P(\varepsilon;\rho,T)\approx f_{FD}(\varepsilon;\rho',T')$, pero no parecería ser posible que $(\rho',T') = (\rho, T)$.
 
-Esto no es preocupante, pues caracterizando correctamente la dependiente la dependencia $\rho'(\rho, T)$ y $T'(\rho, T)$ podemos considerar que nuestro gas de Pauli corresponde a un gas de Fermi bajo estas nuevas $\rho'$ y $T'$.
+Esto no es preocupante, pues caracterizando correctamente la dependencia $\rho'(\rho, T)$ y $T'(\rho, T)$ podemos considerar que nuestro gas de Pauli corresponde a un gas de Fermi bajo estas 
+nuevas $\rho'$ y $T'$.
 Esto puede ser más que suficiente a la hora de ver los efectos de la exclusión cuando este potencial se agrega a sistemas clásicos ya conocidos.
 
 Por otro lado, vimos que el potencial de Pauli impide la formación de cristales en sistemas densos, dificultando que las partículas alcancen energías cinéticas bajas.
 Esto no solo se apreció en el gas de Pauli, sino también en las simulaciones de Materia Nuclear.
 Allí vimos que desaparece la transición de fase (y salto de energía) asociada justamente a la cristalización de las pastas nucleares.
 
-Estas pastas disponen de múltiples estructuras por celda, lo cual es extraño especialmente para spaghettis y lasagnas, por lo que se condice más con las pastas observadas en Neutron Star Matter.
+Estas pastas disponen de múltiples estructuras por celda, lo cual es extraño en Materia Nuclear especialmente para spaghettis y lasagnas, por lo que se condice más con las pastas observadas en Neutron Star Matter.
+De esta manera, obtuvimos pastas con una interacción de Pauli en lugar de Coulomb, lo cual es muy llamativo.
 A esto se suma el hecho de que la curva $E(\rho)$ no alcanza un tramo cuasi-constante para $\rho$ en el régimen de pastas, sino que se mantiene cóncava, pero incapaz de reproducir la energía y densidad de saturación.
 
 Reduciendo la intensidad $V_o$ del potencial nuclear QCNM, logramos resolver las primeras dos cuestiones.
 En el nuevo régimen de pastas, disponemos de una única estructura por celda y la energía por nucleón resulta constante alrededor de $\approx -11$MeV, muy cercana a la esperada.
 Sin embargo, la cristalización de las pastas sigue sin ocurrir y probablemente no ocurra mientras el potencial de Pauli sea apreciable.
+
+Ciertamente, quedan las bases sentadas para profundizar ciertas cuestiones, como la caracterización de $\rho'(\rho, T)$ y $T'(\rho, T)$ en el gas de Pauli y el rol que juega Pauli en la formación de pastas 
+de materia nuclear sin interacción de Coulomb. 
+También queda pendiente un análisis del efecto de introducir Pauli en sistemas nucleares que ya tienen interacción de Coulomb como Neutron Star Matter o el estudio de núcleos atómicos. 
+Como dijimos, en el caso de núcleos atómicos, la cantidad de partículas $\sim 100$ resultaría manejable y es viable hacer simulaciones vía integración simpléctica de las ecuaciones de movimiento.
+Esto incluso permitiría el análisis de las propiedades dinámicas de las colisiones atómicas.

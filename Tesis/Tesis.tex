@@ -66,17 +66,20 @@
 
 \begin{document}
 
+\pagenumbering{gobble}
+
 \input{caratula.tex}
 
 \newpage
- 
+\thispagestyle{empty}
 \input{resumen.tex}
 
 \newpage
-
+\thispagestyle{empty}
 \tableofcontents
 
 \newpage
+\pagenumbering{arabic}
 \setcounter{page}{1}
 \section{Introducción}
  \input{introduccion.tex}

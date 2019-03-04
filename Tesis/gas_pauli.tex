@@ -11,7 +11,7 @@ El Hamiltoniano de este gas de Pauli será
  \quad \text{ con } \quad s_{ij}^2 = \frac{|\mathbf{q}_i-\mathbf{q}_j|^2}{q_o^2} + \frac{|\mathbf{p}_i-\mathbf{p}_j|^2}{p_o^2}
 \end{equation}
 
-\subsection{Método de simulación}
+\subsection{Limitaciones de la integración simpléctica}
 
 Con esto en mente, comenzamos extendiendo los algoritmos de la Sección \ref{sec:num_choque_1d} para un sistema de $N$ partículas en 3 dimensiones, con el objetivo
 de confirmar si la noción de área excluida se preserva en el límite termodinámico.
@@ -50,6 +50,8 @@ La principal ventaja de este método es que resulta lineal en $N$ dado que el c�
 
 Sin embargo, aún avanzando $N$ pasos (en promedio, un intento de movimiento por partícula) este método tardaba aproximadamente $\tau_N = 0.4s$; menos de la mitad.
 Esto sumado a la facilidad para controlar la temperatura (dado que nos interesa un sistema NVT), inclinó la balanza en pos de este método.
+
+\subsection{Cálculos con Metropolis-Montecarlo}
 
 En lo que sigue, utilizamos el método de Metropolis-Montecarlo para simular una caja de lado $L$ (y volumen $V=L^3$) con $N$ partículas interactuando mediante un potencial de Pauli $V_P$.
 Tomamos valores de $\Delta q$ y $\Delta p$ que nos aseguren una aceptación entre $30\%$ y $60\%$.
